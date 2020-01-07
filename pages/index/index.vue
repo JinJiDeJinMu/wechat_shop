@@ -349,7 +349,7 @@ export default {
     //大学定位
     getDate(e) {
       wx.removeStorageSync('filterCity');
-      wx.setStorageSync('filterCity', e.detail.id.name);
+      wx.setStorageSync('filterCity', e.id.name);
       console.log(e.detail.id);
       this.setData({
         selectList: this.selectList
