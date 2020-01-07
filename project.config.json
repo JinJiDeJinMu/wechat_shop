@@ -1,0 +1,183 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.4",
+	"appid": "wxa637df01806a720c",
+	"projectname": "weimingyanxuan",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "选择优惠券",
+					"pathName": "pages/shopping/selCoupon/selCoupon",
+					"query": "isBuy=false"
+				},
+				{
+					"id": -1,
+					"name": "订单界面",
+					"pathName": "pages/shopping/checkout/checkout",
+					"query": "isBuy=true"
+				},
+				{
+					"id": -1,
+					"name": "我的优惠券",
+					"pathName": "pages/ucenter/coupon/coupon",
+					"query": "isBuy=true"
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/ucenter/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "核销成功页面",
+					"pathName": "pages/ucenter/msg/msgorder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "核销成功页面2",
+					"pathName": "pages/ucenter/scan/scan",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商品评论页面",
+					"pathName": "pages/goods/comment/comment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评价详情页面",
+					"pathName": "pages/goods/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发表评价页面",
+					"pathName": "pages/goods/publish/publish",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商家入驻页面",
+					"pathName": "pages/entry/entry",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "校园合伙人页面",
+					"pathName": "pages/campuspartner/campuspartner",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "吃喝玩乐页面",
+					"pathName": "pages/enjoy/enjoy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "地图定位",
+					"pathName": "pages/shopMap/shopMap",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "物流信息",
+					"pathName": "pages/express/express",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群管订单",
+					"pathName": "pages/hexiao/hexiao",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群管中心",
+					"pathName": "pages/hexiao/yiorder/yiorder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群管",
+					"pathName": "pages/hexiao/groupone/groupone",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "下级群管",
+					"pathName": "pages/hexiao/grouptwo/grouptwo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群管信息",
+					"pathName": "pages/hexiao/portrait/portrait",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "群管未结算",
+					"pathName": "pages/hexiao/unsettled/unsettled",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分类",
+					"pathName": "pages/sort/sort",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "产品详情",
+					"pathName": "pages/content/content",
+					"query": ""
+				}
+			]
+		}
+	}
+}

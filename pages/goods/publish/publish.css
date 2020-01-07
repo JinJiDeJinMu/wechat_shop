@@ -1,0 +1,95 @@
+/* pages/goods/publish/publish.wxss */
+
+.baby {
+  width: 100%;
+  height: 100%;
+}
+
+.baby-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.baby-grade {
+  margin-left: 15rpx;
+}
+
+.baby-img {
+  width: 220rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+}
+
+.u10-img {
+  width: 100%;
+  height: 4rpx;
+}
+
+/* 评论文本框 */
+
+.con-discuss {
+  width: 96%;
+  height: 200rpx;
+  padding-left: 15rpx;
+  padding-right: 20rpx;
+}
+
+/* 添加图片 */
+
+.add {
+  width: 96%;
+  height: 100%;
+  /* display: flex;
+  justify-content: flex-start; */
+}
+
+.add-img {
+  width: 160rpx;
+  height: 160rpx;
+  border: 2rpx dashed #ccc;
+  margin-left: 15rpx;
+}
+
+.submit {
+  margin-top: 135rpx;
+  width: 350rpx;
+}
+
+/* 上传的图片 */
+
+.question-images {
+  width: 96%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.q-image {
+  width: 160rpx;
+  height: 160rpx;
+  /* border: 2rpx dashed #ccc; */
+  margin-left: 15rpx;
+}
+
+.q-image-wrap {
+  position: relative;
+}
+
+.q-image-remover {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 15rpx; */
+  /* width: 96%; */
+  /* height: 100%; */
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  /* display: flex; */
+  /* align-items: center; */
+  /* overflow: hidden; */
+  /* padding-left: 50rpx; */
+  text-align: center;
+  color: #ddd;
+}
+.wu{
+  display: none;
+}

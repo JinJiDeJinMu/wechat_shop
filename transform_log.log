@@ -1,0 +1,109 @@
+miniprogram to uni-app 转换日志
+
+---基本信息---
+时间: 2020-01-06 11:20:11
+转换模式: Hbuilder X
+是否转换wxs文件: true
+
+---小程序基本信息---
+name: weimingyanxuan
+version: 
+description: 
+appid: wxa637df01806a720c
+projectname: 
+compileType: miniprogram
+author: 
+
+---目录信息---
+sourceFolder: /Users/royalmac/wei_ming_yan_xuan
+targetFolder: /Users/royalmac/wei_ming_yan_xuan_uni
+outputFolder: /Users/royalmac/wei_ming_yan_xuan_uni
+miniprogramRoot: /Users/royalmac/wei_ming_yan_xuan
+
+---日志信息---
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/utils/datetime.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/picker-column/index.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/progress/index.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/tree-select/index.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/wxs/array.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/wxs/bem.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/wxs/memoize.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/wxs/object.js success!
+Convert wxs file /Users/royalmac/wei_ming_yan_xuan_uni/wxcomponents/vant-weapp/wxs/utils.js success!
+image漏网之鱼:    src--> "{{item.list_pic_url||item.primary_pic_url}}"     file--> pages/category/category.wxml
+image漏网之鱼:    src--> "{{goods.primary_pic_url||goods.list_pic_url}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/group/group.wxml
+image漏网之鱼:    src--> "{{bannerInfo.img_url}}"     file--> pages/hotGoods/hotGoods.wxml
+image漏网之鱼:    src--> "{{bannerInfo.img_url}}"     file--> pages/newGoods/newGoods.wxml
+image漏网之鱼:    src--> "{{item.img_url}}"     file--> pages/product/product.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/spike/spike.wxml
+image漏网之鱼:    src--> "{{item.primaryPicUrl}}"     file--> pages/customer/list/list.wxml
+image漏网之鱼:    src--> "{{item.loginPassword}}"     file--> pages/customer/whlist/whlist.wxml
+image漏网之鱼:    src--> "{{conten.userInfo.avatar}}"     file--> pages/goods/detail/detail.wxml
+image漏网之鱼:    src--> "{{imagePath}}"     file--> pages/hexiao/main/main.wxml
+image漏网之鱼:    src--> "{{imgUrl}}"     file--> pages/hexiao/qrcode/topic.wxml
+image漏网之鱼:    src--> "{{ userInfo.avatarUrl }}"     file--> pages/hexiao/yiorder/yiorder.wxml
+image漏网之鱼:    src--> "{{ userInfo.avatarUrl }}"     file--> pages/ucenter/index/index.wxml
+image漏网之鱼:    src--> "{{ src }}"     file--> wxcomponents/dist/avatar/index.wxml
+image漏网之鱼:    src--> "{{ thumb }}"     file--> wxcomponents/dist/card/index.wxml
+image漏网之鱼:    src--> "{{ thumb }}"     file--> wxcomponents/vant-weapp/card/index.wxml
+image漏网之鱼:    src--> "{{ userInfo.avatarUrl }}"     file--> pages/hexiao/portrait/portrait.wxml
+image漏网之鱼:    src--> "{{ current ? currentImg : img }}"     file--> wxcomponents/dist/tab-bar-item/index.wxml
+image漏网之鱼:    src--> "{{ name }}"     file--> wxcomponents/vant-weapp/icon/index.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/search/search.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/collect/collect.wxml
+image漏网之鱼:    src--> "{{item.img_url}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{v.image_url}}"     file--> pages/sort/sort.wxml
+image漏网之鱼:    src--> "{{item.userInfo.avatar}}"     file--> pages/goods/comment/comment.wxml
+image漏网之鱼:    src--> "{{iitem.list_pic_url}}"     file--> pages/ucenter/footprint/footprint.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/return/return.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/cart/cart.wxml
+image漏网之鱼:    src--> "{{item.user_info.avatar}}"     file--> pages/comment/comment.wxml
+image漏网之鱼:    src--> "{{currentCategory.wap_banner_url}}"     file--> pages/catalog/catalog.wxml
+image漏网之鱼:    src--> "{{v.listPicUrl||v.primaryPicUrl}}"     file--> pages/fenlei/catalog.wxml
+image漏网之鱼:    src--> "{{item.image_url}}"     file--> pages/index/index.wxml
+image漏网之鱼:    src--> "{{item}}"     file--> pages/goods/publish/publish.wxml
+image漏网之鱼:    src--> "{{ image }}"     file--> wxcomponents/dist/toast/index.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> wxcomponents/index-type-data/index-type-data.wxml
+image漏网之鱼:    src--> "{{i.pic_url}}"     file--> pages/goods/detail/detail.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/order/order.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/shoporder/shoporder.wxml
+image漏网之鱼:    src--> "{{pitem.pic_url}}"     file--> pages/comment/comment.wxml
+image漏网之鱼:    src--> "{{item.bannerUrl}}"     file--> pages/index/index.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/orderDetail/orderDetail.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url}}"     file--> pages/ucenter/orderHexiao/orderHexiao.wxml
+image漏网之鱼:    src--> "{{model.picUrl}}"     file--> pages/goods/comment/comment.wxml
+image漏网之鱼:    src--> "{{item.wap_banner_url}}"     file--> pages/catalog/catalog.wxml
+image漏网之鱼:    src--> "{{iitem.list_pic_url||iitem.primary_pic_url}}"     file--> pages/shopping/checkout/checkout.wxml
+image漏网之鱼:    src--> "{{iitem.list_pic_url}}"     file--> pages/hotGoods/hotGoods.wxml
+image漏网之鱼:    src--> "{{iitem.list_pic_url}}"     file--> pages/newGoods/newGoods.wxml
+image漏网之鱼:    src--> "{{comment.data.avatar}}"     file--> pages/product/product.wxml
+image漏网之鱼:    src--> "{{model.list_pic_url||model.primary_pic_url}}"     file--> pages/index/index.wxml
+image漏网之鱼:    src--> "{{item.pic_url}}"     file--> pages/product/product.wxml
+image漏网之鱼:    src--> "{{imagePath}}"     file--> pages/ucenter/orderDetail/orderDetail.wxml
+image漏网之鱼:    src--> "{{tx.avatar}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{model.list_pic_url}}"     file--> pages/index/index.wxml
+image漏网之鱼:    src--> "{{iitem.groupBuyingDetailedList[0].userImg}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url||item.primary_pic_url}}"     file--> pages/index/index.wxml
+image漏网之鱼:    src--> "{{comment.data.avatar}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{item.pic_url}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{item.list_pic_url||item.primary_pic_url}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{proImg?proImg:(goods.list_pic_url||goods.primary_pic_url)}}"     file--> pages/goods/goods.wxml
+wxParse: ()      file: /Users/royalmac/wei_ming_yan_xuan/pages/product/product.js
+image漏网之鱼:    src--> "{{item.groupBuyingDetailedList[0].userImg}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{item.userImg}}"     file--> pages/goods/goods.wxml
+image漏网之鱼:    src--> "{{ collectBackImage }}"     file--> pages/goods/goods.wxml
+wxParse: ()      file: /Users/royalmac/wei_ming_yan_xuan/pages/goods/goods.js
+
+转换完成: 
+耗时：14901ms
+当前转换模式：【Hbuilder X】，生成HbuilderX项目。
+优点：上手快，项目结构较简单；
+缺点：资源路径会因为表达式而无法全部被修复(需手动修复)
+
+注意：
+1.当看到"image漏网之鱼"，意味着您需要手动调整对应代码，当image标签的src属性是含变量或表达式，工具还无法做到100%转换，需要手动修改为相对/static目录的路径(使用vue-cli模式可以解决，参数：-c)
+2.代码<template is="abc" data=""/>里data属性，除了不支持...扩展运算符(因uni-app现在还不支持v-bind="")，其余参数形式都支持，望知悉！
+
+日志说明：
+1. image漏网之鱼 --> 为HbuilderX模式时，需要将资源移动到static，并且修复相应文件路径，有可能src为网络文件，有可能为变量或表达式，可能会导致转换后文件找不到，因此提示一下

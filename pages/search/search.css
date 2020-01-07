@@ -1,0 +1,63 @@
+.ss {
+  width: 500rpx;
+  height: 60rpx;
+  background: yellow;
+}
+
+.zuixin {
+  width: 750rpx;
+  min-height: 800rpx;
+  background: white;
+  padding-top: 5rpx;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.goods1 {
+  width: 340rpx;
+  height: 427rpx;
+  background: gold;
+  margin-left: 26rpx;
+  /* margin-right:18rpx;  */
+  background: white;
+  margin-top: 5rpx;
+}
+
+/* .good1:nth-child(2n){
+  margin-left:10rpx
+} */
+
+.goods11 {
+  width: 340rpx;
+  height: 250rpx;
+  background: white;
+}
+
+.goods12 {
+  width: 340rpx;
+  background: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  line-height: 38rpx;
+}
+
+.goods13 {
+  width: 340rpx;
+  height: 96rpx;
+  background: white;
+  display: flex;
+  line-height: 96rpx;
+}
+
+.goods131 {
+  color: red;
+  font-size: 40rpx;
+}
+
+.goods132 {
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
