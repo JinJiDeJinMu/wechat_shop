@@ -350,7 +350,7 @@ export default {
     getDate(e) {
       wx.removeStorageSync('filterCity');
       wx.setStorageSync('filterCity', e.id.name);
-      console.log(e.detail.id);
+      console.log(e.id);
       this.setData({
         selectList: this.selectList
       });
