@@ -26,7 +26,6 @@
 					"count-down-list": "../../wxcomponents/count-down-list/count-down-list",
 					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
 				}
-				
 			}
 		},
 		{
@@ -296,7 +295,10 @@
 		{
 			"path": "pages/goods/publish/publish",
 			"style": {
-				"navigationBarTitleText": "发表评价"
+				"navigationBarTitleText": "发表评价",
+				"usingComponents": {
+					"i-rate": "../../../wxcomponents/dist/rate/index"
+				}
 			}
 		},
 		{
@@ -380,6 +382,12 @@
 				"iconPath": "./static/images/ic_menu_sort_nor.png",
 				"selectedIconPath": "./static/images/ic_menu_sort_pressed.png",
 				"text": "分类"
+			},
+			{
+				"pagePath": "pages/fenlei/catalog",
+				"iconPath": "./static/images/scan2.png",
+				"selectedIconPath": "./static/images/scan.png",
+				"text": "扫码"
 			},
 			{
 				"pagePath": "pages/cart/cart",

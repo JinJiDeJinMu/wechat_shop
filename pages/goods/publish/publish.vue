@@ -12,7 +12,7 @@
   </view>
   <image src="../../../static/images/u10_line.png" class="u10-img"></image>
   <view class="con">
-    <textarea placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧" class="con-discuss" @input="discuss">
+    <textarea placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧" class="con-discuss" @input="discussFun">
     </textarea>
     <view class="add">
         <view class="question-images">
@@ -36,10 +36,8 @@
 </template>
 
 <script>
-// pages/goods/publish/publish.js
 var util = require("../../../utils/util.js");
 const api = require("../../../config/api.js");
-import iRate from "../../../wxcomponents/dist/rate/index";
 
 export default {
   data() {
@@ -59,9 +57,8 @@ export default {
       del: false
     };
   },
-
   components: {
-    iRate
+    //iRate
   },
   props: {},
 
@@ -120,7 +117,7 @@ export default {
     },
 
     // 评论
-    discuss(e) {
+    discussFun(e) {
       this.setData({
         discuss: e.detail.value
       });

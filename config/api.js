@@ -1,5 +1,5 @@
-//var localUrl ='https://www.chundengtai.com/';
-var localUrl = 'http://school.chundengtai.com/'; 
+var localUrl ='https://www.chundengtai.com/';
+//var localUrl = 'http://school.chundengtai.com/'; 
 //var localUrl = 'http://localhost:8080/';
 
 var NewApiRootUrl = localUrl + 'api/';
