@@ -18,12 +18,16 @@
         <view class="goods">
             <view class="item" v-for="(item, index) in orderGoods" :key="index">
                 <view class="img">
+					<navigator :url="'../../goods/goods?id=' + item.id">
                     <image mode="aspectFit" :src="item.list_pic_url"></image>
+					</navigator>
                 </view>
                 <view class="info">
                     <view class="t">
+						<navigator :url="'../../goods/goods?id=' + item.id">
                         <text class="name">{{item.goods_name}}</text>
                         <text class="number">x{{item.number}}</text>
+						</navigator>
                     </view>
                     <view class="attr">{{item.goods_specifition_name_value||''}}</view>
                     <view class="price">￥{{item.retail_price}}</view>

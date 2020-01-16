@@ -30,12 +30,9 @@
 </template>
 
 <script>
-
-// pages/goods/comment/comment.js
 var util = require("../../../utils/util.js");
 var api = require("../../../config/api.js");
 var user = require("../../../services/user.js");
-import iRate from "../../../wxcomponents/dist/rate/index";
 
 export default {
   data() {
@@ -50,7 +47,7 @@ export default {
   },
 
   components: {
-    iRate
+    //iRate
   },
   props: {},
 

@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import iRate from "../../../wxcomponents/dist/rate/index";
-
 export default {
   data() {
     return {
@@ -37,7 +35,7 @@ export default {
   },
 
   components: {
-    iRate
+    //iRate
   },
   props: {},
 

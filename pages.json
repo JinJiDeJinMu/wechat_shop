@@ -37,7 +37,10 @@
 		{
 			"path": "pages/goods/detail/detail",
 			"style": {
-				"navigationBarTitleText": "评价详情"
+				"navigationBarTitleText": "评价详情",
+				"usingComponents": {
+					"i-rate": "../../../wxcomponents/dist/rate/index"
+				}
 			}
 		},
 		{
@@ -189,7 +192,11 @@
 		},
 		{
 			"path": "pages/comment/comment",
-			"style": {}
+			"style": {
+				"usingComponents": {
+					"i-rate": "../../../wxcomponents/dist/rate/index"
+				}
+			}
 		},
 		{
 			"path": "pages/category/category",
@@ -384,7 +391,7 @@
 				"text": "分类"
 			},
 			{
-				"pagePath": "pages/fenlei/catalog",
+				"pagePath": "pages/ucenter/scan/scan",
 				"iconPath": "./static/images/scan2.png",
 				"selectedIconPath": "./static/images/scan.png",
 				"text": "扫码"
