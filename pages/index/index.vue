@@ -1,6 +1,7 @@
 <template>
 <view>
 <view class="container">
+  <view class="indexheader">
   <view class="con">
     <selectmap :prop-array="selectList" @myget="getDate"></selectmap>
     <view class="search">
@@ -18,6 +19,7 @@
         </view>
       </swiper-item>
     </swiper>
+  </view>
   </view>
   <view class="duozhong">
     <view :class="'dz1 ' + (fenlei.length <= 5 ? 'sigle-dz1' : '')" v-for="(item, index) in fenlei" :key="index">
