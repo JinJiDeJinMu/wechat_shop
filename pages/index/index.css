@@ -36,14 +36,18 @@ selectmap{
   display: flex;
   align-items: center;
   justify-content: center;
- 
 }
-.indexheader{
-	background: url(../../static/img/indexheader.png) center no-repeat;
-	background-size: 100%;
+.bg-box{
+    position: relative; //absolute也行
+    width : 100%;
+    height : auto;
+    box-sizing: border-box;
+}
+.bg-box img{
+    display:block;
+    max-width: 100%;
 }
 .search .icon {
-  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png) center no-repeat;
   background-size: 100%;
   width: 28rpx;
   height: 28rpx;

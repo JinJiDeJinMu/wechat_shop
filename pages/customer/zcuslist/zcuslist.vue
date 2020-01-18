@@ -8,7 +8,6 @@
     </view>
     <view class="tit">以下权限</view>
     <view class="selinfo">
-        <!-- <image class="sel" src="../../../static/images/icon_xz.png"></image> -->
         <label>获取你的公开信息（昵称、头像、地区及性别）</label>
     </view>
     <view class="bottom-btn">

@@ -129,6 +129,13 @@
       </navigator>
     </view>
 
+    <view class="item item-bottom">
+      <navigator url="/pages/ucenter/recharge/recharge" class="a">
+        <text class="iconfont icon-icon_medal"></text>
+        <text class="txt">充值</text>
+      </navigator>
+    </view>
+	
     <button class="service" open-type="contact">
       <view class="item no-border">
         <navigator url="url" class="a">
