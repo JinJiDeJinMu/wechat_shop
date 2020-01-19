@@ -7,6 +7,7 @@
 			<button class="cannel" @tap="resetInfo">重选</button>
 			<van-submit-bar
 			  :price="subshowPrice"
+			  tip="请选择充值金额"
 			  button-text="充值"
 			  @submit="saveCashApply"
 			/>

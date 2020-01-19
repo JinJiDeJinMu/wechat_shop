@@ -19,18 +19,6 @@
 			}
 		},
 		{
-			"path": "pages/ucenter/recharge/recharge",
-			"style": {
-				"navigationBarTitleText": "充值",
-				"usingComponents": {
-				  "van-picker": "../../../wxcomponents/vant-weapp/picker/index",
-				  "van-button":"../../../wxcomponents/vant-weapp/button/index",
-				  "van-field":"../../../wxcomponents/vant-weapp/field/index",
-				   "van-submit-bar": "../../../wxcomponents/vant-weapp/submit-bar/index"
-				}
-			}
-		},
-		{
 			"path": "pages/goods/goods",
 			"style": {
 				"navigationBarTitleText": "商品详情",
