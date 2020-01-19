@@ -1,72 +1,15 @@
-.com-selectBox {
-  width: 100%;
-  height: 68rpx;
-  margin: 17rpx 20rpx 0 20rpx;
-  /* overflow: hidden; */
-  border-radius: 30rpx;
-  text-align: center;
-}
-
-.com-sContent {
-  width: 100%;
-  border: 1rpx solid #e2e2e2;
-  background: #ededed;
-  font-size: 25rpx;
-  border-radius: 30rpx;
-  position: relative;
-  height: 66rpx;
-  line-height: 66rpx;
-}
-
-.com-sImg {
-  position: absolute;
-  right:28rpx;
-  top: 15rpx;
-  width: 37rpx;
-  height: 40rpx;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.com-sTxt {
-  width: 95%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0 20rpx 0 6rpx;
-  font-size: 25rpx;
-  color: #666;
-  border-radius: 30rpx;
-  padding-left: 10rpx;
-}
-
-.com-sList {
-  width: 48%;
-  background: white;
-  position: absolute;
-  border: 1rpx solid #e2e2e2;
-  border-top: none;
-  box-sizing: border-box;
-  z-index: 3;
-  /* max-height: 120rpx; */
-  overflow:hidden ;
-  border-radius: 30rpx;
-}
-
-.com-sItem {
-  height: 60rpx;
-  width: 100%;
-  line-height: 60rpx;
-  border-bottom: 1rpx solid #e2e2e2;
-  padding: 0 6rpx;
-  text-align:center;
-  color: #666;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 25rpx;
-}
-
-.com-sItem:first-child {
-  border-top: none;
-}
+/* 首页头部 */
+.index-header-box {padding: 30rpx 0;text-align: center;color: #fff;font-size: 34rpx;position: relative;}
+.index-header-box text,
+.index-header-box image {display: inline-block;vertical-align: middle;}
+.index-header-box text {margin: 0 10rpx;}
+.index-header-box .area {width: 34rpx;height: 34rpx;}
+.index-header-box .down {width: 20rpx;height: 20rpx;}
+/*背景*/
+.index-header-bg {width: 100%;position: absolute;top: 0;left: 0;}
+.index-header-bg image {width: 100%;}
+.com-sList {width: 48%;background: white;position: absolute;border: 1rpx solid #e2e2e2;border-top: none;box-sizing: border-box;z-index: 3;
+	/* max-height: 120rpx; */
+	overflow: hidden;border-radius: 30rpx;}
+.com-sItem {height: 60rpx;width: 100%;line-height: 60rpx;border-bottom: 1rpx solid #e2e2e2;padding: 0 6rpx;text-align: center;color: #666;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 25rpx;}
+.com-sItem:first-child {border-top: none;}
