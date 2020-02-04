@@ -78,15 +78,7 @@
 				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
 				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" border="" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
 				<list-cell icon="iconfont icon-icon_newgroup" iconColor="#e07472" title="店铺订单" border="" @eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"></list-cell>
-					<view class="mix-list-cell" :class="border" hover-class="cell-hover"  :hover-stay-time="50">
-						<button open-type="contact">
-						<text
-							class="cell-icon yticon iconfont icon-icon_service_fill"
-							style="color: #e07472"
-						></text>
-						<text class="cell-tit clamp">联系客服</text>
-						</button>
-					</view>
+					
 			</view>
 		</view>
 		<view class="logout" @tap="exitLogin">退出登录</view>
