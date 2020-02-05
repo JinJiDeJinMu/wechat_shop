@@ -7,7 +7,7 @@
 					<image v-if="userInfo && userInfo.avatarUrl" class="portrait" :src="userInfo.avatarUrl || '/static/missing-face.png'" background-size="cover"></image>
 				</view>
 				<view class="info-box">
-					<text class="username">{{ userInfo.userName || '游客' }}</text>
+					<text class="username">{{ userInfo.userName?userInfo.userName:userInfo.nickName }}</text>
 				</view>
 			</view>
 		</view>

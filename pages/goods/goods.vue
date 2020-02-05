@@ -328,7 +328,8 @@
 </scroll-view>
 <view class="bottom-btn" v-if="cimPart">
   <view class="l l-collect homeBox" @tap="goUrl">
-    <image mode="aspectFit" class="icon" src="../../static/images/ic_menu_choice_nor.png"></image>
+	  <navigator url="/pages/index2/index">
+    <image mode="aspectFit" class="icon" src="../../static/images/ic_menu_choice_nor.png"></image></navigator>
     <text>首页</text>
   </view>
   <view :class="'l l-collect ' + ( openAttr ? 'back' : '')" @tap="closeAttrOrCollect">
@@ -1350,7 +1351,7 @@ export default {
     },
     goUrl: function () {
       wx.switchTab({
-        url: '/pages/index/index'
+        url: '/pages/index2/index'
       });
     },
     closeAttrOrCollect: function () {

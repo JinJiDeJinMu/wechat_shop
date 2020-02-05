@@ -13,9 +13,11 @@
 		<scroll-view class="cate" scroll-y="true">
 			<view class="bd">
 				<view class="cont-item">
-					<view>
+				
 						<block v-for="(v, index) in goodsList" :key="index">
-							<view class="show-item" @tap="toProdPage" :data-prodid="v.id">
+							<navigator :url="'/pages/goods/goods?id='+v.id" >
+							<view class="show-item" :data-prodid="v.id">
+								
 								<view class="more-prod-pic">
 									<image :src="v.listPicUrl||v.primaryPicUrl" class="more-pic" mode="widthFix"></image>
 								</view>
@@ -28,8 +30,9 @@
 									</view>
 								</view>
 							</view>
+						</navigator>
 						</block>
-					</view>
+					
 				</view>
 			</view>
 		</scroll-view>
@@ -71,6 +74,12 @@ export default {
   onUnload: function () {// 页面关闭
   },
   methods: {
+	  navTo(url){
+	  	console.log(url);
+	  	uni.navigateTo({  
+	  		url
+	  	})  
+	  }, 
     getCatalog: function () {
       let that = this;
       wx.showLoading({

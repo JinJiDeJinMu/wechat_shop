@@ -429,12 +429,12 @@
 				"selectedIconPath": "./static/images/ic_menu_sort_pressed.png",
 				"text": "分类"
 			},
-			{
-				"pagePath": "pages/ucenter/scan/scan",
-				"iconPath": "./static/images/scan2.png",
-				"selectedIconPath": "./static/images/scan.png",
-				"text": "扫码"
-			},
+			// {
+			// 	"pagePath": "pages/ucenter/scan/scan",
+			// 	"iconPath": "./static/images/scan2.png",
+			// 	"selectedIconPath": "./static/images/scan.png",
+			// 	"text": "扫码"
+			// },
 			{
 				"pagePath": "pages/cart/cart",
 				"iconPath": "./static/images/ic_menu_shoping_nor.png",

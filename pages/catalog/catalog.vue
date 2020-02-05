@@ -21,8 +21,8 @@
             <text class="line"></text>
         </view>
         <view class="bd">
-            <navigator :url="'/pages/category/category?id=' + item.id" :class="'item ' + ((index+1) % 3 == 0 ? 'last' : '')" v-for="(item, index) in currentCategory.subCategoryList" :key="index">
-                <image class="icon" :src="item.wap_banner_url"></image>
+            <navigator :url="'../goods/goods?id=' + item.id" :class="'item ' + ((index+1) % 3 == 0 ? 'last' : '')" v-for="(item, index) in goodList" :key="index">
+                <image class="icon" :src="item.item.list_pic_url"></image>
                 <text class="txt">{{item.name}}</text>
             </navigator>
         </view>
@@ -40,6 +40,7 @@ export default {
     return {
       navList: [],
       categoryList: [],
+	  goodList:[],
       currentCategory: {},
       scrollLeft: 0,
       scrollTop: 0,
@@ -77,9 +78,8 @@ export default {
       util.request(api.CatalogCurrent, {
         id: id
       }).then(function (res) {
-        that.setData({
-          currentCategory: res.data.currentCategory
-        });
+		that.goodList=res.data.goodsList;
+        that.currentCategory=res.data.currentCategory;
       });
     },
     getList: function () {
