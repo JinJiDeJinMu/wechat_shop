@@ -71,12 +71,12 @@
 					></image>
 				</scroll-view>
 				<list-cell icon="iconfont icon-icon_alipay_line" iconColor="#e07472" title="充值" tips="充值兑换积分" @eventClick="navTo('/pages/ucenter/recharge/recharge')"></list-cell>
-				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/address/address')"></list-cell>
+				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/ucenter/address/address')"></list-cell>
 				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享"></list-cell>
 				<list-cell icon="iconfont icon-icon_medal" iconColor="#ee883b" title="分销中心" tips="晒单抢红包" @eventClick="navTo('/pages/hexiao/yiorder/yiorder?id=-1')" v-if="isDistribut == 1"></list-cell>
 				<list-cell icon="iconfont icon-icon_star" iconColor="#54b4ef" title="我的收藏" @eventClick="navTo('/pages/ucenter/collect/collect')"></list-cell>
 				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
-				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" border="" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
+				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
 				<list-cell icon="iconfont icon-icon_newgroup" iconColor="#e07472" title="店铺订单" border="" @eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"></list-cell>
 					
 			</view>
@@ -150,6 +150,7 @@ export default {
 	},
 	methods: {
 		navTo(url){
+			console.log(url);
 			uni.navigateTo({  
 				url
 			})  

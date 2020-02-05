@@ -187,6 +187,17 @@
 			}
 		},
 		{
+			"path": "pages/ucenter/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "充值",
+				"usingComponents": {
+					"van-picker": "../../wxcomponents/vant-weapp/picker",
+					"van-submit-bar":"../../wxcomponents/vant-weapp/submit-bar"
+					
+				}
+			}
+		},
+		{
 			"path": "pages/ucenter/shareorder/shareorder",
 			"style": {
 				"navigationBarTitleText": "分销订单查看"
@@ -446,7 +457,7 @@
 	"globalStyle": {
 		"backgroundTextStyle": "dark",
 		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "未名严选",
+		"navigationBarTitleText": "燕缘商城",
 		"navigationBarTextStyle": "black",
 		"enablePullDownRefresh": true
 	},

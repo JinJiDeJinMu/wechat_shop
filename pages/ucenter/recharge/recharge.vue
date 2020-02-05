@@ -75,6 +75,7 @@ export default {
 		},
 
 		saveCashApply() {
+			console.log('--------1--------');
 			let that = this;
 			util.request(
 				api.distriapply,
