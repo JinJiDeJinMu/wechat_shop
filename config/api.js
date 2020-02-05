@@ -1,6 +1,6 @@
-var localUrl ='https://www.chundengtai.com/';
+//var localUrl ='https://www.chundengtai.com/';
 //var localUrl = 'http://school.chundengtai.com/'; 
-//var localUrl = 'http://localhost:8080/';
+var localUrl = 'http://localhost:8080/';
 
 var NewApiRootUrl = localUrl + 'api/';
 var WxApiRootUrl = localUrl + 'apis/';
@@ -104,6 +104,8 @@ module.exports = {
   // OrderQuery: NewApiRootUrl + 'pay/query',
   // OrderSuccess: NewApiRootUrl + 'order/updateSuccess',
   PayPrepayId: NewApiRootUrl + 'pay/prepay',
+  PayScorePrepayId: WxApiRootUrl + 'v2/wxpay/payscore',
+  PayScoreQuery: WxApiRootUrl + 'v2/wxpay/queryscore',
   //获取微信统一下单prepay_id
   CollectList: NewApiRootUrl + 'collect/list',
   //收藏列表
@@ -226,6 +228,8 @@ module.exports = {
   //评论
   CommentText: NewApiRootUrl + "v2/comment/post",
   //
-  Attr: NewApiRootUrl + "school/batch" //定位大学
+  Attr: NewApiRootUrl + "school/batch" ,//定位大学
+  
+  Socre: WxApiRootUrl + "v2/score/buyscore.do"
 
 };

@@ -19,6 +19,7 @@
 import Toast from '../../../wxcomponents/vant-weapp/toast/toast';	
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
+const pay = require("../../../services/pay.js");
 export default {
 	data() {
 		return {
@@ -75,23 +76,29 @@ export default {
 		},
 
 		saveCashApply() {
-			console.log('--------1--------');
 			let that = this;
+			console.log("money="+that.items.score);
+			console.log("socre="+that.subshowPrice);
 			util.request(
-				api.distriapply,
+				api.Socre,
 				{
-					realName: that.items.name,
-					tel: ''
+					money: that.items.score,
+					score: that.subshowPrice
 				},
-				'POST',
-				'application/x-www-form-urlencoded'
+				'GET'
 			).then(function(res) {
-				if (res.errno === 0) {
-					wx.showToast({
-						title: '提交成功,请等待审核'
-					});
-				} else {
-					util.showErrorToast(res.errmsg);
+				console.log(res)
+				if(res.code === 200){
+				const scoreflowId = res.data.id;
+				pay.payScore(parseInt(scoreflowId)).then(res => {
+				  wx.redirectTo({
+				    url: '/pages/payScoreResult/payScoreResult?status=1&scoreflowId=' + scoreflowId
+				  });
+				}).catch(res => {
+				  wx.redirectTo({
+				    url: '/pages/payScoreResult/payScoreResult?status=0&scoreflowId=' + scoreflowId
+				  });
+				});
 				}
 			});
 		},
