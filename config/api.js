@@ -1,6 +1,6 @@
-//var localUrl ='https://www.chundengtai.com/';
+var localUrl ='https://www.chundengtai.com/';
 //var localUrl = 'http://school.chundengtai.com/'; 
-var localUrl = 'http://localhost:8080/';
+//var localUrl = 'http://localhost:8080/';
 
 var NewApiRootUrl = localUrl + 'api/';
 var WxApiRootUrl = localUrl + 'apis/';
@@ -128,6 +128,7 @@ module.exports = {
   SearchResult: NewApiRootUrl + 'search/result',
   //搜索数据
   SearchHelper: NewApiRootUrl + 'search/helper',
+  SearchGoods: NewApiRootUrl + 'search/search',
   //搜索帮助
   SearchClearHistory: NewApiRootUrl + 'search/clearhistory',
   //搜索帮助
