@@ -1,158 +1,122 @@
 <template>
 	<view class="container" v-if="isshow">
-		<button class="userinfo">
-			<view><image v-if="userInfo && userInfo.avatarUrl" class="userinfo-avatar" :src="userInfo.avatarUrl" background-size="cover"></image></view>
-			<view class="marleft">
-				<button class="userbutton" open-type="getUserInfo" @getuserinfo="bindGetUserInfo">
-					<view class="userinfo-nickname">
-						<text style="font-size:20px;font-weight:bold;">{{ userInfo.userName ? userInfo.userName : userInfo.nickName }}</text>
-					</view>
-				</button>
-				<view class="userinfo-mobile" v-if="fUser.nickname">
-					<text class="txt">推荐人: {{ fUser.nickname }}</text>
+		<view class="user-section">
+			<image class="bg" src="/static/img/index-bg.png"></image>
+			<view class="user-info-box">
+				<view class="portrait-box">
+					<image v-if="userInfo && userInfo.avatarUrl" class="portrait" :src="userInfo.avatarUrl || '/static/missing-face.png'" background-size="cover"></image>
 				</view>
-			</view>
-		</button>
-		<view class="my_order">
-			<view class="cont">
-				<view class="l">我的订单</view>
-				<view class="r">
-					<navigator url="/pages/ucenter/order/order?id=-1" class="a">
-						<text>查看全部订单</text>
-						<image class="ordergo" src="../../../static/images/go.png" background-size="cover"></image>
-					</navigator>
-					<text class="jt"></text>
-				</view>
-			</view>
-			<view class="order_detai">
-				<view class="li">
-					<navigator url="/pages/ucenter/order/order?id=0" class="a">
-						<text class="icon dfk"></text>
-						<text class="txt">待付款</text>
-					</navigator>
-				</view>
-				<view class="li">
-					<navigator url="/pages/ucenter/order/order?id=201" class="a">
-						<text class="icon dfh"></text>
-						<text class="txt">待发货</text>
-					</navigator>
-				</view>
-				<view class="li">
-					<navigator url="/pages/ucenter/order/order?id=201" class="a">
-						<text class="icon dsh"></text>
-						<text class="txt">待收货</text>
-					</navigator>
-				</view>
-				<view class="li">
-					<navigator url="/pages/ucenter/return/return?id=201" class="a">
-						<text class="icon tk"></text>
-						<text class="txt">退货/退款</text>
-					</navigator>
+				<view class="info-box">
+					<text class="username">{{ userInfo.userName ? userInfo.userName : userInfo.nickName }}</text>
 				</view>
 			</view>
 		</view>
-		<view style="clear:both;height:20rpx;background: #eee;width:100%;"></view>
-		<view class="user-menu">
-			<view class="menu_tit"><text class="menu_top">我的服务</text></view>
-			<button class="service" open-type="share">
-				<view class="item no-border">
-					<navigator url="url" class="a">
-						<text class="iconfont icon-yaoqinghaoyou"></text>
-						<text class="txt">邀请好友</text>
-					</navigator>
+		<view
+			class="cover-container"
+			:style="[
+				{
+					transform: coverTransform,
+					transition: coverTransition
+				}
+			]"
+			@touchstart="coverTouchstart"
+			@touchmove="coverTouchmove"
+			@touchend="coverTouchend"
+		>
+			<image class="arc" src="/static/arc.png"></image>
+			<view class="tj-sction">
+				<view class="tj-item">
+					<text class="num">128.8</text>
+					<text>余额</text>
 				</view>
-			</button>
-			<view class="item">
-				<navigator url="/pages/customer/list/list" class="a">
-					<text class="iconfont icon-icon_likegood"></text>
-					<text class="txt">推荐商品</text>
-				</navigator>
-			</view>
-			<view class="item">
-				<navigator url="/pages/ucenter/collect/collect" class="a">
-					<text class="iconfont icon-icon_star"></text>
-					<text class="txt">我的收藏</text>
-				</navigator>
-			</view>
-			<view class="item">
-				<navigator url="/pages/ucenter/footprint/footprint" class="a">
-					<text class="iconfont icon-icon_synergy"></text>
-					<text class="txt">我的足迹</text>
-				</navigator>
-			</view>
-			<view class="item">
-				<navigator url="/pages/ucenter/feedback/feedback" class="a">
-					<text class="iconfont icon-icon_compile"></text>
-					<text class="txt">意见反馈</text>
-				</navigator>
-			</view>
-			<view class="item">
-				<navigator url="../address/address" class="a">
-					<text class="iconfont icon-icon_GPS"></text>
-					<text class="txt">地址管理</text>
-				</navigator>
-			</view>
-			<view class="item item-bottom">
-				<navigator url="../../customer/whlist/whlist" class="a">
-					<text class="iconfont icon-icon_group"></text>
-					<text class="txt">我的粉丝</text>
-				</navigator>
-			</view>
-			<view class="item item-bottom">
-				<navigator url="/pages/ucenter/scan/scan" class="a">
-					<text class="iconfont icon-saoma"></text>
-					<text class="txt">核销扫码</text>
-				</navigator>
-			</view>
-			<view class="item item-bottom">
-				<navigator url="../../shopMap/shopMap" class="a">
-					<text class="iconfont icon-dingwei"></text>
-					<text class="txt">定位</text>
-				</navigator>
-			</view>
-
-			<view class="item item-bottom">
-				<navigator url="/pages/ucenter/shoporder/shoporder?id=-1" class="a">
-					<text class="iconfont icon-icon_dispose"></text>
-					<text class="txt">店铺订单</text>
-				</navigator>
-			</view>
-
-			<view class="item item-bottom" v-if="isDistribut == 1">
-				<navigator url="/pages/hexiao/yiorder/yiorder?id=-1" class="a">
-					<text class="iconfont icon-icon_medal"></text>
-					<text class="txt">分销中心</text>
-				</navigator>
-			</view>
-
-			<view class="item item-bottom">
-				<navigator url="/pages/ucenter/recharge/recharge" class="a">
-					<text class="iconfont icon-icon_medal"></text>
-					<text class="txt">充值</text>
-				</navigator>
-			</view>
-
-			<button class="service" open-type="contact">
-				<view class="item no-border">
-					<navigator url="url" class="a">
-						<text class="iconfont icon-icon_service_fill"></text>
-						<text class="txt">联系客服</text>
-					</navigator>
+				<view class="tj-item">
+					<text class="num">0</text>
+					<text>优惠券</text>
 				</view>
-			</button>
+				<view class="tj-item">
+					<text class="num">20</text>
+					<text>积分</text>
+				</view>
+			</view>
+			<!-- 订单 -->
+			<view class="order-section">
+				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=-1')" hover-class="common-hover" :hover-stay-time="50">
+					<text class="yticon iconfont icon-icon_study"></text>
+					<text style="font-size:28rpx;">全部订单</text>
+				</view>
+				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=0')" hover-class="common-hover" :hover-stay-time="50">
+					<text class="yticon iconfont icon-icon_im_keyboard"></text>
+					<text style="font-size:28rpx;">待付款</text>
+				</view>
+				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=201')" hover-class="common-hover" :hover-stay-time="50">
+					<text class="yticon iconfont icon-icon_affiliations_li"></text>
+					<text style="font-size:28rpx;">待收货</text>
+				</view>
+				<view class="order-item" @click="navTo('/pages/ucenter/return/return?id=201')" hover-class="common-hover" :hover-stay-time="50">
+					<text class="yticon iconfont icon-icon_HRM"></text>
+					<text style="font-size:28rpx;">退款/售后</text>
+				</view>
+			</view>
+			<!-- 浏览历史 -->
+			<view class="history-section icon">
+				<view class="sec-header">
+					<text class="yticon icon-lishijilu"></text>
+					<text>浏览历史</text>
+				</view>
+				<scroll-view scroll-x class="h-list">
+					<image
+						@click="navTo('/pages/product/product')"
+						src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553105186633&di=c121a29beece4e14269948d990f9e720&imgtype=0&src=http%3A%2F%2Fimg004.hc360.cn%2Fm8%2FM04%2FDE%2FDE%2FwKhQplZ-QteEBvsbAAAAADUkobU751.jpg"
+						mode="aspectFill"
+					></image>
+				</scroll-view>
+				<list-cell
+					icon="iconfont icon-icon_alipay_line"
+					iconColor="#e07472"
+					title="充值"
+					tips="充值兑换积分"
+					@eventClick="navTo('/pages/ucenter/recharge/recharge')"
+				></list-cell>
+				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/ucenter/address/address')"></list-cell>
+				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享"></list-cell>
+				<list-cell
+					icon="iconfont icon-icon_medal"
+					iconColor="#ee883b"
+					title="分销中心"
+					tips="晒单抢红包"
+					@eventClick="navTo('/pages/hexiao/yiorder/yiorder?id=-1')"
+					v-if="isDistribut == 1"
+				></list-cell>
+				<list-cell icon="iconfont icon-icon_star" iconColor="#54b4ef" title="我的收藏" @eventClick="navTo('/pages/ucenter/collect/collect')"></list-cell>
+				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
+				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
+				<list-cell
+					icon="iconfont icon-icon_newgroup"
+					iconColor="#e07472"
+					title="店铺订单"
+					border=""
+					@eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"
+				></list-cell>
+			</view>
 		</view>
 		<view class="logout" @tap="exitLogin">退出登录</view>
 	</view>
 </template>
 
 <script>
+import listCell from '@/wxcomponents/mix-list-cell';
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
-
+let startY = 0,
+	moveY = 0,
+	pageAtTop = true;
 export default {
 	data() {
 		return {
+			coverTransform: 'translateY(0px)',
+			coverTransition: '0s',
+			moving: false,
 			userInfo: {},
 			hasMobile: '',
 			fUser: {},
@@ -165,7 +129,7 @@ export default {
 		};
 	},
 
-	components: {},
+	components: { listCell },
 	props: {},
 	onLoad: function(options) {
 		let userInfo = wx.getStorageSync('userInfo');
@@ -205,6 +169,50 @@ export default {
 		};
 	},
 	methods: {
+		navTo(url) {
+			console.log(url);
+			uni.navigateTo({
+				url
+			});
+		},
+		/**
+		 *  会员卡下拉和回弹
+		 *  1.关闭bounce避免ios端下拉冲突
+		 *  2.由于touchmove事件的缺陷（以前做小程序就遇到，比如20跳到40，h5反而好很多），下拉的时候会有掉帧的感觉
+		 *    transition设置0.1秒延迟，让css来过渡这段空窗期
+		 *  3.回弹效果可修改曲线值来调整效果，推荐一个好用的bezier生成工具 http://cubic-bezier.com/
+		 */
+		coverTouchstart(e) {
+			if (pageAtTop === false) {
+				return;
+			}
+			this.coverTransition = 'transform .1s linear';
+			startY = e.touches[0].clientY;
+		},
+		coverTouchmove(e) {
+			moveY = e.touches[0].clientY;
+			let moveDistance = moveY - startY;
+			if (moveDistance < 0) {
+				this.moving = false;
+				return;
+			}
+			this.moving = true;
+			if (moveDistance >= 80 && moveDistance < 100) {
+				moveDistance = 80;
+			}
+
+			if (moveDistance > 0 && moveDistance <= 80) {
+				this.coverTransform = `translateY(${moveDistance}px)`;
+			}
+		},
+		coverTouchend() {
+			if (this.moving === false) {
+				return;
+			}
+			this.moving = false;
+			this.coverTransition = 'transform 0.3s cubic-bezier(.21,1.93,.53,.64)';
+			this.coverTransform = 'translateY(0px)';
+		},
 		getScancode: function() {
 			let currentUser = getApp().globalData.userInfo;
 			console.log(JSON.stringify(currentUser));
@@ -356,6 +364,199 @@ export default {
 	}
 };
 </script>
-<style>
-@import './index.css';
+<style lang="scss">
+%flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+%section {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	background: #fff;
+	border-radius: 10upx;
+}
+.user-section {
+	height: 520upx;
+	padding: 100upx 30upx 0;
+	position: relative;
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		filter: blur(1px);
+		opacity: 0.7;
+	}
+}
+.user-info-box {
+	height: 180upx;
+	display: flex;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+	.portrait {
+		width: 130upx;
+		height: 130upx;
+		border: 5upx solid #fff;
+		border-radius: 50%;
+	}
+	.username {
+		font-size: $font-lg + 6upx;
+		color: $font-color-dark;
+		margin-left: 20upx;
+	}
+}
+.vip-card-box {
+	display: flex;
+	flex-direction: column;
+	color: #f7d680;
+	height: 240upx;
+	background: linear-gradient(left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+	border-radius: 16upx 16upx 0 0;
+	overflow: hidden;
+	position: relative;
+	padding: 20upx 24upx;
+	.card-bg {
+		position: absolute;
+		top: 20upx;
+		right: 0;
+		width: 380upx;
+		height: 260upx;
+	}
+	.b-btn {
+		position: absolute;
+		right: 20upx;
+		top: 16upx;
+		width: 132upx;
+		height: 40upx;
+		text-align: center;
+		line-height: 40upx;
+		font-size: 22upx;
+		color: #36343c;
+		border-radius: 20px;
+		background: linear-gradient(left, #f9e6af, #ffd465);
+		z-index: 1;
+	}
+	.tit {
+		font-size: $font-base + 2upx;
+		color: #f7d680;
+		margin-bottom: 28upx;
+		.yticon {
+			color: #f6e5a3;
+			margin-right: 16upx;
+		}
+	}
+	.e-b {
+		font-size: $font-sm;
+		color: #d8cba9;
+		margin-top: 10upx;
+	}
+}
+.cover-container {
+	background: $page-color-base;
+	margin-top: -150upx;
+	padding: 0 30upx;
+	position: relative;
+	background: #f5f5f5;
+	padding-bottom: 20upx;
+	.arc {
+		position: absolute;
+		left: 0;
+		top: -34upx;
+		width: 100%;
+		height: 36upx;
+	}
+}
+.tj-sction {
+	@extend %section;
+	.tj-item {
+		@extend %flex-center;
+		flex-direction: column;
+		height: 140upx;
+		font-size: $font-sm;
+		color: #75787d;
+	}
+	.num {
+		font-size: $font-lg;
+		color: $font-color-dark;
+		margin-bottom: 8upx;
+	}
+}
+.order-section {
+	@extend %section;
+	padding: 28upx 0;
+	margin-top: 20upx;
+	.order-item {
+		@extend %flex-center;
+		width: 120upx;
+		height: 120upx;
+		border-radius: 10upx;
+		font-size: $font-sm;
+		color: $font-color-dark;
+	}
+	.yticon {
+		font-size: 48upx;
+		margin-bottom: 18upx;
+		color: #fa436a;
+	}
+	.icon-shouhoutuikuan {
+		font-size: 44upx;
+	}
+}
+.history-section {
+	padding: 30upx 0 0;
+	margin-top: 20upx;
+	background: #fff;
+	border-radius: 10upx;
+	.sec-header {
+		display: flex;
+		align-items: center;
+		font-size: $font-base;
+		color: $font-color-dark;
+		line-height: 40upx;
+		margin-left: 30upx;
+		.yticon {
+			font-size: 44upx;
+			color: #5eba8f;
+			margin-right: 16upx;
+			line-height: 40upx;
+		}
+	}
+	.h-list {
+		white-space: nowrap;
+		padding: 30upx 30upx 0;
+		image {
+			display: inline-block;
+			width: 160upx;
+			height: 160upx;
+			margin-right: 20upx;
+			border-radius: 10upx;
+		}
+	}
+}
+.logout {
+	margin-top: 20rpx;
+	height: 101rpx;
+	width: 100%;
+	line-height: 101rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 30rpx;
+	background: #b4282d;
+}
+.service {
+	position: static;
+	background-color: transparent;
+	/* color: transparent; */
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-align: left;
+	line-height: normal;
+	display: inline;
+}
 </style>

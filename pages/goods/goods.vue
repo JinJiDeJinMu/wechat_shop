@@ -231,7 +231,7 @@
         <view class="name">数量</view>
         <view class="selnum">
           <view class="cut" @tap="cutNumber">-</view>
-          <input :value="number" class="number" disabled="true" type="number"></input>
+          <input :value="number" class="number" disabled="true" type="number" />
           <view class="add" @tap="addNumber">+</view>
         </view>
       </view>
@@ -239,7 +239,7 @@
     <view class="add-address" v-if="is_secKill==5">
       <view class="add-form">
         <view class="form-item">
-          <input class="input" @input="bindinputName" placeholder="姓名" :value="address.userName" auto-focus></input>
+          <input class="input" @input="bindinputName" placeholder="姓名" :value="address.userName" auto-focus />
         </view>
         <view class="form-item">
           <input class="input" @input="bindinputMobile" :value="address.telNumber" maxlength="15" type="number" placeholder="手机号码"></input>
@@ -328,7 +328,7 @@
 </scroll-view>
 <view class="bottom-btn" v-if="cimPart">
   <view class="l l-collect homeBox" @tap="goUrl">
-	  <navigator url="/pages/index2/index">
+	  <navigator url="/pages/index/index">
     <image mode="aspectFit" class="icon" src="../../static/images/ic_menu_choice_nor.png"></image></navigator>
     <text>首页</text>
   </view>

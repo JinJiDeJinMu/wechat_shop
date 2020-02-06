@@ -1,7 +1,7 @@
 {
 	"pages": [
 		{
-			"path": "pages/index2/index",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "新首页"
 			},
@@ -152,13 +152,6 @@
 			}
 		},
 		{
-			"path": "pages/ucenter/index/index2",
-			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/ucenter/index/index",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -193,6 +186,13 @@
 			"path": "pages/payResult/payResult",
 			"style": {
 				"navigationBarTitleText": "付款结果",
+				"navigationBarBackgroundColor": "#fafafa"
+			}
+		},
+		{
+			"path": "pages/payResult/payScoreResult",
+			"style": {
+				"navigationBarTitleText": "充值结果",
 				"navigationBarBackgroundColor": "#fafafa"
 			}
 		},
@@ -360,7 +360,7 @@
 		"color": "#666",
 		"list": [
 			{
-				"pagePath": "pages/index2/index",
+				"pagePath": "pages/index/index",
 				"iconPath": "./static/images/ic_menu_choice_nor.png",
 				"selectedIconPath": "./static/images/ic_menu_choice_pressed.png",
 				"text": "首页"
@@ -384,7 +384,7 @@
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/ucenter/index/index2",
+				"pagePath": "pages/ucenter/index/index",
 				"iconPath": "./static/images/ic_menu_me_nor.png",
 				"selectedIconPath": "./static/images/ic_menu_me_pressed.png",
 				"text": "我的"
