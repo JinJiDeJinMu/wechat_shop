@@ -83,7 +83,7 @@ export default {
 				api.Socre,
 				{
 					money: that.items.score,
-					score: that.subshowPrice
+					score: that.items.score
 				},
 				'GET'
 			).then(function(res) {

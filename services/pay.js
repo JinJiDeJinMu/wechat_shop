@@ -34,7 +34,11 @@ function payOrder(orderId) {
             reject(res);
           }
         });
-      } else {
+      }else if(res.errno === 200){
+		  console.log("积分扣除成功")
+		  resolve(res);
+	  }
+	  else {
         reject(res);
       }
     });

@@ -319,7 +319,7 @@ export default {
               url: '/pages/payResult/payResult?status=0&orderId=' + orderId
             });
           });
-        } else {
+        }else {
           util.showErrorToast('下单失败');
         }
       });
