@@ -29,14 +29,14 @@
 					<text class="num">128.8</text>
 					<text>余额</text>
 				</view>
-				<view class="tj-item">
+				<!-- 	<view class="tj-item">
 					<text class="num">0</text>
 					<text>优惠券</text>
 				</view>
 				<view class="tj-item">
 					<text class="num">20</text>
 					<text>积分</text>
-				</view>
+				</view> -->
 			</view>
 			<!-- 订单 -->
 			<view class="order-section">
@@ -102,7 +102,6 @@
 		<view class="logout" @tap="exitLogin">退出登录</view>
 	</view>
 </template>
-
 <script>
 import listCell from '@/wxcomponents/mix-list-cell';
 var util = require('../../../utils/util.js');
@@ -128,13 +127,11 @@ export default {
 			isDistribut: 0
 		};
 	},
-
 	components: { listCell },
 	props: {},
 	onLoad: function(options) {
 		let userInfo = wx.getStorageSync('userInfo');
 		let token = wx.getStorageSync('token');
-
 		if (token) {
 			this.setData({
 				isshow: true,
@@ -148,19 +145,12 @@ export default {
 			});
 			wx.removeStorageSync('userInfo');
 		}
-
-		this.setData({
-			userInfo: getApp().globalData.userInfo
-		});
+		this.userInfo = getApp().globalData.userInfo;
 	},
 	onReady: function() {},
 	onShow: function() {},
-	onHide: function() {
-		// 页面隐藏
-	},
-	onUnload: function() {
-		// 页面关闭
-	},
+	onHide: function() {},
+	onUnload: function() {},
 	onShareAppMessage: function() {
 		this.noLogin();
 		return {
@@ -169,6 +159,18 @@ export default {
 		};
 	},
 	methods: {
+		getData: function() {
+			let that = this;
+			util.request(api.MyScore).then(function(res) {
+				if (res.errno === 0) {
+					that.setData({
+						bannerInfo: res.data.bannerInfo
+					});
+					that.getGoodsList();
+				}
+			});
+		},
+		getMyScore() {},
 		navTo(url) {
 			console.log(url);
 			uni.navigateTo({
@@ -200,7 +202,6 @@ export default {
 			if (moveDistance >= 80 && moveDistance < 100) {
 				moveDistance = 80;
 			}
-
 			if (moveDistance > 0 && moveDistance <= 80) {
 				this.coverTransform = `translateY(${moveDistance}px)`;
 			}
@@ -217,7 +218,6 @@ export default {
 			let currentUser = getApp().globalData.userInfo;
 			console.log(JSON.stringify(currentUser));
 			let merchantId = wx.getStorageSync('merchantId');
-
 			if (merchantId == '' || merchantId == '0' || merchantId == 'null' || merchantId == null) {
 				wx.showToast({
 					title: '请退出登录,重新登录再试',
@@ -247,7 +247,6 @@ export default {
 				return false;
 			}
 		},
-
 		doWithdraw() {
 			let that = this;
 			wx.navigateTo({
@@ -257,11 +256,9 @@ export default {
 
 		bindGetUserInfo(e) {
 			let token = wx.getStorageSync('token');
-
 			if (token) {
 				return false;
 			}
-
 			if (e.detail.userInfo) {
 				//用户按了允许授权按钮
 				user.loginByWeixin(e.detail)
@@ -312,7 +309,6 @@ export default {
 				});
 			}
 		},
-
 		exitLogin: function() {
 			let that = this;
 			wx.showModal({
