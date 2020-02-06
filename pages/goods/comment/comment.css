@@ -1,180 +1,32 @@
 /* pages/goods/comment/comment.wxss */
-
-.header {
-  width: 100%;
-  height: 100%;
-}
-
-.con-top {
-  margin-top: 30rpx;
-}
-
-.header-con {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 20rpx;
-  padding-right: 20rpx;
-}
-
-.header-left {
-  display: flex;
-  justify-content: center;
-}
-
-.header-img {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-}
-
-.con {
-  margin-top: 8rpx;
-  margin-left: 10rpx;
-}
-.time {
-  font-weight: 400;
-  color: #999;
-  margin-right: 15rpx;
-}
-
+.header {width: 100%;height: 100%;}
+.con-top {margin-top: 30rpx;}
+.header-con {width: 100%;display: flex;justify-content: space-between;align-items: center;margin-left: 20rpx;padding-right: 20rpx;}
+.header-left {display: flex;justify-content: center;}
+.header-img {width: 60rpx;height: 60rpx;border-radius: 50%;}
+.con {margin-top: 8rpx;margin-left: 10rpx;}
+.time {font-weight: 400;color: #999;margin-right: 15rpx;}
 /* 评价内容 */
-
-.appraise {
-  margin: 15rpx 15rpx 0 20rpx;
-}
-
+.appraise {margin: 15rpx 15rpx 0 20rpx;}
 /* 图片 */
-
-.tupain {
-  display: flex;
-  display: inline-block;
-  justify-content: flex-start;
-  margin-top: 15rpx;
-}
-
-.tupain image {
-  width: 130rpx;
-  height: 130rpx;
-  margin-left: 20rpx;
-}
-
-.title {
-  width: 150rpx;
-  height: 40rpx;
-  background: white;
-  border: 1rpx solid gainsboro;
-  font-sixe: 20rx;
-  color: gray;
-  line-height: 40rpx;
-  text-align: center;
-  display: inline;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  border-radius: 30rpx;
-  margin-left: 20rpx;
-}
-
-.comdel {
-  width: 100%;
-  background: white;
-}
-
-.name {
-  width: 100%;
-  height: 60rpx;
-  background: white;
-  padding-left: 20rpx;
-  display: flex;
-  line-height: 60rpx;
-}
-
-.tx {
-  width: 60rpx;
-  height: 60rpx;
-  background: green;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.tou {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-.name1 {
-  font-size: 25rpx;
-  color: gray;
-  margin-left: 5rpx;
-}
-
-.neirong {
-  width: 100%;
-  height: 160rpx;
-  background: white;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-}
-
-.nr {
-  width: 100%;
-  min-height: 5rpx;
-  background: white;
-  padding-left: 70rpx;
-  padding-right: 20rpx;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  line-height: 40rpx;
-  font-size: 25rpx;
-}
-
-.yang {
-  width: 100%;
-  height: 33rpx;
-  background: white;
-  padding-left: 70rpx;
-  color: gray;
-  display: flex;
-}
-
-.zi {
-  display: flex;
-  margin-left: 10rpx;
-  line-height: 33rpx;
-  color: grey;
-  font-size: 20rpx;
-}
-
-.tu {
-  width: 360rpx;
-  height: 300rpx;
-  background: white;
-  display: flex;
-  margin-left: 20rpx;
-}
-
-.ttuu {
-  width: 100%;
-  /* min-height:400rpx; */
-  display: flex;
-}
-
-.tu1 {
-  width: 320rpx;
-  height: 300rpx;
-  background: white;
-  margin-right: 10rpx;
-  border-radius: 20rpx;
-  overflow: hidden;
-  margin-top: 10rpx;
-}
-
-.tuu1 {
-  width: 320rpx;
-  height: 300rpx;
-}
-
+.tupain {display: flex;display: inline-block;justify-content: flex-start;margin-top: 15rpx;}
+.tupain image {width: 130rpx;height: 130rpx;margin-left: 20rpx;}
+.title {width: 150rpx;height: 40rpx;background: white;border: 1rpx solid gainsboro;font-sixe: 20rx;color: gray;line-height: 40rpx;text-align: center;display: inline;padding-left: 20rpx;padding-right: 20rpx;border-radius: 30rpx;margin-left: 20rpx;}
+.comdel {width: 100%;background: white;}
+.name {width: 100%;height: 60rpx;background: white;padding-left: 20rpx;display: flex;line-height: 60rpx;}
+.tx {width: 60rpx;height: 60rpx;background: green;border-radius: 50%;overflow: hidden;}
+.tou {width: 60rpx;height: 60rpx;}
+.name1 {font-size: 25rpx;color: gray;margin-left: 5rpx;}
+.neirong {width: 100%;height: 160rpx;background: white;padding-left: 20rpx;padding-right: 20rpx;}
+.nr {width: 100%;min-height: 5rpx;background: white;padding-left: 70rpx;padding-right: 20rpx;padding-top: 10rpx;padding-bottom: 10rpx;line-height: 40rpx;font-size: 25rpx;}
+.yang {width: 100%;height: 33rpx;background: white;padding-left: 70rpx;color: gray;display: flex;}
+.zi {display: flex;margin-left: 10rpx;line-height: 33rpx;color: grey;font-size: 20rpx;}
+.tu {width: 360rpx;height: 300rpx;background: white;display: flex;margin-left: 20rpx;}
+.ttuu {width: 100%;
+	/* min-height:400rpx; */
+	display: flex;}
+.tu1 {width: 320rpx;height: 300rpx;background: white;margin-right: 10rpx;border-radius: 20rpx;overflow: hidden;margin-top: 10rpx;}
+.tuu1 {width: 320rpx;height: 300rpx;}
 /* .tu2{
   width:40%;
   height:240rpx;
@@ -200,62 +52,9 @@
   
 
 } */
-
-.zhuiping {
-  width: 100%;
-  height: 80rpx;
-  background: white;
-  padding-left: 70rpx;
-  font-size: 25rpx;
-  line-height: 80rpx;
-  color: orange;
-}
-
-.zhuiping1 {
-  width: 100%;
-  min-height: 40rpx;
-  background: white;
-  padding-left: 70rpx;
-  line-height: 40rpx;
-  font-size: 25rpx;
-  padding-right: 20rpx;
-}
-
-.zhuiping2 {
-  width: 100%;
-  min-height: 40rpx;
-  background: white;
-  padding-left: 70rpx;
-  padding-right: 20rpx;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tuu {
-  width: 200rpx;
-  height: 200rpx;
-  background: greenyellow;
-  padding-left: 70rpx;
-  padding-right: 20rpx;
-  margin-left: 5rpx;
-  border-radius: 20rpx;
-  margin-top: 5rpx;
-}
-
-.liulan {
-  width: 100%;
-  height: 40rpx;
-  background: white;
-  padding-left: 70rpx;
-  padding-right: 20rpx;
-  color: #c0c0c0;
-  font-size: 25rpx;
-  display: flex;
-  padding-top: 10rpx;
-}
-
-.liulan1 {
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  line-height: 40rpx;
-}
+.zhuiping {width: 100%;height: 80rpx;background: white;padding-left: 70rpx;font-size: 25rpx;line-height: 80rpx;color: orange;}
+.zhuiping1 {width: 100%;min-height: 40rpx;background: white;padding-left: 70rpx;line-height: 40rpx;font-size: 25rpx;padding-right: 20rpx;}
+.zhuiping2 {width: 100%;min-height: 40rpx;background: white;padding-left: 70rpx;padding-right: 20rpx;display: flex;flex-wrap: wrap;}
+.tuu {width: 200rpx;height: 200rpx;background: greenyellow;padding-left: 70rpx;padding-right: 20rpx;margin-left: 5rpx;border-radius: 20rpx;margin-top: 5rpx;}
+.liulan {width: 100%;height: 40rpx;background: white;padding-left: 70rpx;padding-right: 20rpx;color: #c0c0c0;font-size: 25rpx;display: flex;padding-top: 10rpx;}
+.liulan1 {margin-left: 10rpx;margin-right: 10rpx;line-height: 40rpx;}

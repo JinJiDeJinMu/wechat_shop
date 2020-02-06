@@ -1,4 +1,3 @@
-page{
-    background-color: #FFFFFF;
-}
-page,.page{height:100%;}
+page {background-color: #FFFFFF;}
+page,
+.page {height: 100%;}

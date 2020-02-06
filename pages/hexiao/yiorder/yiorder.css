@@ -1,149 +1,32 @@
 /* pages/hexiao/yiorder/yiorder.wxss */
-
-.yiorder {
-  width: 100%;
-  height: 100%;
-  background: #f6f4f4;
-}
-
-.yiorder-header {
-  display: flex;
-  justify-content: flex-start;
-  padding: 20rpx;
-  background-color: white;
-}
-
-.header-img {
-  width: 80rpx;
-  height: 80rpx;
-}
-
-.header-job {
-  display: flex;
-  flex-direction: column;
-  margin-left: 15rpx;
-}
-
-.job {
-  margin-bottom: 10rpx;
-  color: #666;
-  font-size: 28rpx;
-}
-
-.phone {
-  color: #ddd;
-  font-size: 28rpx;
-}
-
+.yiorder {width: 100%;height: 100%;background: #f6f4f4;}
+.yiorder-header {display: flex;justify-content: flex-start;padding: 20rpx;background-color: white;}
+.header-img {width: 80rpx;height: 80rpx;}
+.header-job {display: flex;flex-direction: column;margin-left: 15rpx;}
+.job {margin-bottom: 10rpx;color: #666;font-size: 28rpx;}
+.phone {color: #ddd;font-size: 28rpx;}
 /* 累计收益 */
-
-.cumulative {
-  background-color: orange;
-  color: white;
-  font-size: 28rpx;
-  padding: 28rpx 0 28rpx 20rpx;
-  box-sizing: border-box;
-}
-
-.cumulative-money {
-  margin-top: 15rpx;
-}
-
-.cumulative-money text:first-child, .cumulative-money text:nth-of-type(3) {
-  font-size: 34rpx;
-}
-
-.cumulative-money text:nth-of-type(2) {
-  font-size: 40rpx;
-}
-
+.cumulative {background-color: orange;color: white;font-size: 28rpx;padding: 28rpx 0 28rpx 20rpx;box-sizing: border-box;}
+.cumulative-money {margin-top: 15rpx;}
+.cumulative-money text:first-child,
+.cumulative-money text:nth-of-type(3) {font-size: 34rpx;}
+.cumulative-money text:nth-of-type(2) {font-size: 40rpx;}
 /* 未结算 */
-
-.unsettled {
-  display: flex;
-  justify-content: space-between;
-  padding: 20rpx;
-  background-color: white;
-  /* border-bottom: 2rpx solid #f6f4f4; */
+.unsettled {display: flex;justify-content: space-between;padding: 20rpx;background-color: white;
+	/* border-bottom: 2rpx solid #f6f4f4; */
 }
-
-.unsettled-wei {
-  color: #666;
-  font-size: 28rpx;
-  vertical-align: middle;
-}
-
-.unsettled-money {
-  color: #b4282d;
-}
-
-.unsettled-money text:nth-of-type(2) {
-  font-size: 35rpx;
-  padding-left: 15rpx;
-  vertical-align: middle;
-}
-
+.unsettled-wei {color: #666;font-size: 28rpx;vertical-align: middle;}
+.unsettled-money {color: #b4282d;}
+.unsettled-money text:nth-of-type(2) {font-size: 35rpx;padding-left: 15rpx;vertical-align: middle;}
 /* 群管 */
-
-.grouptube {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  margin-top: 15rpx;
+.grouptube {width: 100%;height: 100%;background-color: white;margin-top: 15rpx;}
+.group {display: flex;justify-content: flex-start;padding: 20rpx;align-items: center;border-bottom: 2rpx solid #f4f4f4;}
+.group image {width: 60rpx;height: 60rpx;}
+.group-qun {color: #666;margin-left: 10rpx;}
+.hexiao-group {width: 100%;display: flex;justify-content: center;background: white;color: #666;margin-top: 10rpx;padding-bottom: 10rpx;box-sizing: border-box;
+	/* border-bottom: 2rpx solid #f4f4f4;s */
 }
-
-.group {
-  display: flex;
-  justify-content: flex-start;
-  padding: 20rpx;
-  align-items: center;
-  border-bottom: 2rpx solid #f4f4f4;
-}
-
-.group image {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-.group-qun {
-  color: #666;
-  margin-left: 10rpx;
-}
-
-.hexiao-group {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: white;
-  color: #666;
-  margin-top: 10rpx;
-  padding-bottom: 10rpx;
-  box-sizing: border-box;
-  /* border-bottom: 2rpx solid #f4f4f4;s */
-}
-
-.group-left {
-  width: 50%;
-  text-align: center;
-  margin: 10rpx 20rpx;
-}
-
-.group-right {
-  width: 50%;
-  text-align: center;
-  margin: 10rpx 20rpx;
-  border-left: 2rpx solid #f4f4f4;
-}
-
-.right-money {
-  color: #b4282d;
-}
-
-.my-two {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: #666;
-  margin-top: 25rpx;
-  font-size: 28rpx;
-}
+.group-left {width: 50%;text-align: center;margin: 10rpx 20rpx;}
+.group-right {width: 50%;text-align: center;margin: 10rpx 20rpx;border-left: 2rpx solid #f4f4f4;}
+.right-money {color: #b4282d;}
+.my-two {display: flex;flex-direction: column;text-align: center;color: #666;margin-top: 25rpx;font-size: 28rpx;}

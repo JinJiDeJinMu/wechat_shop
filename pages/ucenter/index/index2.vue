@@ -7,7 +7,7 @@
 					<image v-if="userInfo && userInfo.avatarUrl" class="portrait" :src="userInfo.avatarUrl || '/static/missing-face.png'" background-size="cover"></image>
 				</view>
 				<view class="info-box">
-					<text class="username">{{ userInfo.userName?userInfo.userName:userInfo.nickName }}</text>
+					<text class="username">{{ userInfo.userName ? userInfo.userName : userInfo.nickName }}</text>
 				</view>
 			</view>
 		</view>
@@ -70,15 +70,33 @@
 						mode="aspectFill"
 					></image>
 				</scroll-view>
-				<list-cell icon="iconfont icon-icon_alipay_line" iconColor="#e07472" title="充值" tips="充值兑换积分" @eventClick="navTo('/pages/ucenter/recharge/recharge')"></list-cell>
+				<list-cell
+					icon="iconfont icon-icon_alipay_line"
+					iconColor="#e07472"
+					title="充值"
+					tips="充值兑换积分"
+					@eventClick="navTo('/pages/ucenter/recharge/recharge')"
+				></list-cell>
 				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/ucenter/address/address')"></list-cell>
 				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享"></list-cell>
-				<list-cell icon="iconfont icon-icon_medal" iconColor="#ee883b" title="分销中心" tips="晒单抢红包" @eventClick="navTo('/pages/hexiao/yiorder/yiorder?id=-1')" v-if="isDistribut == 1"></list-cell>
+				<list-cell
+					icon="iconfont icon-icon_medal"
+					iconColor="#ee883b"
+					title="分销中心"
+					tips="晒单抢红包"
+					@eventClick="navTo('/pages/hexiao/yiorder/yiorder?id=-1')"
+					v-if="isDistribut == 1"
+				></list-cell>
 				<list-cell icon="iconfont icon-icon_star" iconColor="#54b4ef" title="我的收藏" @eventClick="navTo('/pages/ucenter/collect/collect')"></list-cell>
 				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
 				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
-				<list-cell icon="iconfont icon-icon_newgroup" iconColor="#e07472" title="店铺订单" border="" @eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"></list-cell>
-					
+				<list-cell
+					icon="iconfont icon-icon_newgroup"
+					iconColor="#e07472"
+					title="店铺订单"
+					border=""
+					@eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"
+				></list-cell>
 			</view>
 		</view>
 		<view class="logout" @tap="exitLogin">退出登录</view>
@@ -90,7 +108,9 @@ import listCell from '@/wxcomponents/mix-list-cell';
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
-	let startY = 0, moveY = 0, pageAtTop = true;
+let startY = 0,
+	moveY = 0,
+	pageAtTop = true;
 export default {
 	data() {
 		return {
@@ -109,7 +129,7 @@ export default {
 		};
 	},
 
-	components: {listCell},
+	components: { listCell },
 	props: {},
 	onLoad: function(options) {
 		let userInfo = wx.getStorageSync('userInfo');
@@ -149,12 +169,12 @@ export default {
 		};
 	},
 	methods: {
-		navTo(url){
+		navTo(url) {
 			console.log(url);
-			uni.navigateTo({  
+			uni.navigateTo({
 				url
-			})  
-		}, 
+			});
+		},
 		/**
 		 *  会员卡下拉和回弹
 		 *  1.关闭bounce避免ios端下拉冲突
@@ -345,52 +365,198 @@ export default {
 };
 </script>
 <style lang="scss">
-%flex-center {display: flex;flex-direction: column;justify-content: center;align-items: center;}
-%section {display: flex;justify-content: space-around;align-content: center;background: #fff;border-radius: 10upx;}
-.user-section {height: 520upx;padding: 100upx 30upx 0;position: relative;.bg {position: absolute;left: 0;top: 0;width: 100%;height: 100%;filter: blur(1px);opacity: .7;}
+%flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-.user-info-box {height: 180upx;display: flex;align-items: center;position: relative;z-index: 1;.portrait {width: 130upx;height: 130upx;border: 5upx solid #fff;border-radius: 50%;}
-	.username {font-size: $font-lg + 6upx;color: $font-color-dark;margin-left: 20upx;}
+%section {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	background: #fff;
+	border-radius: 10upx;
 }
-.vip-card-box {display: flex;flex-direction: column;color: #f7d680;height: 240upx;background: linear-gradient(left, rgba(0, 0, 0, .7), rgba(0, 0, 0, .8));border-radius: 16upx 16upx 0 0;overflow: hidden;position: relative;padding: 20upx 24upx;.card-bg {position: absolute;top: 20upx;right: 0;width: 380upx;height: 260upx;}
-	.b-btn {position: absolute;right: 20upx;top: 16upx;width: 132upx;height: 40upx;text-align: center;line-height: 40upx;font-size: 22upx;color: #36343c;border-radius: 20px;background: linear-gradient(left, #f9e6af, #ffd465);z-index: 1;}
-	.tit {font-size: $font-base+2upx;color: #f7d680;margin-bottom: 28upx;.yticon {color: #f6e5a3;margin-right: 16upx;}
+.user-section {
+	height: 520upx;
+	padding: 100upx 30upx 0;
+	position: relative;
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		filter: blur(1px);
+		opacity: 0.7;
 	}
-	.e-b {font-size: $font-sm;color: #d8cba9;margin-top: 10upx;}
 }
-.cover-container {background: $page-color-base;margin-top: -150upx;padding: 0 30upx;position: relative;background: #f5f5f5;padding-bottom: 20upx;.arc {position: absolute;left: 0;top: -34upx;width: 100%;height: 36upx;}
-}
-.tj-sction {@extend %section;.tj-item {@extend %flex-center;flex-direction: column;height: 140upx;font-size: $font-sm;color: #75787d;}
-	.num {font-size: $font-lg;color: $font-color-dark;margin-bottom: 8upx;}
-}
-.order-section {@extend %section;padding: 28upx 0;margin-top: 20upx;.order-item {@extend %flex-center;width: 120upx;height: 120upx;border-radius: 10upx;font-size: $font-sm;color: $font-color-dark;}
-	.yticon {font-size: 48upx;margin-bottom: 18upx;color: #fa436a;}
-	.icon-shouhoutuikuan {font-size: 44upx;}
-}
-.history-section {padding: 30upx 0 0;margin-top: 20upx;background: #fff;border-radius: 10upx;.sec-header {display: flex;align-items: center;font-size: $font-base;color: $font-color-dark;line-height: 40upx;margin-left: 30upx;.yticon {font-size: 44upx;color: #5eba8f;margin-right: 16upx;line-height: 40upx;}
+.user-info-box {
+	height: 180upx;
+	display: flex;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+	.portrait {
+		width: 130upx;
+		height: 130upx;
+		border: 5upx solid #fff;
+		border-radius: 50%;
 	}
-	.h-list {white-space: nowrap;padding: 30upx 30upx 0;image {display: inline-block;width: 160upx;height: 160upx;margin-right: 20upx;border-radius: 10upx;}
+	.username {
+		font-size: $font-lg + 6upx;
+		color: $font-color-dark;
+		margin-left: 20upx;
 	}
 }
-.logout{
-    margin-top: 20rpx;
-    height: 101rpx;
-    width: 100%;
-    line-height: 101rpx;
-    text-align: center;
-    color: #fff;
-    font-size: 30rpx;
-    background: #b4282d;
+.vip-card-box {
+	display: flex;
+	flex-direction: column;
+	color: #f7d680;
+	height: 240upx;
+	background: linear-gradient(left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
+	border-radius: 16upx 16upx 0 0;
+	overflow: hidden;
+	position: relative;
+	padding: 20upx 24upx;
+	.card-bg {
+		position: absolute;
+		top: 20upx;
+		right: 0;
+		width: 380upx;
+		height: 260upx;
+	}
+	.b-btn {
+		position: absolute;
+		right: 20upx;
+		top: 16upx;
+		width: 132upx;
+		height: 40upx;
+		text-align: center;
+		line-height: 40upx;
+		font-size: 22upx;
+		color: #36343c;
+		border-radius: 20px;
+		background: linear-gradient(left, #f9e6af, #ffd465);
+		z-index: 1;
+	}
+	.tit {
+		font-size: $font-base + 2upx;
+		color: #f7d680;
+		margin-bottom: 28upx;
+		.yticon {
+			color: #f6e5a3;
+			margin-right: 16upx;
+		}
+	}
+	.e-b {
+		font-size: $font-sm;
+		color: #d8cba9;
+		margin-top: 10upx;
+	}
+}
+.cover-container {
+	background: $page-color-base;
+	margin-top: -150upx;
+	padding: 0 30upx;
+	position: relative;
+	background: #f5f5f5;
+	padding-bottom: 20upx;
+	.arc {
+		position: absolute;
+		left: 0;
+		top: -34upx;
+		width: 100%;
+		height: 36upx;
+	}
+}
+.tj-sction {
+	@extend %section;
+	.tj-item {
+		@extend %flex-center;
+		flex-direction: column;
+		height: 140upx;
+		font-size: $font-sm;
+		color: #75787d;
+	}
+	.num {
+		font-size: $font-lg;
+		color: $font-color-dark;
+		margin-bottom: 8upx;
+	}
+}
+.order-section {
+	@extend %section;
+	padding: 28upx 0;
+	margin-top: 20upx;
+	.order-item {
+		@extend %flex-center;
+		width: 120upx;
+		height: 120upx;
+		border-radius: 10upx;
+		font-size: $font-sm;
+		color: $font-color-dark;
+	}
+	.yticon {
+		font-size: 48upx;
+		margin-bottom: 18upx;
+		color: #fa436a;
+	}
+	.icon-shouhoutuikuan {
+		font-size: 44upx;
+	}
+}
+.history-section {
+	padding: 30upx 0 0;
+	margin-top: 20upx;
+	background: #fff;
+	border-radius: 10upx;
+	.sec-header {
+		display: flex;
+		align-items: center;
+		font-size: $font-base;
+		color: $font-color-dark;
+		line-height: 40upx;
+		margin-left: 30upx;
+		.yticon {
+			font-size: 44upx;
+			color: #5eba8f;
+			margin-right: 16upx;
+			line-height: 40upx;
+		}
+	}
+	.h-list {
+		white-space: nowrap;
+		padding: 30upx 30upx 0;
+		image {
+			display: inline-block;
+			width: 160upx;
+			height: 160upx;
+			margin-right: 20upx;
+			border-radius: 10upx;
+		}
+	}
+}
+.logout {
+	margin-top: 20rpx;
+	height: 101rpx;
+	width: 100%;
+	line-height: 101rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 30rpx;
+	background: #b4282d;
 }
 .service {
-  position: static;
-  background-color: transparent;
-  /* color: transparent; */
-  margin: 0;
-  padding: 0;
-  border: none;
-  text-align: left;
-  line-height: normal;
-  display: inline;
+	position: static;
+	background-color: transparent;
+	/* color: transparent; */
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-align: left;
+	line-height: normal;
+	display: inline;
 }
 </style>

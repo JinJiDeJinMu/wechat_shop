@@ -12,31 +12,10 @@
 			  }
 		},
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "首页"
-			},
-			  "permission": {
-			    "scope.userLocation": {
-			      "desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
-			    }
-			  }
-		},
-		{
 			"path": "pages/search/search",
 			"style": {
 				"navigationBarTitleText": "搜索",
 				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path": "pages/goods/goods2",
-			"style": {
-				"navigationBarTitleText": "详情",
-				"usingComponents": {
-					"count-down-list": "../../wxcomponents/count-down-list/count-down-list",
-					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
-				}
 			}
 		},
 		{
@@ -204,18 +183,6 @@
 			}
 		},
 		{
-			"path": "pages/auth/login/login",
-			"style": {}
-		},
-		{
-			"path": "pages/auth/register/register",
-			"style": {}
-		},
-		{
-			"path": "pages/auth/reset/reset",
-			"style": {}
-		},
-		{
 			"path": "pages/pay/pay",
 			"style": {
 				"navigationBarTitleText": "支付订单",
@@ -263,16 +230,7 @@
 			"path": "pages/shopping/addressAdd/addressAdd",
 			"style": {}
 		},
-		{
-			"path": "pages/hexiao/main/main",
-			"style": {
-				"navigationBarBackgroundColor": "#37373b",
-				"navigationBarTextStyle": "white",
-				"navigationBarTitleText": "二维码核销",
-				"backgroundColor": "#efeff4",
-				"backgroundTextStyle": "light"
-			}
-		},
+
 		{
 			"path": "pages/hexiao/hexiao",
 			"style": {
@@ -283,22 +241,6 @@
 			"path": "pages/shopMap/shopMap",
 			"style": {
 				"navigationBarTitleText": "地图"
-			}
-		},
-		{
-			"path": "pages/auth/mobile/mobile",
-			"style": {}
-		},
-		{
-			"path": "pages/shopping/selCoupon/selCoupon",
-			"style": {
-				"navigationBarTitleText": "选择优惠券"
-			}
-		},
-		{
-			"path": "pages/product/product",
-			"style": {
-				"navigationBarTitleText": "商品详情"
 			}
 		},
 		{

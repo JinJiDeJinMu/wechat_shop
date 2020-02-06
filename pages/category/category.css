@@ -1,71 +1,16 @@
-
-.zuixin{
-  padding: 10rpx 0 30rpx;
-  width:750rpx;
-  background: white;
-  background:white;
-  display: flex;
-  flex-wrap: wrap;
-  background: #f4f4f4;
-}
-.zuixin .tit,.zuixin .tit .tit-box, .zuixin .tit1{
-  background: #f4f4f4;
-}
-
-.goods1{
-  margin-top: 20rpx;
-  width:345rpx;
-  box-sizing: border-box;
-  padding: 20rpx;
-  background: white;
-  border-radius: 24rpx;
-  overflow: hidden;
-}
-.goods1:nth-child(2n+1) {
-  margin-left: 20rpx;
-  margin-right: 10rpx; 
-}
-.goods1:nth-child(2n) {
-  margin-left: 10rpx;
-  margin-right: 20rpx; 
-}
+.zuixin {padding: 10rpx 0 30rpx;width: 750rpx;background: white;background: white;display: flex;flex-wrap: wrap;background: #f4f4f4;}
+.zuixin .tit,
+.zuixin .tit .tit-box,
+.zuixin .tit1 {background: #f4f4f4;}
+.goods1 {margin-top: 20rpx;width: 345rpx;box-sizing: border-box;padding: 20rpx;background: white;border-radius: 24rpx;overflow: hidden;}
+.goods1:nth-child(2n+1) {margin-left: 20rpx;margin-right: 10rpx;}
+.goods1:nth-child(2n) {margin-left: 10rpx;margin-right: 20rpx;}
 /* .good1:nth-child(2n){
   margin-left:10rpx
 } */
-
-.goods11{
-  width:300rpx;
-  height:250rpx;
-  background:white;
-}
-
-.goods12{
-  width:340rpx;
-  background:white;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-font-size:30rpx;
-line-height:38rpx;
-}
-
-.goods13{
-  width:340rpx;
-  background:white;
-  display:flex;
-  line-height:96rpx;
-  font-size:30rpx;
-}
-.goods131{
-  color:red;
-  font-size:40rpx;
-  font-weight: bold;
-}
-.goods132{
-  text-decoration:line-through;
-  margin-left:10rpx;
-}
-.loadmore{
-  display: flex;
-  justify-content: center;
-}
+.goods11 {width: 300rpx;height: 250rpx;background: white;}
+.goods12 {width: 340rpx;background: white;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 30rpx;line-height: 38rpx;}
+.goods13 {width: 340rpx;background: white;display: flex;line-height: 96rpx;font-size: 30rpx;}
+.goods131 {color: red;font-size: 40rpx;font-weight: bold;}
+.goods132 {text-decoration: line-through;margin-left: 10rpx;}
+.loadmore {display: flex;justify-content: center;}

@@ -1,385 +1,57 @@
 /* pages/entry/entry.wxss */
-
-page {
-  width: 100%;
-  height: 100%;
-}
-
-.entry {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.entry-img {
-  width: 100%;
-  height: 100%;
-}
-
-.bgc {
-  width: 100%;
-  height: 100%;
-}
-
-.en {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-}
-
-.entry-con {
-  width: 659rpx;
-  height: 883rpx;
-  box-sizing: border-box;
-  background-color: #fff;
-  box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(103, 140, 186, 0.92);
-  border-radius: 10rpx;
-  border: solid 2rpx #a0dbfa;
-  margin-top: 410rpx;
-  margin-left: 46rpx;
-}
-
-.entry-nei {
-  margin: 24rpx 22rpx 33rpx 22rpx;
-  box-sizing: border-box;
-  background-color: #fff;
-  box-shadow: 0px 6px 10px 0px rgba(173, 207, 249, 0.92);
-  border-radius: 10px;
-  border: solid 2px #ddf3fe;
-}
-
-.entry-wo {
-  width: 180rpx;
-  height: 45rpx;
-  margin: 0 auto;
-  font-family: PingFang-SC-Bold;
-  font-size: 34rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  border-bottom: 9rpx solid #fa7373;
-  border-radius: 4.5rpx;
-  letter-spacing: 0.4rpx;
-  color: #282525;
-  margin-top: 28rpx;
-}
-
-.con, .con-two, .con-four {
-  display: flex;
-  justify-content: space-between;
-}
-
-.haha {
-  width: 290rpx;
-  display: flex;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  margin-right: 20rpx;
-}
-
-.con-left image {
-  width: 123rpx;
-  height: 123rpx;
-  margin-top: 61rpx;
-  margin-left: 111rpx;
-}
-
-.con-right {
-  width: 280rpx;
-  margin-right: 20rpx;
-  margin-top: 61rpx;
-  box-sizing: border-box;
-}
-
-.con-yi {
-  font-size: 30rpx;
-  font-weight: normal;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 55rpx;
-  text-align: center;
-  letter-spacing: 0.3rpx;
-  color: #f75858;
-}
-
-.con-mian {
-  font-family: PingFang-SC-Regular;
-  font-size: 24rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 30rpx;
-  letter-spacing: 0.2rpx;
-  color: #1c1b1b;
-}
-
+page {width: 100%;height: 100%;}
+.entry {width: 100%;height: 100%;position: relative;}
+.entry-img {width: 100%;height: 100%;}
+.bgc {width: 100%;height: 100%;}
+.en {width: 100%;height: 100%;position: absolute;top: 0;}
+.entry-con {width: 659rpx;height: 883rpx;box-sizing: border-box;background-color: #fff;box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(103, 140, 186, 0.92);border-radius: 10rpx;border: solid 2rpx #a0dbfa;margin-top: 410rpx;margin-left: 46rpx;}
+.entry-nei {margin: 24rpx 22rpx 33rpx 22rpx;box-sizing: border-box;background-color: #fff;box-shadow: 0px 6px 10px 0px rgba(173, 207, 249, 0.92);border-radius: 10px;border: solid 2px #ddf3fe;}
+.entry-wo {width: 180rpx;height: 45rpx;margin: 0 auto;font-family: PingFang-SC-Bold;font-size: 34rpx;font-weight: normal;font-stretch: normal;border-bottom: 9rpx solid #fa7373;border-radius: 4.5rpx;letter-spacing: 0.4rpx;color: #282525;margin-top: 28rpx;}
+.con,
+.con-two,
+.con-four {display: flex;justify-content: space-between;}
+.haha {width: 290rpx;display: flex;justify-content: flex-start;box-sizing: border-box;margin-right: 20rpx;}
+.con-left image {width: 123rpx;height: 123rpx;margin-top: 61rpx;margin-left: 111rpx;}
+.con-right {width: 280rpx;margin-right: 20rpx;margin-top: 61rpx;box-sizing: border-box;}
+.con-yi {font-size: 30rpx;font-weight: normal;font-style: italic;font-stretch: normal;line-height: 55rpx;text-align: center;letter-spacing: 0.3rpx;color: #f75858;}
+.con-mian {font-family: PingFang-SC-Regular;font-size: 24rpx;font-weight: normal;font-stretch: normal;line-height: 30rpx;letter-spacing: 0.2rpx;color: #1c1b1b;}
 /* 第二条数据 */
-
-.start {
-  width: 25rpx;
-  height: 25rpx;
-  margin-right: 5rpx;
-}
-
-.con-two, .con-four {
-  margin-top: 58rpx;
-}
-
-.contwo-yi {
-  font-size: 30rpx;
-  font-weight: normal;
-  font-style: italic;
-  font-stretch: normal;
-  line-height: 55rpx;
-  text-align: center;
-  letter-spacing: 0.3rpx;
-  color: #f75858;
-}
-
-.contwo-haha {
-  display: flex;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  margin-left: 50rpx;
-}
-
-.contwo-mian {
-  width: 265rpx;
-  height: 53rpx;
-  font-family: PingFang-SC-Regular;
-  font-size: 24rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 30rpx;
-  letter-spacing: 0.2rpx;
-  color: #1c1b1b;
-}
-
-.contwo-right image {
-  width: 123rpx;
-  height: 123rpx;
-  margin-right: 90rpx;
-}
-
+.start {width: 25rpx;height: 25rpx;margin-right: 5rpx;}
+.con-two,
+.con-four {margin-top: 58rpx;}
+.contwo-yi {font-size: 30rpx;font-weight: normal;font-style: italic;font-stretch: normal;line-height: 55rpx;text-align: center;letter-spacing: 0.3rpx;color: #f75858;}
+.contwo-haha {display: flex;justify-content: flex-start;box-sizing: border-box;margin-left: 50rpx;}
+.contwo-mian {width: 265rpx;height: 53rpx;font-family: PingFang-SC-Regular;font-size: 24rpx;font-weight: normal;font-stretch: normal;line-height: 30rpx;letter-spacing: 0.2rpx;color: #1c1b1b;}
+.contwo-right image {width: 123rpx;height: 123rpx;margin-right: 90rpx;}
 /* 入驻条件 */
-
-.condition {
-  width: 659rpx;
-  box-sizing: border-box;
-  margin-top: 20rpx;
-  margin-left: 46rpx;
-  background-color: #fff;
-  box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(103, 140, 186, 0.92);
-  border-radius: 10rpx;
-  border: solid 2rpx #a0dbfa;
-}
-
-.condition-nei {
-  width: 615rpx;
-  box-sizing: border-box;
-  margin: 24rpx 22rpx 22rpx 22rpx;
-  background-color: #fff;
-  box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(173, 207, 249, 0.92);
-  border-radius: 10rpx;
-  border: solid 2rpx #ddf3fe;
-}
-
-.condition-ru {
-  width: 143rpx;
-  font-size: 34rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 0.4rpx;
-  color: #282525;
-  border-bottom: 9rpx solid #fa7373;
-  border-radius: 4.5rpx;
-  margin: 0 auto;
-  margin-top: 30rpx;
-}
-
-.condition-pin {
-  display: flex;
-  justify-content: flex-start;
-  margin: 22rpx 0 0 103rpx;
-}
-
-.pin-img {
-  width: 18rpx;
-  height: 18rpx;
-}
-
-.pin1 {
-  font-family: PingFang-SC-Regular;
-  font-size: 24rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 0.2rpx;
-  color: #1c1b1b;
-  margin-left: 4rpx;
-}
-
-.condition-pin2 {
-  display: flex;
-  justify-content: flex-start;
-  margin: 22rpx 0 0 103rpx;
-}
-
-.condition-pin3 {
-  display: flex;
-  justify-content: flex-start;
-  margin: 22rpx 0 30rpx 103rpx;
-}
-
+.condition {width: 659rpx;box-sizing: border-box;margin-top: 20rpx;margin-left: 46rpx;background-color: #fff;box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(103, 140, 186, 0.92);border-radius: 10rpx;border: solid 2rpx #a0dbfa;}
+.condition-nei {width: 615rpx;box-sizing: border-box;margin: 24rpx 22rpx 22rpx 22rpx;background-color: #fff;box-shadow: 0rpx 6rpx 9.8rpx 0.2rpx rgba(173, 207, 249, 0.92);border-radius: 10rpx;border: solid 2rpx #ddf3fe;}
+.condition-ru {width: 143rpx;font-size: 34rpx;font-weight: normal;font-stretch: normal;letter-spacing: 0.4rpx;color: #282525;border-bottom: 9rpx solid #fa7373;border-radius: 4.5rpx;margin: 0 auto;margin-top: 30rpx;}
+.condition-pin {display: flex;justify-content: flex-start;margin: 22rpx 0 0 103rpx;}
+.pin-img {width: 18rpx;height: 18rpx;}
+.pin1 {font-family: PingFang-SC-Regular;font-size: 24rpx;font-weight: normal;font-stretch: normal;letter-spacing: 0.2rpx;color: #1c1b1b;margin-left: 4rpx;}
+.condition-pin2 {display: flex;justify-content: flex-start;margin: 22rpx 0 0 103rpx;}
+.condition-pin3 {display: flex;justify-content: flex-start;margin: 22rpx 0 30rpx 103rpx;}
 /* 商家入驻信息 */
-
-.entry-information {
-  width: 659rpx;
-  margin-top: 25rpx;
-  box-sizing: border-box;
-  margin-left: 46rpx;
-}
-
-.info-shang {
-  font-family: PingFang-SC-Bold;
-  font-size: 30rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 0.3rpx;
-  color: #121313;
-}
-
-.infor-ma {
-  font-family: PingFang-SC-Regular;
-  font-size: 28rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  margin-top: 20rpx;
-  letter-spacing: 0.3rpx;
-  color: #121313;
-}
-
-.xian {
-  width: 659rpx;
-  height: 3rpx;
-  margin-top: 30rpx;
-  background-color: #cdcdcd;
-}
-
-.tian {
-   position: relative;
-  width: 659rpx;
-  box-sizing: border-box;
-  margin-top: 20rpx;
-}
-
-.tian-name text:first-of-type {
-  font-family: PingFang-SC-Bold;
-  font-size: 30rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 55rpx;
-  letter-spacing: 0.3rpx;
-  color: #121313;
-}
-
-.tian-name  text:nth-of-type(2) {
-  font-family: PingFang-SC-Bold;
-  font-size: 30rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  letter-spacing: 0.3rpx;
-  color: #f72639;
-}
-
-.input-name, .input-name1 {
-  height: 62rpx;
-  background-color: #fff;
-  border: solid 2rpx #d0d0d0;
-  padding-left: 10rpx;
-  margin-top: 10rpx;
-}
-
-.input-name1 {
-  padding-left: 70rpx;
-}
-
-.phone-img {
-  position: absolute;
-  top: 85rpx;
-  left: 20rpx;
-  width: 17rpx;
-  height: 25rpx;
-}
-
-.h-xian {
-  width: 2rpx;
-  height: 60rpx;
-  position: absolute;
-  top: 65rpx;
-  left: 60rpx;
-  background-color: #d0d0d0;
-  overflow: hidden;
-}
-
-.input-di {
-  width: 659rpx;
-  height: 188rpx;
-  padding-top: 10rpx;
-  box-sizing: border-box;
-  background-color: #fff;
-  border: solid 2rpx #d0d0d0;
-  padding-left: 10rpx;
-  margin-top: 17rpx;
-}
-
-.confirm {
-  width: 662rpx;
-  height: 80rpx;
-  text-align: center;
-  background-color: #565eed;
-  box-shadow: 0rpx 3rpx 5.9rpx 0.1rpx rgba(64, 75, 144, 0.92);
-  border-radius: 10rpx;
-  font-family: PingFang-SC-Regular;
-  font-size: 30rpx;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 80rpx;
-  letter-spacing: 0.3rpx;
-  color: #fff;
-  margin-top: 61rpx;
-  margin-bottom: 80rpx;
-}
+.entry-information {width: 659rpx;margin-top: 25rpx;box-sizing: border-box;margin-left: 46rpx;}
+.info-shang {font-family: PingFang-SC-Bold;font-size: 30rpx;font-weight: normal;font-stretch: normal;letter-spacing: 0.3rpx;color: #121313;}
+.infor-ma {font-family: PingFang-SC-Regular;font-size: 28rpx;font-weight: normal;font-stretch: normal;margin-top: 20rpx;letter-spacing: 0.3rpx;color: #121313;}
+.xian {width: 659rpx;height: 3rpx;margin-top: 30rpx;background-color: #cdcdcd;}
+.tian {position: relative;width: 659rpx;box-sizing: border-box;margin-top: 20rpx;}
+.tian-name text:first-of-type {font-family: PingFang-SC-Bold;font-size: 30rpx;font-weight: normal;font-stretch: normal;line-height: 55rpx;letter-spacing: 0.3rpx;color: #121313;}
+.tian-name text:nth-of-type(2) {font-family: PingFang-SC-Bold;font-size: 30rpx;font-weight: normal;font-stretch: normal;letter-spacing: 0.3rpx;color: #f72639;}
+.input-name,
+.input-name1 {height: 62rpx;background-color: #fff;border: solid 2rpx #d0d0d0;padding-left: 10rpx;margin-top: 10rpx;}
+.input-name1 {padding-left: 70rpx;}
+.phone-img {position: absolute;top: 85rpx;left: 20rpx;width: 17rpx;height: 25rpx;}
+.h-xian {width: 2rpx;height: 60rpx;position: absolute;top: 65rpx;left: 60rpx;background-color: #d0d0d0;overflow: hidden;}
+.input-di {width: 659rpx;height: 188rpx;padding-top: 10rpx;box-sizing: border-box;background-color: #fff;border: solid 2rpx #d0d0d0;padding-left: 10rpx;margin-top: 17rpx;}
+.confirm {width: 662rpx;height: 80rpx;text-align: center;background-color: #565eed;box-shadow: 0rpx 3rpx 5.9rpx 0.1rpx rgba(64, 75, 144, 0.92);border-radius: 10rpx;font-family: PingFang-SC-Regular;font-size: 30rpx;font-weight: normal;font-stretch: normal;line-height: 80rpx;letter-spacing: 0.3rpx;color: #fff;margin-top: 61rpx;margin-bottom: 80rpx;}
 /* 底部操作菜单 */
-
-.page-bottom {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 95;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 100rpx;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.3);
-  /* border-radius: 16rpx; */
+.page-bottom {position: fixed;left: 0;bottom: 0;z-index: 95;display: flex;justify-content: space-around;align-items: center;width: 100%;height: 100rpx;background: rgba(255, 255, 255, 0.9);box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.3);
+	/* border-radius: 16rpx; */
 }
-
-.page-bottom .p-b-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:space-around;
-  color: #606266;
-}
-.shou{
-  font-size: 24rpx;
-}
-.yticon {
-  width: 50rpx;
-  height: 53rpx;
-}
-.gou{
-   width: 50rpx;
-  height: 50rpx;
-}
+.page-bottom .p-b-btn {display: flex;flex-direction: column;align-items: center;justify-content: space-around;color: #606266;}
+.shou {font-size: 24rpx;}
+.yticon {width: 50rpx;height: 53rpx;}
+.gou {width: 50rpx;height: 50rpx;}

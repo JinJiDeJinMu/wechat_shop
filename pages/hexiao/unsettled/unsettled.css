@@ -1,69 +1,17 @@
 /* pages/hexiao/unsettled/unsettled.wxss */
-.unsettled{
-  width: 100%;
-  height: 100%;
-}
+.unsettled {width: 100%;height: 100%;}
 /* 头部数据 */
-.hexiao-group {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background: orange;
-  color: #666;
-}
-.group-left {
-  width: 250rpx;
-  text-align: center;
-  margin: 10rpx 20rpx;
-  color: white;
-}
-.group-right {
-  width: 250rpx;
-  text-align: center;
-  margin: 10rpx 20rpx;
-  color: white;
-}
-.money-l,.qian{
-  font-size: 34rpx;
-}
+.hexiao-group {width: 100%;display: flex;justify-content: center;background: orange;color: #666;}
+.group-left {width: 250rpx;text-align: center;margin: 10rpx 20rpx;color: white;}
+.group-right {width: 250rpx;text-align: center;margin: 10rpx 20rpx;color: white;}
+.money-l,
+.qian {font-size: 34rpx;}
 /* 列表 */
-.group-list {
-  background-color: white;
-  margin-top: 20rpx;
-}
-.group-con {
-  display: flex;
-  align-items: flex-start;
-  border-bottom: 2rpx solid #f4f4f4;
-}
-.group-time {
-  text-align: center;
-  margin: 25rpx  20rpx;
-  color: #ddd;
-}
-.group-money {
-  width: 56%;
-  color: #666;
-  margin:25rpx 0 25rpx 20rpx ;
-}
-.group-time view:first-child {
-  margin-bottom: 10rpx;
-  font-size: 22rpx;
-}
-
-.ding-img{
-  width: 60rpx;
-  height: 60rpx;
-  margin:25rpx 0;
-}
-
-.group-money view:first-child {
-  color: #b4282d;
-  margin-bottom: 10rpx;
-}
-
-.dai {
-  margin-top: 25rpx;
-  color: #b4282d;
-  width:130rpx;
-}
+.group-list {background-color: white;margin-top: 20rpx;}
+.group-con {display: flex;align-items: flex-start;border-bottom: 2rpx solid #f4f4f4;}
+.group-time {text-align: center;margin: 25rpx 20rpx;color: #ddd;}
+.group-money {width: 56%;color: #666;margin: 25rpx 0 25rpx 20rpx;}
+.group-time view:first-child {margin-bottom: 10rpx;font-size: 22rpx;}
+.ding-img {width: 60rpx;height: 60rpx;margin: 25rpx 0;}
+.group-money view:first-child {color: #b4282d;margin-bottom: 10rpx;}
+.dai {margin-top: 25rpx;color: #b4282d;width: 130rpx;}
