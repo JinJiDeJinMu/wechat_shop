@@ -190,7 +190,7 @@
 			}
 		},
 		{
-			"path": "pages/payResult/payScoreResult",
+			"path": "pages/payScoreResult/payScoreResult",
 			"style": {
 				"navigationBarTitleText": "充值结果",
 				"navigationBarBackgroundColor": "#fafafa"
