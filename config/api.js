@@ -231,6 +231,8 @@ module.exports = {
 	//
 	Attr: NewApiRootUrl + "school/batch", //定位大学
 
-	Socre: WxApiRootUrl + "v2/score/buyscore.do"
+	Socre: WxApiRootUrl + "v2/score/buyscore.do",
+	
+	MyScore: WxApiRootUrl + "v2/score/myScore.json"
 
 };

@@ -13,13 +13,11 @@
 		<scroll-view class="cate" scroll-y="true">
 			<view class="bd">
 				<view class="cont-item">
-				
 						<block v-for="(v, index) in goodsList" :key="index">
 							<navigator :url="'/pages/goods/goods?id='+v.id" >
 							<view class="show-item" :data-prodid="v.id">
-								
 								<view class="more-prod-pic">
-									<image :src="v.listPicUrl||v.primaryPicUrl" class="more-pic" mode="widthFix"></image>
+									<image :src="v.listPicUrl||v.primaryPicUrl" class="more-pic" mode="widthFix" style="width: 240rpx;height: 300rpx;"></image>
 								</view>
 								<view class="prod-text-right">
 									<view class="prod-text more">{{v.name}}</view>
@@ -32,7 +30,6 @@
 							</view>
 						</navigator>
 						</block>
-					
 				</view>
 			</view>
 		</scroll-view>
@@ -43,7 +40,6 @@
 <script>
 var util = require("../../utils/util.js");
 var api = require("../../config/api.js");
-
 export default {
   data() {
     return {
@@ -59,7 +55,6 @@ export default {
       curIndex: ""
     };
   },
-
   components: {},
   props: {},
   onLoad: function (options) {
@@ -90,6 +85,10 @@ export default {
           navList: res.data.categoryList,
           currentCategory: res.data.currentCategory
         });
+		if(that.navList.length!=0){
+			console.log(that.navList);
+			that.getCurrentCategory(that.navList[1].id);
+		}
         wx.hideLoading();
       });
       util.request(api.GoodsCount).then(function (res) {
@@ -117,26 +116,19 @@ export default {
         });
       });
     },
-
     onMenuTab(e) {
       console.log(e);
       var id = e.currentTarget.dataset.id;
       var index = e.currentTarget.dataset.index; // 把点击到的某一项，设为当前index  
-
-      this.setData({
-        curNav: id,
-        curIndex: index
-      });
+      this.curNav=id;
+      this.curIndex=index;
     },
-
     switchCate: function (event) {
       var that = this;
       var currentTarget = event.currentTarget;
-
       if (this.currentCategory.id == event.currentTarget.dataset.id) {
         return false;
       }
-
       this.getCurrentCategory(event.currentTarget.dataset.id);
     },
     setData: function (obj, callback) {
@@ -155,7 +147,6 @@ export default {
               that.$set(data, key2, {});
             }
           }
-
           data = data[key2];
         });
       });

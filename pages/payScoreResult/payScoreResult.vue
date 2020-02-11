@@ -16,15 +16,12 @@
 	  </view>
     </view>
   </view>
-
 </view>
 </template>
-
 <script>
 var util = require("../../utils/util.js");
 var api = require("../../config/api.js");
 const pay = require("../../services/pay.js");
-
 export default {
   data() {
     return {
@@ -32,7 +29,6 @@ export default {
       scoreflowId: 0
     };
   },
-
   components: {},
   props: {},
   onLoad: function (options) {
@@ -63,7 +59,6 @@ export default {
 		  }
 	  });
     },
-
     payOrder() {
       pay.payOrder(parseInt(this.orderId)).then(res => {
         this.setData({
@@ -73,7 +68,6 @@ export default {
         util.showErrorToast('支付失败');
       });
     },
-
     setData: function (obj, callback) {
       let that = this;
       let keys = [];
@@ -90,7 +84,6 @@ export default {
               that.$set(data, key2, {});
             }
           }
-
           data = data[key2];
         });
       });
