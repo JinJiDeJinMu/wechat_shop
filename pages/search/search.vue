@@ -29,6 +29,7 @@ var api = require('../../config/api.js');
 import vanSearch from '../../wxcomponents/vant-weapp/search';
 import vanButton from '../../wxcomponents/vant-weapp/button';
 
+
 export default {
 	data() {
 		return {
@@ -105,7 +106,8 @@ export default {
 
 		getDate() {
 			var that = this;
-			wx.request({
+			console.log("word===="+that.word);
+			/* wx.request({
 				url: 'http://school.chundengtai.com/api/search/search',
 				//仅为示例，并非真实的接口地址
 				data: {
@@ -120,7 +122,7 @@ export default {
 						key: res.data.data.data
 					});
 				}
-			});
+			}); */
 		},
 
 		setData: function(obj, callback) {
