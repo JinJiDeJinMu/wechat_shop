@@ -2,10 +2,18 @@
 <view class="container">
   <view class="pay-result">
     <view class="success" v-if="status == true">
-      <view class="msg">付款成功</view>
+      <view class="msg">购买成功</view>
+	  <view class="btns">
+	    <navigator class="btn" url="/pages/ucenter/recharge/recharge">重新购买</navigator>
+	    <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
+	  </view>
     </view>
     <view class="error" v-if="status != true">
-      <view class="msg">付款失败</view>
+      <view class="msg">购买失败</view>
+	   <view class="btns">
+	  <navigator class="btn" url="/pages/ucenter/recharge/recharge">重新购买</navigator>
+	  <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
+	  </view>
     </view>
   </view>
 
