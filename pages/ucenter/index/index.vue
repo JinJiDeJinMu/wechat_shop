@@ -48,11 +48,11 @@
 					<text class="yticon iconfont icon-icon_im_keyboard"></text>
 					<text style="font-size:28rpx;">待付款</text>
 				</view>
-				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=201')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=207')" hover-class="common-hover" :hover-stay-time="50">
 					<text class="yticon iconfont icon-icon_affiliations_li"></text>
 					<text style="font-size:28rpx;">待收货</text>
 				</view>
-				<view class="order-item" @click="navTo('/pages/ucenter/return/return?id=201')" hover-class="common-hover" :hover-stay-time="50">
+				<view class="order-item" @click="navTo('/pages/ucenter/return/return?id=501')" hover-class="common-hover" :hover-stay-time="50">
 					<text class="yticon iconfont icon-icon_HRM"></text>
 					<text style="font-size:28rpx;">退款/售后</text>
 				</view>

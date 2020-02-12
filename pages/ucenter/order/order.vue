@@ -1,10 +1,10 @@
 <template>
 <view class="container">
   <view class="order_me">
-    <view :class="'li ' + ( orderId ==-1  ? 'active' : '')" data-id="-1" @tap="switchCate">全部</view>
-    <view :class="'li ' + ( orderId == 0 ? 'active' : '')" data-id="0" @tap="switchCate">待付款</view>
+    <view :class="'li ' + ( orderId == -1  ? 'active' : '')" data-id="-1" @tap="switchCate">全部</view>
+    <view :class="'li ' + ( orderId == 0  ? 'active' : '')" data-id="0" @tap="switchCate">待付款</view>
     <view :class="'li ' + ( orderId == 206 ? 'active' : '')" data-id="206" @tap="switchCate">待使用</view>
-    <view :class="'li ' + ( orderId == 201 ? 'active' : '')" data-id="201" @tap="switchCate">待收货</view>
+    <view :class="'li ' + ( orderId == 207 ? 'active' : '')" data-id="207" @tap="switchCate">待收货</view>
     <view :class="'li ' + ( orderId == 402 ? 'active' : '')" data-id="402" @tap="switchCate">已完成</view>
   </view>
   <view class="orders">
@@ -81,10 +81,10 @@ export default {
   components: {},
   props: {},
   onLoad: function (options) {
-    console.log(options);
     this.setData({
-      orderId: options.id
-    });
+     orderId: options.id
+    });	
+	this.getOrderList();
     wx.showLoading({
       title: '加载中...'
     });
@@ -138,6 +138,7 @@ export default {
         title: '加载中...'
       });
       var currentTarget = event.currentTarget;
+	  console.log('=='+currentTarget.dataset.id);
       this.setData({
         orderId: currentTarget.dataset.id,
         totalPages: 1,
@@ -163,7 +164,8 @@ export default {
         size: that.size,
         order_status: that.orderId
       }).then(function (res) {
-        if (res.errno === 0) {
+        if (res.errno === 0) {		
+		that.orderId = that.orderId == "" ? -1 :that.orderId
           that.setData({
             orderList: that.orderList.concat(res.data.list),
             page: res.data.currentPage + 1,
