@@ -154,6 +154,7 @@ export default {
 				merchantId: merchantId,
 				order_status: that.orderId
 			}).then(function(res) {
+				that.orderId = that.orderId == "" ? -1 :that.orderId
 				if (res.errno === 0) {
 					that.setData({
 						orderList: that.orderList.concat(res.data.list),

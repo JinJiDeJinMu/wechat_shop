@@ -17,8 +17,8 @@
 				"navigationBarTitleText": "搜索",
 				"enablePullDownRefresh": false,
 				"usingComponents":{
-				"search"	: "../../wxcomponents/vant-weapp/search",
-				"button" : "../../wxcomponents/vant-weapp/button"
+				"search": "../../wxcomponents/vant-weapp/search",
+				"button": "../../wxcomponents/vant-weapp/button"
 				}
 			}
 		},

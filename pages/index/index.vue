@@ -1,10 +1,12 @@
 <template>
 	<view>
-	<selectmap :prop-array="selectList" @myget="getDate"></selectmap>
+	<!-- <selectmap :prop-array="selectList" @myget="getDate"></selectmap> -->
 	<view class='index-search-box'>
 	    <view class="input-box">
+		<navigator url="/pages/search/search" class="input search-bar">
 	      <image src="/static/img/search.png"></image>
 	      <input :placeholder="'商品搜索，共'+goodsCount+'款好物'" placeholder-class="f-shallow"></input>
+		  </navigator>
 	    </view>
 	</view>
 	<view class='container m-t-10 bg-white'>
@@ -21,7 +23,7 @@
 				</swiper>
 	        </view>
 	    </view>
-	    <view class="row">
+	   <view class="row">
 	      <view class="col-xs-12 p-l-5 p-r-5">
 	        <view class="index-cate-box">
 			  <view class="item" v-for="(item, index) in fenlei" :key="index">
@@ -162,6 +164,7 @@
 	  onPullDownRefresh() {
 	    var self = this;
 	    self.getIndexData();
+		wx.stopPullDownRefresh();
 	  },
 	  onLoad: function (options) {
 	    let self = this;
@@ -180,7 +183,7 @@
 	    qqmapsdk = new QQMapWX({
 	      key: api.TcentConfigMapKey
 	    });
-	    wx.getLocation({
+	    /* wx.getLocation({
 	      type: 'gcj02',
 	      success(res) {
 	        const latitude = res.latitude;
@@ -211,7 +214,8 @@
 	          duration: 1500
 	        });
 	      }
-	    });
+	    }); */
+		console.log("加载结束");
 	  },
 	  methods: {
 	    baidu() {
@@ -229,6 +233,7 @@
 	    getIndexData: function () {
 	      let that = this;
 	      var fenlei = that.fenlei;
+		  var banner = that.banner;
 	      var categoryGoodsList = that.categoryGoodsList;
 	      var data = new Object();
 	      util.request(api.IndexUrlAll, {

@@ -1,7 +1,9 @@
 <template>
 	<view>
-		<van-search :value="value" placeholder="请输入搜索关键词" use-action-slot @search="onSearch" @change="onChange"><view slot="action" @tap="sousuo">搜索</view></van-search>
-
+		<!-- <van-search :value="keyword" v-model="keyword" placeholder="请输入搜索关键词" use-action-slot @search="onSearch"><view slot="action" @tap="sousuo">搜索</view></van-search> -->
+	<!-- <input type="text" name="" id="" placeholder="请输入搜索关键词" v-model="keyword"/> 
+	  	<button @click="sousuo">搜索</button> -->
+	<van-search :value="keyword" placeholder="请输入搜索关键词" use-action-slot @search="onSearch"><view slot="action" @tap="sousuo">搜索</view></van-search> 
 		<view class="container">
 			<view class="zuixin">
 				<view class="goods1" v-for="(item, key) in key" :key="key">
@@ -34,7 +36,8 @@ export default {
 	data() {
 		return {
 			key: [],
-			word: ''
+			word: '',
+			keyword:''
 		};
 	},
 
@@ -90,8 +93,9 @@ export default {
 
 		onSearch(e) {
 			var word = e.detail;
+			console.log(word);
 			this.setData({
-				word: word
+				keyword: word
 			});
 			this.getDate();
 		},
@@ -100,13 +104,13 @@ export default {
 			var word = e.detail;
 			console.log(word);
 			this.setData({
-				word: word
+				keyword: word
 			});
 		},
 
 		getDate() {
 			var that = this;
-			console.log("word===="+that.word);
+			console.log("word===="+that.keyword);
 			/* wx.request({
 				url: 'http://school.chundengtai.com/api/search/search',
 				//仅为示例，并非真实的接口地址
@@ -123,6 +127,14 @@ export default {
 					});
 				}
 			}); */
+			util.request(api.SearchGoods,{keyword:that.keyword},'GET')
+			.then(function(res) {
+				if(res.code === 200){
+					that.setData({
+						key: res.data.data
+					});
+				}
+			})
 		},
 
 		setData: function(obj, callback) {

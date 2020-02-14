@@ -16,9 +16,9 @@ module.exports = {
 	//首页数据接口
 	IndexUrlTopic: NewApiRootUrl + 'index/topic',
 	//首页数据接口
-	IndexUrlAll: NewApiRootUrl + 'v2/index/index',
+	IndexUrlAll: WxApiRootUrl + 'v2/index/index.json',
 	//新增接口
-	IndexUrlzuixin: NewApiRootUrl + 'v2/index/indexNewGoods',
+	IndexUrlzuixin: WxApiRootUrl + 'v2/index/indexNewGoods.json',
 	//新增接口
 	IndexUrlgonggao: NewApiRootUrl + 'newsBulletin/list',
 	//公告
