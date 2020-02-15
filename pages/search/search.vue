@@ -1,9 +1,10 @@
 <template>
 	<view>
-		<!-- <van-search :value="keyword" v-model="keyword" placeholder="请输入搜索关键词" use-action-slot @search="onSearch"><view slot="action" @tap="sousuo">搜索</view></van-search> -->
+		<!-- <van-search :value="value" placeholder="请输入搜索关键词" use-action-slot @search="onSearch" @change="onChange"><view slot="action" @tap="sousuo">搜索</view></van-search> -->
 	<!-- <input type="text" name="" id="" placeholder="请输入搜索关键词" v-model="keyword"/> 
 	  	<button @click="sousuo">搜索</button> -->
-	<van-search :value="keyword" placeholder="请输入搜索关键词" use-action-slot @search="onSearch"><view slot="action" @tap="sousuo">搜索</view></van-search> 
+	  <uni-search-bar maxlength="30" @confirm="search"  @input="input"></uni-search-bar>
+	
 		<view class="container">
 			<view class="zuixin">
 				<view class="goods1" v-for="(item, key) in key" :key="key">
@@ -28,8 +29,10 @@
 <script>
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-import vanSearch from '../../wxcomponents/vant-weapp/search';
-import vanButton from '../../wxcomponents/vant-weapp/button';
+/* import vanSearch from '../../wxcomponents/vant-weapp/search';
+import vanButton from '../../wxcomponents/vant-weapp/button'; */
+import uniSearchBar from '../../wxcomponents/dist/uni-search-bar/uni-search-bar.vue';
+import uniIcons from '../../wxcomponents/dist/uni-icons/uni-icons.vue';
 
 
 export default {
@@ -37,13 +40,13 @@ export default {
 		return {
 			key: [],
 			word: '',
-			keyword:''
+			value:''
 		};
 	},
 
 	components: {
-		vanSearch,
-		vanButton
+		uniSearchBar,
+		uniIcons
 	},
 	props: {},
 
@@ -87,47 +90,43 @@ export default {
 	 */
 	onShareAppMessage: function() {},
 	methods: {
-		sousuo() {
-			this.getDate();
+		input(e){
+			if(e.value.size>0){
+				this.setData({
+					word: e.value
+				});
+				this.getDate();
+			}		
 		},
-
-		onSearch(e) {
-			var word = e.detail;
+		search(e){
+			if(e.value.size>0){
+				this.setData({
+					word: e.value
+				});
+				this.getDate();
+			}
+		},
+		/* onSearch() {
+			var word = this.data.value;
 			console.log(word);
 			this.setData({
-				keyword: word
+				word: word
 			});
 			this.getDate();
 		},
 
 		onChange(e) {
-			var word = e.detail;
-			console.log(word);
+			var value = e.detail;
+			console.log(value);
 			this.setData({
-				keyword: word
+				value: value
 			});
-		},
+		}, */
 
 		getDate() {
 			var that = this;
-			console.log("word===="+that.keyword);
-			/* wx.request({
-				url: 'http://school.chundengtai.com/api/search/search',
-				//仅为示例，并非真实的接口地址
-				data: {
-					keyword: this.word
-				},
-				header: {
-					'content-type': 'application/json' // 默认值
-				},
-
-				success(res) {
-					that.setData({
-						key: res.data.data.data
-					});
-				}
-			}); */
-			util.request(api.SearchGoods,{keyword:that.keyword},'GET')
+			console.log("word===="+that.word);
+			util.request(api.SearchGoods,{keyword:that.word},'GET')
 			.then(function(res) {
 				if(res.code === 200){
 					that.setData({

@@ -26,7 +26,7 @@
 			<image class="arc" src="/static/arc.png"></image>
 			<view class="tj-sction">
 				<view class="tj-item">
-					<text class="num">128.8</text>
+					<text class="num">{{score}}</text>
 					<text>余额</text>
 				</view>
 				<!-- 	<view class="tj-item">
@@ -124,7 +124,8 @@ export default {
 				getProfit: 0
 			},
 			isshow: false,
-			isDistribut: 0
+			isDistribut: 0,
+			score:0
 		};
 	},
 	components: { listCell },
@@ -139,6 +140,7 @@ export default {
 			});
 			getApp().globalData.userInfo = userInfo.userInfo;
 			getApp().globalData.token = token;
+			this.getMyScore();
 		} else {
 			wx.redirectTo({
 				url: '../../customer/zcuslist/zcuslist?id=-2'
@@ -159,18 +161,18 @@ export default {
 		};
 	},
 	methods: {
-		getData: function() {
+		getMyScore: function() {
 			let that = this;
 			util.request(api.MyScore).then(function(res) {
-				if (res.errno === 0) {
-					that.setData({
-						bannerInfo: res.data.bannerInfo
-					});
-					that.getGoodsList();
+				if (res.code === 200) {
+					if(res.data.score >0){
+						that.setData({
+							score: res.data.score
+						});
+					}	
 				}
 			});
 		},
-		getMyScore() {},
 		navTo(url) {
 			console.log(url);
 			uni.navigateTo({

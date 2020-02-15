@@ -34,6 +34,7 @@ VantComponent({
         onChange(event) {
             this.set({ value: event.detail });
             this.$emit('change', event.detail);
+			console.log('=='+value);
         },
         onCancel() {
             /**
