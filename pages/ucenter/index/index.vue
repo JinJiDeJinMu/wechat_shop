@@ -165,11 +165,13 @@ export default {
 			let that = this;
 			util.request(api.MyScore).then(function(res) {
 				if (res.code === 200) {
-					if(res.data.score >0){
-						that.setData({
-							score: res.data.score
-						});
-					}	
+					if(res.data !=null){
+						if(res.data.score >0){
+							that.setData({
+								score: res.data.score
+							});
+						}	
+					}
 				}
 			});
 		},

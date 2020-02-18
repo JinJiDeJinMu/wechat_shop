@@ -28,14 +28,18 @@
 				"navigationBarTitleText": "商品详情",
 				"usingComponents": {
 					"count-down-list": "../../wxcomponents/count-down-list/count-down-list",
-					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
+					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index",
+					"i-rate": "../../wxcomponents/dist/rate/index"
 				}
 			}
 		},
 		{
 			"path": "pages/goods/comment/comment",
 			"style": {
-				"navigationBarTitleText": "商品评价"
+				"navigationBarTitleText": "商品评价",
+				"usingComponents": {
+					"i-rate": "../../wxcomponents/dist/rate/index"
+				}
 			}
 		},
 		{
@@ -43,7 +47,7 @@
 			"style": {
 				"navigationBarTitleText": "评价详情",
 				"usingComponents": {
-					"i-rate": "../../../wxcomponents/dist/rate/index"
+					"i-rate": "../../wxcomponents/dist/rate/index"
 				}
 			}
 		},
@@ -127,7 +131,8 @@
 		{
 			"path": "pages/ucenter/order/order",
 			"style": {
-				"navigationBarTitleText": "订单管理"
+				"navigationBarTitleText": "订单管理",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

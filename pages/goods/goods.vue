@@ -81,9 +81,14 @@
             <view class="jiantou">></view>
           </view>
           <view class="name">
-            <view class="commentsss" v-if="createTime">
+            <view class="commentsss">
               <view class="tx">
                 <image mode="aspectFit" class="desctx" :src="tx.avatar"></image>
+				<i-cell-group>
+				  <i-cell>
+				    <i-rate :value="item.starLevel"></i-rate>
+				  </i-cell>
+				</i-cell-group>
               </view>
               <view class="name1">{{tx.nickname}}</view>
               <view class="timee">{{createTime}}</view>
@@ -93,7 +98,7 @@
         </view>
       </navigator>
 	  
-      <view class="msg" v-if="businessmsg.shopName">
+      <!-- <view class="msg" v-if="businessmsg.shopName">
         <view class="newst">商家信息
           <view class="xian"></view>
         </view>
@@ -106,7 +111,7 @@
           <view class="bntt">{{businessmsg.shopAddress||''}}</view>
           <view class="bnt" @tap="daohangRoad" v-if="businessmsg.shopAddress">导航</view>
         </view>
-      </view>
+      </view> -->
     </view>
 	
     <view class="groupBox" v-if="type==1&newBuyLis.length>0">
@@ -145,6 +150,11 @@
             <view class="user">
               <image mode="aspectFit" :src="comment.data.avatar"></image>
               <text>{{comment.data.nickname}}</text>
+			  <i-cell-group>
+			    <i-cell>
+			      <i-rate :value="starLevel"></i-rate>
+			    </i-cell>
+			  </i-cell-group>
             </view>
             <view class="time">{{comment.data.add_time}}</view>
           </view>
@@ -372,6 +382,7 @@ export default {
       attribute: [],
       issueList: [],
       comment: [],
+	  starLevel:'',
       brand: {},
       specificationList: [],
       productList: [],
@@ -499,7 +510,7 @@ export default {
     // });
     //评论接口
 
-    util.request('http://school.chundengtai.com/api/v2/comment/list', {
+    util.request(api.CommentList, {
       goodId: that.idd
     }, "GET").then(function (res) {
       console.log(res);
@@ -508,14 +519,15 @@ export default {
       if (res.data) {
         that.setData({
           commit: res.data.list
-        }); // console.log(util.formatTimeTwo(res.data.list[0].createTime, 'Y-M-D'))
+        }); 
 
         if (res.data.list[0] != null) {
           that.setData({
             content: res.data.list[0].content,
             count: res.data.list.length,
+			starLevel: res.data.list[0].starLevel,
             tx: res.data.list[0].userInfo,
-            createTime: util.formatTimeTwo(res.data.list[0].createTime, 'Y-M-D h:m:s'),
+            createTime:res.data.list[0].createTime,
             userInfo: res.data.list[0].userInfo
           });
         }

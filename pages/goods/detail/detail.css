@@ -8,5 +8,5 @@
 /* 评价内容 */
 .appraise {margin: 6rpx 15rpx 0 20rpx;}
 /* 图片 */
-.tupain {width: 100%;display: flex;justify-content: center;margin-top: 20rpx;}
-.tupain image {width: 100%;height: 320rpx;margin-left: 25rpx;margin-right: 20rpx;}
+.tupain {display: flex;display: inline-block;justify-content: flex-start;margin-top: 15rpx;}
+.tupain image {width: 130rpx;height: 130rpx;margin-left: 20rpx;}

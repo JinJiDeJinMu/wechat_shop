@@ -22,7 +22,6 @@
               <image class="q-image" :src="item" mode="aspectFill" :data-idx="index" @tap="handleImagePreview"></image>
               <!-- 移除图片的按钮  -->
                  <view class="q-image-remover" :data-idx="index" @tap="removeImage">删除</view> 
-              <!-- <view class="{{del==false?'wu':'q-image-remover'}}" data-idx="{{index}}" bindtap="removeImage">删除</view> -->
             </view>
           </block>
         </view>
@@ -175,31 +174,31 @@ export default {
 
       });
     },
-
+	
     // 提交
     submit(e) {
-      util.request(api.CommentText, {
-        userId: this.userId,
-        orderNo: this.orderNo,
-        goodId: this.goodId,
-        content: this.discuss,
-        starLevel: this.starIndex3,
-        imageList: this.imageList
-      }, "GET").then(res => {
-        if (res.code === 200) {
-          wx.showToast({
-            title: '评论成功'
-          });
-
-          if (res.message == "OK") {
-            wx.navigateTo({
-              url: '/pages/ucenter/order/order?id=1'
-            });
-          }
-        }
-      });
+         util.request(api.CommentText, {
+           userId: this.userId,
+           orderNo: this.orderNo,
+           goodId: this.goodId,
+           content: this.discuss,
+           starLevel: this.starIndex3,
+           imageList: this.imageList
+         }, "GET").then(res => {
+           if (res.code === 200) {
+             wx.showToast({
+               title: '评论成功'
+             });
+         
+             if (res.message == "OK") {
+               wx.navigateTo({
+                 url: '/pages/ucenter/order/order?id=403'
+               });
+             }
+           }
+         });
     },
-
+	
     setData: function (obj, callback) {
       let that = this;
       let keys = [];

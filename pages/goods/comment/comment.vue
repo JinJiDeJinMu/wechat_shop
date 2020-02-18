@@ -59,17 +59,12 @@ export default {
       idd: options.id
     });
     var that = this;
-    util.request('http://school.chundengtai.com/api/v2/comment/list', {
+    util.request(api.CommentList, {
       goodId: that.idd
     }, "GET").then(function (res) {
       that.setData({
         pinglun: res.data.list
       });
-
-      for (var i = 0; i < that.pinglun.length; i++) {
-        that.pinglun[i].createTime = util.formatTimeTwo(that.pinglun[i].createTime, 'Y-M-D h:m:s');
-      }
-
       that.setData({
         pinglun: that.pinglun
       });

@@ -1,41 +1,40 @@
 <template>
-<!--pages/goods/detail/detail.wxml-->
 <view class="header">
   <view>
-    <view class="header-con">
-      <view class="header-left">
-        <image :src="conten.userInfo.avatar" class="header-img"></image>
-        <text class="con">{{conten.userInfo.nickname}}</text>
-        <i-cell-group>
-          <i-cell>
-            <i-rate :value="conten.starLevel"></i-rate>
-          </i-cell>
-        </i-cell-group>
-      </view>
-      <view class="time">{{conten.createTime}}</view>
-    </view>
-    <!-- 评价内容 -->
-    <view class="appraise">{{conten.content}}</view>
-    <!-- 图片 -->
-    <view v-for="(i, index) in conten.commentPictureList" :key="index">
-      <view class="tupain">
-        <image :src="i.pic_url"></image>
-      </view>
-    </view>
-  </view>
+     <view class="header-con">
+       <view class="header-left">
+         <image :src="conten.userInfo.avatar" class="header-img"></image>
+         <text class="con">{{conten.userInfo.nickname}}</text>
+         <i-cell-group>
+           <i-cell>
+             <i-rate :value="conten.starLevel"></i-rate>
+           </i-cell>
+         </i-cell-group>
+       </view>
+       <view class="time">{{conten.createTime}}</view>
+     </view>
+     <!-- 评价内容 -->
+     <view class="appraise">{{conten.content}}</view>
+     <!-- 图片 -->
+     <view class="tupain" v-for="(item, index) in conten.commentPictureList" :key="index">
+        <image :src="item.picUrl"></image> 
+     </view>
+   </view>
 </view>
 </template>
 
 <script>
+var util = require("../../../utils/util.js");
+var api = require("../../../config/api.js");
 export default {
   data() {
     return {
-      conten: []
+      id:'',
+	  conten:[]
     };
   },
 
   components: {
-    //iRate
   },
   props: {},
 
@@ -43,15 +42,13 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    let con = JSON.parse(decodeURIComponent(options.content)); // let con = JSON.parse(options.content)
-
     this.setData({
-      conten: con
-    });
-    console.log(this.conten);
+		id:options.order_no
+	})
+	this.query();
   },
 
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -87,6 +84,21 @@ export default {
    */
   onShareAppMessage: function () {},
   methods: {
+	  query: function() { 
+		let that = this;
+	  	util.request(api.CommentQuery,
+		{orderNo:that.id}).then(function(res) {
+			console.log(res.data);
+			if(res.code == 200){
+				if(res.data){
+					that.setData({
+						conten : res.data
+					})
+				}
+			}
+	  	});
+		
+	  },
     setData: function (obj, callback) {
       let that = this;
       let keys = [];

@@ -111,12 +111,20 @@ module.exports = {
 	//收藏列表
 	CollectAddOrDelete: NewApiRootUrl + 'collect/addordelete',
 	//添加或取消收藏
-	CommentList: NewApiRootUrl + 'comment/list',
+	CommentList: NewApiRootUrl + 'v2/comment/list',
 	//评论列表
-	CommentCount: NewApiRootUrl + 'comment/count',
+	CommentCount: NewApiRootUrl + 'v2/comment/count',
+	//订单详情
+	CommentDetail: NewApiRootUrl + 'v2/comment/detail',
 	//评论总数
 	CommentPost: NewApiRootUrl + 'v2/comment/post',
+	//评论图片上传
+	Comment: NewApiRootUrl + "v2/comment/up",
 	//发表评论
+	CommentText: NewApiRootUrl + "v2/comment/post",
+	//查询订单评论
+	CommentQuery: NewApiRootUrl + "v2/comment/query",
+
 	TopicList: NewApiRootUrl + 'topic/list',
 	//专题列表
 	TopicDetail: NewApiRootUrl + 'topic/detail',
@@ -225,9 +233,7 @@ module.exports = {
 	//秒杀
 	GroupBuyList: NewApiRootUrl + 'buy/getGroupBuyList.do',
 	//团购列表
-	Comment: NewApiRootUrl + "v2/comment/up",
-	//评论
-	CommentText: NewApiRootUrl + "v2/comment/post",
+	
 	//
 	Attr: NewApiRootUrl + "school/batch", //定位大学
 

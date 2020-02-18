@@ -29,8 +29,6 @@
 <script>
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-/* import vanSearch from '../../wxcomponents/vant-weapp/search';
-import vanButton from '../../wxcomponents/vant-weapp/button'; */
 import uniSearchBar from '../../wxcomponents/dist/uni-search-bar/uni-search-bar.vue';
 import uniIcons from '../../wxcomponents/dist/uni-icons/uni-icons.vue';
 
@@ -91,20 +89,20 @@ export default {
 	onShareAppMessage: function() {},
 	methods: {
 		input(e){
-			if(e.value.size>0){
+			if(e.value !=null){
 				this.setData({
 					word: e.value
 				});
 				this.getDate();
-			}		
+			}				
 		},
 		search(e){
-			if(e.value.size>0){
-				this.setData({
-					word: e.value
-				});
-				this.getDate();
-			}
+				if(e.value !=null){	
+					this.setData({
+						word: e.value
+					});
+					this.getDate();
+				}
 		},
 		/* onSearch() {
 			var word = this.data.value;

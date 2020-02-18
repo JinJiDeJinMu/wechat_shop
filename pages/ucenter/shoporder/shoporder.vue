@@ -158,7 +158,7 @@ export default {
 				if (res.errno === 0) {
 					that.setData({
 						orderList: that.orderList.concat(res.data.list),
-						page: res.data.currentPage + 1,
+						page: res.data.endRow + 1,
 						totalPages: res.data.total
 					});
 					wx.hideLoading();

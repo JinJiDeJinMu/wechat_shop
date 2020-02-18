@@ -3,9 +3,10 @@
   <view class="order_me">
     <view :class="'li ' + ( orderId == -1  ? 'active' : '')" data-id="-1" @tap="switchCate">全部</view>
     <view :class="'li ' + ( orderId == 0  ? 'active' : '')" data-id="0" @tap="switchCate">待付款</view>
-    <view :class="'li ' + ( orderId == 206 ? 'active' : '')" data-id="206" @tap="switchCate">待使用</view>
+<!--    <view :class="'li ' + ( orderId == 206 ? 'active' : '')" data-id="206" @tap="switchCate">待使用</view> -->
     <view :class="'li ' + ( orderId == 207 ? 'active' : '')" data-id="207" @tap="switchCate">待收货</view>
     <view :class="'li ' + ( orderId == 402 ? 'active' : '')" data-id="402" @tap="switchCate">已完成</view>
+	<view :class="'li ' + ( orderId == 403 ? 'active' : '')" data-id="403" @tap="switchCate">已评价</view>
   </view>
   <view class="orders">
     <navigator :url="'../orderDetail/orderDetail?id=' + item.id" class="order" v-for="(item, index) in orderList" :key="index">
@@ -36,7 +37,8 @@
             <button class="btn gocancel" :data-order-index="index" @tap.native.stop="cancelOrder" v-if="item.handleOption.cancel">取消订单</button>
             <button class="btn gopay" :data-order-index="index" @tap.native.stop="confirmOrder" v-if="item.handleOption.confirm">确认收货</button>
             <button class="btn gopay" :data-order-index="index" @tap.native.stop="buyOrder" v-if="item.handleOption.buy">再次购买</button>
-            <button class="btn gopay" :data-order-index="index" @tap.native.stop="commentOrder" v-if="item.handleOption.comment">{{con?'评价':'查看评价'}}</button>
+            <button class="btn gopay" :data-order-index="index" @tap.native.stop="commentOrder" v-if="item.handleOption.comment">评价</button>
+			 <button class="btn gopay" :data-order-index="index" @tap.native.stop="lookcomment" v-if="item.handleOption.lookcomment">查看评价</button>
             <button class="btn gopay" :data-order-index="index" @tap.native.stop="logistics" v-if="item.handleOption.logistics">查看物流</button>
           </view>
         </view>
@@ -74,7 +76,7 @@ export default {
       nomoreText: '全部加载完成',
       nomore: false,
       totalPages: 1,
-      con: true
+      con: true  
     };
   },
 
@@ -84,7 +86,6 @@ export default {
     this.setData({
      orderId: options.id
     });	
-	this.getOrderList();
     wx.showLoading({
       title: '加载中...'
     });
@@ -96,11 +97,9 @@ export default {
       });
 
       if (!this.con) {
+		  console.log("ssss");
         wx.navigateTo({
-          url: '',
-          success: function (res) {},
-          fail: function (res) {},
-          complete: function (res) {}
+          url: '/pages/goods/detail/detail?orderno='+orderId,
         });
       }
     }
@@ -110,19 +109,22 @@ export default {
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getOrderList();
+   this.getOrderList();
   },
 
-  onPullDownRefresh() {
+  onPullDownRefresh: function() {
     // 增加下拉刷新数据的功能
     wx.showNavigationBarLoading();
     var self = this;
+	page = this.page + this.size;
+	
     self.setData({
       orderList: [],
-      page: 1,
-      totalPages: 1
+	  page: 1,
+	  size: 10,
+	  totalPages:1
     });
-    self.getOrderList();
+   self.getOrderList();
   },
 
   onReady: function () {// 页面渲染完成
@@ -168,7 +170,7 @@ export default {
 		that.orderId = that.orderId == "" ? -1 :that.orderId
           that.setData({
             orderList: that.orderList.concat(res.data.list),
-            page: res.data.currentPage + 1,
+            page: res.data.endRow+1,
             totalPages: res.data.total
           });
           wx.hideLoading();
@@ -281,7 +283,16 @@ export default {
         url: '/pages/goods/publish/publish?order_no=' + order.id + '&good_id=' + order.goods_id + '&user_id=' + order.user_id
       });
     },
-
+	//查看评论
+	lookcomment(event){
+		let that = this;
+		let orderIndex = event.currentTarget.dataset.orderIndex;
+		let order = that.orderList[orderIndex];
+		console.log(order)
+		wx.navigateTo({
+		  url: '/pages/goods/detail/detail?order_no=' + order.id
+		});
+	},
     // 查看物流
     logistics(event) {
       let that = this;
