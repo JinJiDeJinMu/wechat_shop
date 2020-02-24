@@ -28,8 +28,7 @@
 				"navigationBarTitleText": "商品详情",
 				"usingComponents": {
 					"count-down-list": "../../wxcomponents/count-down-list/count-down-list",
-					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index",
-					"i-rate": "../../wxcomponents/dist/rate/index"
+					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
 				}
 			}
 		},

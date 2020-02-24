@@ -18,7 +18,7 @@
         <view class="goods">
             <view class="item" v-for="(item, index) in orderGoods" :key="index">
                 <view class="img">
-					<navigator :url="'../../goods/goods?id=' + item.id">
+					<navigator :url="'../../goods/goods?id=' + item.goods_id">
                     <image mode="aspectFit" :src="item.list_pic_url"></image>
 					</navigator>
                 </view>

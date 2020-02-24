@@ -98,7 +98,7 @@
         </view>
       </navigator>
 	  
-      <!-- <view class="msg" v-if="businessmsg.shopName">
+      <view class="msg" v-if="businessmsg.shopName">
         <view class="newst">商家信息
           <view class="xian"></view>
         </view>
@@ -111,7 +111,7 @@
           <view class="bntt">{{businessmsg.shopAddress||''}}</view>
           <view class="bnt" @tap="daohangRoad" v-if="businessmsg.shopAddress">导航</view>
         </view>
-      </view> -->
+      </view>
     </view>
 	
     <view class="groupBox" v-if="type==1&newBuyLis.length>0">
@@ -176,11 +176,10 @@
         </view>
       </view>
     </view>
-
+	
     <view class="detail">
-      
-      <u-parse :content="article_goodsDetail"></u-parse>
-    </view>
+	<u-parse :content="article_goodsDetail" @preview="preview" @navigate="navigate" ></u-parse>
+	</view>
 	
     <view class="common-problem" v-if="issueList.length>0">
       <view class="h">
@@ -276,7 +275,7 @@
     </view>
   </view>
   
-  <!-- 优惠卷 -->
+  <!-- 优惠卷
   <view class="coupon" v-if="openCoupon" @tap="colseCoupon">
     <scroll-view class="couponBox" scroll-y="true">
       <view class="tit">领取优惠卷</view>
@@ -370,7 +369,11 @@ var api = require("../../config/api.js");
 var user = require("../../services/user.js");
 var moment = require("../../utils/moment.min.js");
 import Poster from '../../wxcomponents/wxa-plugin-canvas/poster/poster';
+import uParse from '../../wxcomponents/u-parse/u-parse.vue';
 export default {
+	 components: {
+	    uParse
+	  },
   data() {
     return {
       is_secKill: 0,
@@ -384,6 +387,7 @@ export default {
       comment: [],
 	  starLevel:'',
       brand: {},
+	  article_goodsDetail:'',
       specificationList: [],
       productList: [],
       relatedGoods: [],
@@ -501,6 +505,7 @@ export default {
     }
 
     let that = this; //分享好友头像接口
+	that.getGoodsInfo();
     // util.request('http://school.chundengtai.com/api/v2/purchasePeople/list', {
     // 	goodsId: that.data.idd
     // }, "GET").then(function(res) {
@@ -581,8 +586,8 @@ export default {
         });
       }
     });
-    that.getGoodsInfo();
 	Poster.create(false);
+	
   },
   onShow: function () {
     this.cartGoodsCountFun();
@@ -598,6 +603,12 @@ export default {
     clearInterval(this.timer);
   },
   methods: {
+	   preview(src, e) {
+	        // do something
+	      },
+	      navigate(href, e) {
+	        // do something
+	      },
     bindinputexpressNo(event) {
       let address = this.address;
       address.expressNo = event.detail.value;
@@ -1090,6 +1101,7 @@ export default {
       util.request(api.GoodsDetail, {
         id: that.id
       }).then(function (res) {
+		  console.log(res.data);
         if (res.errno === 0) {
           that.setData({
             is_secKill: res.data.info.is_secKill,
@@ -1115,7 +1127,7 @@ export default {
             });
           }
 
-          //WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that, 5)
+         // WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that, 5)
           setTimeout(() => {
             that.article_goodsDetail = res.data.info.goods_desc;
           }, 200);
@@ -1753,4 +1765,5 @@ export default {
 </script>
 <style>
 @import "./goods.css";
+@import url("../../wxcomponents/u-parse/u-parse.css");
 </style>

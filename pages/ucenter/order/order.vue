@@ -113,11 +113,7 @@ export default {
   },
 
   onPullDownRefresh: function() {
-    // 增加下拉刷新数据的功能
-    wx.showNavigationBarLoading();
     var self = this;
-	page = this.page + this.size;
-	
     self.setData({
       orderList: [],
 	  page: 1,
@@ -125,6 +121,7 @@ export default {
 	  totalPages:1
     });
    self.getOrderList();
+   wx.stopPullDownRefresh(); //停止下拉刷新
   },
 
   onReady: function () {// 页面渲染完成
@@ -152,7 +149,6 @@ export default {
 
     getOrderList() {
       let that = this;
-
       if (that.totalPages <= that.page - 1) {
         that.setData({
           nomore: true
@@ -175,10 +171,6 @@ export default {
           });
           wx.hideLoading();
         }
-
-        wx.hideNavigationBarLoading(); //完成停止加载
-
-        wx.stopPullDownRefresh(); //停止下拉刷新
       });
     },
 

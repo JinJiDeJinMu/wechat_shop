@@ -276,6 +276,7 @@ export default {
 						getApp().globalData.token = res.data.openid;
 						this.initDataInfo();
 						this.initYJInfo();
+						this.onLoad();
 					})
 					.catch(err => {
 						console.log(err);

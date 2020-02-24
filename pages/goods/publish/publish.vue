@@ -12,7 +12,7 @@
   </view>
   <image src="../../../static/images/u10_line.png" class="u10-img"></image>
   <view class="con">
-    <textarea placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧" class="con-discuss" @input="discussFun">
+    <textarea maxlength="150" placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧" class="con-discuss" @input="discussFun">
     </textarea>
     <view class="add">
         <view class="question-images">
@@ -53,7 +53,9 @@ export default {
       goodId: "",
       content: "",
       starLevel: "",
-      del: false
+      del: false,
+	  sub:0,
+	  temp:0
     };
   },
   components: {
@@ -129,28 +131,19 @@ export default {
         sizeType: ['original', 'compressed'],
         //可选择原图或压缩后的图片
         sourceType: ['album', 'camera'],
+		count:3,
         //可选择性开放访问相册、相机
         success: res => {
           const images = that.images.concat(res.tempFilePaths); // 限制最多只能留下3张照片
 
-          that.images = images.length <= 3 ? images : images.slice(0, 3);
+         /* that.images = images.length <= 3 ? images : images.slice(0, 3); */
           that.setData({
             images: images
           });
-          wx.uploadFile({
-            url: api.Comment,
-            filePath: that.images[0],
-            name: 'files',
-            header: {
-              'content-type': 'multipart/form-data',
-              'X-Nideshop-Token': wx.getStorageSync('token')
-            },
-            formData: {},
-            success: res => {
-              that.imageList.push(res.data);
-              ;
-            }
-          });
+				that.upImage();
+				that.setData({
+					temp:that.images.length
+				})
         }
       });
     },
@@ -162,6 +155,7 @@ export default {
         images: this.images
       });
       this.images.splice(idx, 1);
+	  this.imageList.splice(idx,1);
     },
 
     handleImagePreview(e) {
@@ -174,30 +168,93 @@ export default {
 
       });
     },
-	
     // 提交
-    submit(e) {
-         util.request(api.CommentText, {
-           userId: this.userId,
-           orderNo: this.orderNo,
-           goodId: this.goodId,
-           content: this.discuss,
-           starLevel: this.starIndex3,
-           imageList: this.imageList
-         }, "GET").then(res => {
-           if (res.code === 200) {
-             wx.showToast({
-               title: '评论成功'
-             });
-         
-             if (res.message == "OK") {
-               wx.navigateTo({
-                 url: '/pages/ucenter/order/order?id=403'
-               });
-             }
-           }
-         });
+    update:function() {
+			 util.request(api.CommentText, {
+			    userId: this.userId,
+			    orderNo: this.orderNo,
+			    goodId: this.goodId,
+			    content: this.discuss,
+			    starLevel: this.starIndex3,
+			    imageList: this.imageList
+			  }, "GET").then(res => {
+			    if (res.code === 200) {
+			      wx.showToast({
+			        title: '评论成功'
+			      });
+			      if (res.message == "OK") {
+			        wx.navigateTo({
+			          url: '/pages/ucenter/order/order?id=403'
+			        });
+			      }
+			    }
+			  }); 		
     },
+	upImage: function(){
+		const images = this.images;
+		if (images.length>0){
+			for(var i = this.temp; i < images.length; i++){
+				console.log('=='+images[i])
+			wx.uploadFile({
+			  url: api.Comment,
+			  filePath: this.images[i],
+			  name: 'files',
+			  header: {
+			    'content-type': 'multipart/form-data',
+			    'X-Nideshop-Token': wx.getStorageSync('token')
+			  },
+			  formData: {},
+			  success: res => {
+				  console.log(res.data);
+			      this.imageList.push(res.data);
+			    ;
+			  }
+			});
+			}
+		}
+	},
+	submit(e){
+		this.showTopTips(this.discuss,this.starIndex3);
+		if(this.sub == 1){
+			console.log('可以提交');
+			let this_ = this;
+			this_.showLoading();
+			this_.update();
+		}else{
+			console.log('不可以提交');
+		}	
+	},
+	showLoading:function(){
+	        wx.showToast({
+	         title: '提交中,请稍等',
+	         icon: 'loading'
+	        });
+	     },
+	 cancelLoading:function(){
+			 wx.hideToast();
+		 },
+	showTopTips: function(discuss, starIndex3) {
+		 let that = this;
+		    if (starIndex3 == 0) {
+		      wx.showToast({		
+		        title: '请最少选择一颗星级！'
+		      });
+		      setTimeout(function() {
+		        wx.hideToast();
+		      }, 1500);
+		    }else if (discuss == '') {
+				wx.showToast({
+					title: '请填写评论内容',
+				});
+		      setTimeout(function() {
+		        wx.hideToast();
+		      }, 1500);
+		    }else{
+				that.setData({		
+				  sub: 1,			
+				});
+			} 		
+	},
 	
     setData: function (obj, callback) {
       let that = this;
