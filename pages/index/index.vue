@@ -57,9 +57,9 @@
 	          <image src="/static/img/title-line.png"></image>
 	          <text>{{item.name}}</text>
 	        </view>
-	        <navigator class="right">
+	        <navigator class="right" url="/pages/search/search">
 	          <text>更多</text>
-	          <image src="/static/img/angle-right.png"></image>
+	          <image src="/static/img/angle-right.png"></image>		
 	        </navigator>
 	      </view>
 	    </view>

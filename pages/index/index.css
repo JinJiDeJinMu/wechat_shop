@@ -395,7 +395,7 @@ image {display: inline-block;vertical-align: middle;}
 .index-header-bg image {width: 100%;}
 /*首页轮播图*/
 .index-swiper-box {height: 380rpx;border-radius: 20rpx;overflow: hidden;box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, .3)}
-.index-swiper-box image {height: 380rpx;width: 100%;background: #f5f5f5;}
+.index-swiper-box image {height: 380rpx;width: 100%;background: #f5f5f5;justify-content: center;display:flex; }
 /* 首页分类 */
 .index-cate-box {display: flex;margin-top: 20rpx;margin-bottom: 20rpx;flex-wrap: wrap;}
 .index-cate-box .item {width: 20%;text-align: center;}

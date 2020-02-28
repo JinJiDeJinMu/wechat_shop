@@ -25,7 +25,7 @@
       <view class="c">
         <view class="tx price">
           <text class="pri dzprice">￥{{goods.retail_price}}</text>
-          <text class="pri yjprice">原价：￥{{type==1?goods.retail_price ||'0.00':goods.market_price || '0.00'}}</text>
+		  <text class="pri yjprice">原价：￥{{type==1?goods.retail_price ||'0.00':goods.market_price || '0.00'}}</text>
           <view class="tuu"></view>
           <text class="xihuan">{{browse||0}}人喜欢 </text>
           <button open-type="share" class="icon_fx"></button>
@@ -33,6 +33,9 @@
         <view class="tx tsbox">
           <text class="name">{{goods.name || ''}}</text>
         </view>
+		<view class="tx tsbox" v-if="goods.deliveryPlace.length >0">
+		  <text class="name">发货地：{{goods.deliveryPlace}}</text>
+		</view>
         <text class="tx desc" v-if="goods.goods_brief">{{goods.goods_brief}}</text>
         <view class="brand" v-if="brand.name">
           <navigator :url="'../brandDetail/brandDetail?id=' + brand.id">
@@ -177,7 +180,7 @@
       </view>
     </view>
 	
-    <view class="detail">
+    <view class="detail" v-if="article_goodsDetail">
 	<u-parse :content="article_goodsDetail" @preview="preview" @navigate="navigate" ></u-parse>
 	</view>
 	
@@ -233,8 +236,8 @@
       <view class="spec-item" v-for="(item, index) in specificationList" :key="index">
         <view class="name">{{item.name}}</view>
         <view class="values">
-          <view :class="'value ' + (vitem.checked ? 'selected' : '') + ' ' + (vitem.state ? 'attr_value_disabled' : '')" @tap="clickSkuValue" v-for="(vitem, index2) in item.valueList" :key="index2" :data-value-id="vitem.id" :data-picurl="vitem.pic_url" :data-state="vitem.state" :data-name-id="vitem.specification_id">{{vitem.value}}</view>
-        </view>
+         <view :class="'value ' + (vitem.checked ? 'selected' : '') + ' ' + (vitem.state ? 'attr_value_disabled' : '')" @tap="clickSkuValue" v-for="(vitem, index2) in item.valueList" :key="index2" :data-value-id="vitem.id" :data-picurl="vitem.pic_url" :data-state="true" :data-name-id="vitem.specification_id">{{vitem.value}}</view>
+		</view>
       </view>
       <view class="number-item">
         <view class="name">数量</view>
@@ -242,7 +245,7 @@
           <view class="cut" @tap="cutNumber">-</view>
           <input :value="number" class="number" disabled="true" type="number" />
           <view class="add" @tap="addNumber">+</view>
-        </view>
+        </view>	
       </view>
     </view>
     <view class="add-address" v-if="is_secKill==5">
@@ -478,7 +481,9 @@ export default {
       createTime: "",
       userInfo: "",
       merCoupon: "",
-      groupBuyList: ""
+      groupBuyList: "",
+	  product_temp:{},
+	  spec_temp:""
     };
   },
   props: {},
@@ -505,7 +510,6 @@ export default {
     }
 
     let that = this; //分享好友头像接口
-	that.getGoodsInfo();
     // util.request('http://school.chundengtai.com/api/v2/purchasePeople/list', {
     // 	goodsId: that.data.idd
     // }, "GET").then(function(res) {
@@ -587,7 +591,7 @@ export default {
       }
     });
 	Poster.create(false);
-	
+	that.getGoodsInfo();
   },
   onShow: function () {
     this.cartGoodsCountFun();
@@ -1153,11 +1157,10 @@ export default {
       let specValueId = event.currentTarget.dataset.valueId + "";
       let state = event.currentTarget.dataset.state;
       const proImg = event.currentTarget.dataset.picurl; // 禁用则结束
-
-      if (state) {
+     /* if (state) {
         return;
       } //判断是否可以点击
-      //TODO 性能优化，可在wx:for中添加index，可以直接获取点击的属性名和属性值，不用循环
+      //TODO 性能优化，可在wx:for中添加index，可以直接获取点击的属性名和属性值，不用循环 */
 
 
       let _specificationList = this.specificationList;
@@ -1175,7 +1178,9 @@ export default {
                 }
               } else {
                 _specificationList[i].valueList[j].checked = true;
-                that.setData(that.selectSkuName, _specificationList[i].valueList[j].value);
+				/* console.log(that.specNameId);
+				console.log(_specificationList[i].valueList[j].value);
+                that.setData(that.specNameId, _specificationList[i].valueList[j].value); */
 
                 if (_specificationList.length > 1) {
                   that.selectValue(specValueId, specNameId);
@@ -1197,7 +1202,11 @@ export default {
 
       var key = that.getCheckedSpecKey();
 
+      var array = key.split('_')
+      console.log('key='+key);
       for (var i = 0; i < that.productList.length; i++) {
+		  var result = that.productList[i].goods_specification_ids;
+		  var array_temp = result.split("_")
         if (that.productList[i].goods_specification_ids == key) {
           that.setData({
             checkedSpecPrice: that.type == '1' ? that.productList[i].group_price : that.productList[i].retail_price,
@@ -1229,7 +1238,6 @@ export default {
           }
         }
       }
-
       for (var z = 0; z < that.specificationList.length; z++) {
         for (var y = 0; y < that.specificationList[z].valueList.length; y++) {
           if (that.specificationList[z].specification_id != specNameId) {
@@ -1295,8 +1303,7 @@ export default {
         }
 
         checkedValues.push(_checkedObj);
-      }
-
+      } 
       return checkedValues;
     },
     //根据已选的值，计算其它值的状态
@@ -1313,6 +1320,10 @@ export default {
       let checkedValue = this.getCheckedSpecValue().map(function (v) {
         return v.valueId;
       });
+	  console.log('check='+checkedValue);
+	  checkedValue = checkedValue.sort(function(a, b){return a - b}); 
+	  console.log('checknew='+checkedValue);
+	 
       return checkedValue.join('_');
     },
     changeSpecInfo: function () {
@@ -1327,11 +1338,30 @@ export default {
       }).map(function (v) {
         return v.valueText;
       });
-
+	let checkedValueId = checkedNameValue.filter(function(v) {
+	  if (v.valueId != 0) {
+		return true;
+	  } else {
+		return false;
+	  }
+	}).map(function(v) {
+	  return v.valueId;
+	});
       if (checkedValue.length > 0) {
+		this.spec_temp = checkedValueId.join('_')
         this.setData({
           'checkedSpecText': checkedValue.join('　')
         });
+		/* console.log('=='+this.specificationList)
+		if(checkedValue.length == 2){
+			this.spec_temp = checkedValueId.join('_')
+			this.setData({
+				proId:0,
+				product_temp:{}
+			})
+			console.log('gouzuan ==='+ checkedValueId.join('_'));
+			this.getProduct();
+		} */
       } else {
         this.setData({
           'checkedSpecText': '请选择规格数量'
@@ -1463,8 +1493,10 @@ export default {
 
 
         let checkedProduct = that.getCheckedProductItem(that.getCheckedSpecKey());
-
-        if (that.getCheckedSpecKey() != "") {
+		console.log('checkdproduct'+checkedProduct);
+             
+			
+       if (that.getCheckedSpecKey() != "") {
           if (!checkedProduct || checkedProduct.length <= 0) {
             //找不到对应的product信息，提示没有库存
             wx.showToast({
@@ -1540,11 +1572,11 @@ export default {
             selectSkuName: selectSkuName,
             goodsId: that.goods.id,
             number: that.number,
-            productId: that.proId ? that.proId : that.productList[0].id
+            productId: that.proId ? that.proId:that.productList[0].id
           };
         } // 直接购买商品
 
-
+      console.log('parma'+params.productId);
         util.request(api.BuyAdd, params, "POST").then(function (res) {
           wx.hideLoading();
           let _res = res;
@@ -1651,12 +1683,12 @@ export default {
     },
     cutNumber: function () {
       this.setData({
-        number: this.number - 1 > 1 ? this.number - 1 : 1
+        number: this.number - 1 > 1 ? this.number - 1 : 1	
       });
     },
     addNumber: function () {
       this.setData({
-        number: this.number + 1
+        number: this.number + 1	
       });
     },
     setDefSpecInfo: function (specificationList) {
@@ -1683,6 +1715,23 @@ export default {
 
       specificationList.map(function (item) {});
     },
+	/* //根据规格获取库存
+	getProduct: function() {
+		let that = this;
+		util.request(api.ProductSpecifitaion,{
+					  goodsId: that.idd,
+				      goods_spec: that.spec_temp  
+		}).then(function (res) {
+			if(res.errno === 0){
+				if(res.data){
+					that.setData({
+					  product_temp: res.data,
+					  proId: res.data.id					 
+					});
+				}
+			}  
+	      });
+	}, */
     newLogin: function () {
       let that = this; //重新登陆
 

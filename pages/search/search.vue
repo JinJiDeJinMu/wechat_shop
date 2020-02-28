@@ -127,9 +127,11 @@ export default {
 			util.request(api.SearchGoods,{keyword:that.word},'GET')
 			.then(function(res) {
 				if(res.code === 200){
-					that.setData({
-						key: res.data.data
-					});
+					if(res.data){
+						that.setData({
+							key: res.data.data
+						});
+					}	
 				}
 			})
 		},
