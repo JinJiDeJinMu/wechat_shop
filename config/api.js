@@ -48,8 +48,7 @@ module.exports = {
 	NewGoodsCategory: NewApiRootUrl + 'goods/category',
 	//获得分类数据
 	GoodsDetail: NewApiRootUrl + 'goods/detail',
-	//商品规格信息
-	ProductSpecifitaion: NewApiRootUrl + 'goods/productSpecification',
+	
 	//获得商品的详情
 	GoodsNew: NewApiRootUrl + 'goods/new',
 	//新品

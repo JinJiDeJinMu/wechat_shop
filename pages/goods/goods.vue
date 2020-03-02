@@ -1715,23 +1715,7 @@ export default {
 
       specificationList.map(function (item) {});
     },
-	/* //根据规格获取库存
-	getProduct: function() {
-		let that = this;
-		util.request(api.ProductSpecifitaion,{
-					  goodsId: that.idd,
-				      goods_spec: that.spec_temp  
-		}).then(function (res) {
-			if(res.errno === 0){
-				if(res.data){
-					that.setData({
-					  product_temp: res.data,
-					  proId: res.data.id					 
-					});
-				}
-			}  
-	      });
-	}, */
+	
     newLogin: function () {
       let that = this; //重新登陆
 
