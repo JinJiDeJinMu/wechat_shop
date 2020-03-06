@@ -420,10 +420,10 @@ image {display: inline-block;vertical-align: middle;}
 .item-list-box {max-width: 100%;border-right: 1px solid #f4f4f4;padding: 18rpx 28rpx;}
 .item-list-box .square-image {border-radius: 16rpx;margin-bottom: 6rpx;overflow: hidden;}
 .item-list-box .title {color: #282828;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;font-size: 26rpx;line-height: 36rpx;height: 72rpx;margin-bottom: 8rpx;}
+.item-list-box .title .text1 {justify-content: right;}
 .item-list-box .tag {background: #fdd4bf;color: #ff6017;font-size: 24rpx;padding: 2px 5px;border-radius: 3px;}
 .item-list-box .price {font-size: 30rpx;}
 .item-list-box .price .text1 {color: #f32f30;}
-.item-list-box .price .text2 {color: #999;text-decoration: line-through;}
 .item-list-box .sale-tag {padding: 6rpx 16rpx;color: #d4282d;border: 1px solid #d4282d;font-size: 20rpx;border-radius: 40rpx;display: inline-block;margin-top: 14rpx;}
 .item-list-box.style2 {border-right: none;padding: 0 0 0;border-radius: 16rpx;}
 .item-list-box.style2 .square-image {border-radius: 16rpx 16rpx 0 0;margin-bottom: 16rpx;overflow: hidden;}

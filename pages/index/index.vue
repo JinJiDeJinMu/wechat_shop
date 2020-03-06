@@ -70,9 +70,12 @@
 	      <view class="square-image">
 	          <image :src="model.list_pic_url||model.primary_pic_url"></image>
 	      </view>
-	      <view class="title">{{model.name}}</view>
+	      <view class="title">{{model.name}}
+		  <text class="text1">{{model.browse}}喜欢</text>
+		  </view>
 	      <view class="price">
 	        <text class="text1">￥{{model.retail_price}}</text>
+			
 	      </view>
 	  </navigator>
 	</view>
@@ -145,7 +148,7 @@
 	      latitude: "",
 	      longitude: "",
 	      id: "",
-	      keyword: ""
+	      keyword: ""	
 	    };
 	  },
 	  components: {
@@ -246,7 +249,7 @@
 	          fenlei: res.data.categoryList
 	        });
 	        that.setData({
-	          banner: res.data.activity
+	          banner: res.data.banner
 	        });
 	      });
 	      util.request(api.IndexUrlgonggao).then(function (res) {
@@ -272,19 +275,21 @@
 	    },
 	    //轮播图跳转
 	    bindimg(e) {
-	      if (e.currentTarget.dataset.con.id == 10) {
-	        wx.navigateTo({
-	          url: '/pages/entry/entry'
-	        });
-	      } else if (e.currentTarget.dataset.con.id == 9) {
-	        wx.navigateTo({
-	          url: '/pages/campuspartner/campuspartner'
-	        });
-	      } else if (e.currentTarget.dataset.con.id == 8) {
-	        wx.navigateTo({
-	          url: '/pages/enjoy/enjoy'
-	        });
-	      }
+			 var type = e.currentTarget.dataset.con.type;
+			 if (type == 0) {
+				/* wx.navigateTo({//活动
+				  url: '/pages/entry/entry'
+				}); */
+			  } else if (type == 1) {//爆品展示
+				wx.navigateTo({
+				  url: '/pages/campuspartner/campuspartner?id='+e.currentTarget.dataset.con.id
+				});
+			  } else if (type == 2) {//图文介绍
+				wx.navigateTo({
+				  url: '/pages/enjoy/enjoy?id='+e.currentTarget.dataset.con.id
+				});
+			  }
+		 
 	    },
 	    //根据关键词搜索匹配位置
 	    getsuggest: function () {

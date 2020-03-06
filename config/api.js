@@ -17,6 +17,8 @@ module.exports = {
 	IndexUrlTopic: NewApiRootUrl + 'index/topic',
 	//首页数据接口
 	IndexUrlAll: WxApiRootUrl + 'v2/index/index.json',
+	//轮播图跳转详情
+	BannerContent: WxApiRootUrl + 'v2/index/getBanner.json',
 	//新增接口
 	IndexUrlzuixin: WxApiRootUrl + 'v2/index/indexNewGoods.json',
 	//新增接口
@@ -72,6 +74,8 @@ module.exports = {
 	CartDelete: NewApiRootUrl + 'cart/delete',
 	// 删除购物车的商品
 	CartChecked: NewApiRootUrl + 'cart/checked',
+	
+	CartProductChecked: NewApiRootUrl + 'cart/checkedProduct',
 	// 选择或取消选择商品
 	CartGoodsCount: NewApiRootUrl + 'cart/goodscount',
 	// 获取购物车商品件数
@@ -234,11 +238,11 @@ module.exports = {
 	//秒杀
 	GroupBuyList: NewApiRootUrl + 'buy/getGroupBuyList.do',
 	//团购列表
-	
-	Attr: NewApiRootUrl + "school/batch", //定位大学
-	
+    //定位大学
+	Attr: NewApiRootUrl + "school/batch", 
+	//积分购买
 	Socre: WxApiRootUrl + "v2/score/buyscore.do",
-	
+	//用户积分等级
 	MyScore: WxApiRootUrl + "v2/score/myScore.json"
 
 };

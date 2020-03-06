@@ -261,6 +261,28 @@ export default {
         }
       });
 
+      console.log('购物车===='+checkedGoods);
+	  //校验库存
+	  /* for(let i=0;i<checkedGoods.length;i++){
+		  console.log(checkedGoods[i]);
+		  util.request(api.CartProductChecked, {
+		    productId: checkedGoods[i].product_id
+		  }).then(function (res) {
+		    if (res.errno === 0) {
+		      console.log(res.data);
+		  	
+		  		if(res.data.goods_number >checkedGoods[i].number){
+		  			return true;
+		  		}
+		    }else{
+				wx.showToast({
+				  title: '库存不够'
+				});
+				return false;
+			}
+		  });
+	  }; */
+	  
       if (checkedGoods.length <= 0) {
         return false;
       }
@@ -269,6 +291,7 @@ export default {
         url: '../shopping/checkout/checkout'
       });
     },
+	
     deleteCart: function () {
       //获取已选择的商品
       let that = this;

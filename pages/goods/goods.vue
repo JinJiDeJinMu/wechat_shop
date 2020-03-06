@@ -101,7 +101,7 @@
         </view>
       </navigator>
 	  
-      <view class="msg" v-if="businessmsg.shopName">
+      <!-- <view class="msg" v-if="businessmsg.shopName">
         <view class="newst">商家信息
           <view class="xian"></view>
         </view>
@@ -114,7 +114,7 @@
           <view class="bntt">{{businessmsg.shopAddress||''}}</view>
           <view class="bnt" @tap="daohangRoad" v-if="businessmsg.shopAddress">导航</view>
         </view>
-      </view>
+      </view> -->
     </view>
 	
     <view class="groupBox" v-if="type==1&newBuyLis.length>0">
@@ -481,9 +481,7 @@ export default {
       createTime: "",
       userInfo: "",
       merCoupon: "",
-      groupBuyList: "",
-	  product_temp:{},
-	  spec_temp:""
+      groupBuyList: ""
     };
   },
   props: {},
@@ -1113,7 +1111,7 @@ export default {
             browse: res.data.info.browse,
             gallery: res.data.gallery,
             attribute: res.data.attribute,
-            businessmsg: res.data.merchantInfo,
+            //businessmsg: res.data.merchantInfo,
             specificationList: res.data.specificationList,
             productList: res.data.productList,
             userHasCollect: res.data.userHasCollect
@@ -1352,16 +1350,6 @@ export default {
         this.setData({
           'checkedSpecText': checkedValue.join('　')
         });
-		/* console.log('=='+this.specificationList)
-		if(checkedValue.length == 2){
-			this.spec_temp = checkedValueId.join('_')
-			this.setData({
-				proId:0,
-				product_temp:{}
-			})
-			console.log('gouzuan ==='+ checkedValueId.join('_'));
-			this.getProduct();
-		} */
       } else {
         this.setData({
           'checkedSpecText': '请选择规格数量'
@@ -1377,7 +1365,7 @@ export default {
           return false;
         }
       });
-    },
+    }, 
     cartGoodsCountFun: function () {
       let that = this;
       let token = wx.getStorageSync('token');
@@ -1490,28 +1478,40 @@ export default {
           });
           return false;
         } //根据选中的规格，判断是否有对应的sku信息
+		
+       //去掉规格中不包含的选项
+        console.log('that.getCheckedSpecKey()='+that.getCheckedSpecKey())
+		var key = that.getCheckedSpecKey();
+		var str=[];
+		for(let i =0;i<that.productList.length;i++){
+			str.push(that.productList[i].goods_specification_ids)
+		}
+		if(str.indexOf(key)  < 0){
+			wx.showToast({
+				title: '库存不足'
+			});
+			return false;
+		}
+        //let checkedProduct = that.getCheckedProductItem(that.getCheckedSpecKey());
+		//console.log('checkdproduct'+checkedProduct);
+       
 
-
-        let checkedProduct = that.getCheckedProductItem(that.getCheckedSpecKey());
-		console.log('checkdproduct'+checkedProduct);
-             
-			
-       if (that.getCheckedSpecKey() != "") {
-          if (!checkedProduct || checkedProduct.length <= 0) {
-            //找不到对应的product信息，提示没有库存
-            wx.showToast({
-              title: '库存不足'
-            });
-            return false;
-          }
-        } else {
-          if (that.goods.goods_number < that.number) {
-            wx.showToast({
-              title: '库存不足'
-            });
-            return false;
-          }
-        }
+        /* if (that.getCheckedSpecKey() != "") {
+			 if (!checkedProduct || checkedProduct.length <= 0) {
+			   //找不到对应的product信息，提示没有库存
+			   wx.showToast({
+				 title: '库存不足'
+			   });
+			   return false;
+			 }
+		   } else {
+			 if (that.goods.goods_number < that.number) {
+			   wx.showToast({
+				 title: '库存不足'
+			   });
+			   return false;
+			 }
+		   } */
 
         if (that.productList.length != 0) {
           that.productList;
@@ -1558,7 +1558,7 @@ export default {
 
           address.goodsId = that.goods.id;
           address.number = that.number;
-          address.productId = that.proId ? that.proId : that.productList[0].id;
+          address.productId = that.proId;
           that.setData(that.address, address);
           params = address;
         } else {
@@ -1572,10 +1572,16 @@ export default {
             selectSkuName: selectSkuName,
             goodsId: that.goods.id,
             number: that.number,
-            productId: that.proId ? that.proId:that.productList[0].id
+            productId: that.proId 
           };
         } // 直接购买商品
 
+      if(that.proId <=0){
+		  wx.showToast({
+		  	 title: '库存不足'
+		  });
+		  return false;
+	  }
       console.log('parma'+params.productId);
         util.request(api.BuyAdd, params, "POST").then(function (res) {
           wx.hideLoading();
@@ -1589,6 +1595,7 @@ export default {
               url: '/pages/shopping/checkout/checkout?isBuy=true&type=' + ntype + '&groupBuyingId=' + groupBuyingId + '&activityType=' + activityType
             });
           } else {
+			 that.unSelectValue(); 
             wx.showToast({
               image: '/static/images/icon_error.png',
               title: _res.errmsg,

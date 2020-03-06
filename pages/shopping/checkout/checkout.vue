@@ -305,6 +305,7 @@ export default {
       param.couponId = that.couponId == 0 ? null : that.couponId, param.type = that.buyType;
       param.payType = that.type;
       param.groupBuyingId = that.groupBuyingId;
+	  param.type=that.buyType;
       util.request(api.OrderSubmit, param, 'POST').then(res => {
         wx.hideLoading();
 
@@ -320,7 +321,7 @@ export default {
             });
           });
         }else {
-          util.showErrorToast('下单失败');
+          util.showErrorToast('下单失败'+res.errmsg);
         }
       });
     },

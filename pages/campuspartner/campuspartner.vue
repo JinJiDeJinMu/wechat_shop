@@ -1,152 +1,20 @@
 <template>
 <!--pages/campuspartner/campuspartner.wxml-->
 <view class="campuspartner">
-  <view class="entry-img">
-    <image src="https://www.chundengtai.com/qrcode/computer.png" class="bgc" mode="widthFix"></image>
+	<view class="empty-view" style="margin-top: 30%" v-if="goods.length <= 0">
+		<image mode="aspectFit" class="icon" src="../../static/images/allorder.png"></image>
+		<text class="text">无商品数据</text>
+	</view>
   </view>
-  <view class="campuspartner-con">
-    <view class="con-wo">
-      <view class="my">我们期待这样一个你</view>
-      <view class="con-student">
-        <view class="student">在校大学生，限南昌地区，专业不限</view>
-      </view>
-      <view class="con-you">
-        <view class="you">有广泛的校园资源，有独立项目运营经营者优先。</view>
-      </view>
-      <!-- 沟通 -->
-      <view class="con-gou">
-        <view class="haha">
-          <text class="gou-tong">沟通能力一流：</text>
-          <text class="tong">敢于主动交流，善于倾听沟通，有较强的协调开拓能力。</text>
-        </view>
-        <view class="haha">
-          <text class="gou-tong">创新与执行力兼具：</text>
-          <text class="tong">天生的行动派，有理想，会创新，自我驱动能力一流，责任心强。</text>
-        </view>
-        <view class="haha">
-          <text class="gou-tong">敢于学习，乐于挑战：</text>
-          <text class="tong">能够主动接受工作中的各项挑战，富有团队合作精神。</text>
-        </view>
-      </view>
-      <view class="you-ni">你将得到的待遇</view>
-      <view class="con-gou">
-        <view class="haha">
-          <text class="gou-tong" style="color: #4bba34">月入800-2000：</text>
-          <text class="tong">底薪800+提成，工资无上限，工作时间不固定，可自行安排，完成每月任务即可。</text>
-        </view>
-      </view>
-      <!-- 分割线 -->
-      <view class="xian"></view>
-      <!-- 校园合伙人申请 -->
-      <view class="apply">
-        <view class="apply-stu">校园合伙人申请</view>
-        <view class="apply-phone">每个学校合伙人人数有限，有意向的请尽快联系我们。</view>
-        <view>
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>姓名：</text>
-                <text>*</text>
-                <input type="text" data-key="name" class="input-name" @input="partner"></input>
-              </view>
-            </view>
-          </view>
-          <!-- 性别 -->
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>性别：</text>
-                <text>*</text>
-                <input type="text" data-key="sex" class="input-name" @input="partner"></input>
-              </view>
-            </view>
-          </view>
-          <!-- 电话-->
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>联系电话：</text>
-                <text>*</text>
-                <view>
-                  <view>
-                    <image src="../../static/images/phone.png" class="phone-img"></image>
-                    <view class="h-xian"></view>
-                  </view>
-                  <input type="number" data-key="phone" class="input-name1" @input="partner"></input>
-                </view>
-              </view>
-            </view>
-          </view>
-          <!-- 您所在的学校 -->
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>您所在的学校：</text>
-                <text>*</text>
-                <input type="text" data-key="student" class="input-name" @input="partner"></input>
-              </view>
-            </view>
-          </view>
-          <!-- 您所在的年级 -->
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>您所在的年级：</text>
-                <text>*</text>
-                <input type="text" data-key="grade" class="input-name" @input="partner"></input>
-              </view>
-            </view>
-          </view>
-          <!-- 简单的自我介绍 -->
-          <view class="infor-tian">
-            <view class="tian">
-              <view class="tian-name">
-                <text>简单的自我介绍：</text>
-                <text>*</text>
-                <textarea class="input-di" data-key="introduce" name="content" @input="partner"></textarea>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <!-- 确认提交 -->
-      <view class="confirm" @tap="confirm">确认提交</view>
-    </view>
-  </view>
-  <!-- tabber页面 -->
-  <view class="page-bottom">
-    <navigator class="p-b-btn" url="/pages/index/index" open-type="switchTab">
-      <!-- <text class="yticon icon-xiatubiao--copy"></text> -->
-      <image src="../../static/images/ic_menu_choice_nor.png" class="yticon"></image>
-      <text class="shou">首页</text>
-    </navigator>
-    <navigator class="p-b-btn" url="/pages/sort/sort" open-type="switchTab">
-      <image src="../../static/images/ic_menu_sort_nor.png" class="yticon"></image>
-      <text class="shou">分类</text>
-    </navigator>
-    <navigator class="p-b-btn" url="/pages/cart/cart" open-type="switchTab">
-      <image src="../../static/images/ic_menu_shoping_nor.png" class="gou"></image>
-      <text class="shou">购物车</text>
-    </navigator>
-    <navigator class="p-b-btn" url="/pages/ucenter/index/index" open-type="switchTab">
-      <image src="../../static/images/ic_menu_me_nor.png" class="yticon"></image>
-      <text class="shou">我的</text>
-    </navigator>
-  </view>
-</view>
 </template>
 
 <script>
-
+    const util = require("../../utils/util.js");
+	const api = require("../../config/api.js");
 export default {
   data() {
     return {
-      name: "",
-      sex: "",
-      phone: "",
-      student: "",
-      grade: "",
-      introduce: ""
+      goods:[]
     };
   },
 
@@ -156,7 +24,19 @@ export default {
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+	  console.log(options)
+	  var that = this;
+	  util.request(api.BannerContent,{bannerId:options.id}).then(function (res) {
+	  	console.log(res.data.goods_show)
+	  	if(res.code == 200){
+	  		if(res.data.goods_show){
+	  			
+	  		}
+	  	}
+	   
+	  });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

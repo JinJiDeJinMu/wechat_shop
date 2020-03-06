@@ -90,13 +90,13 @@
 				<list-cell icon="iconfont icon-icon_star" iconColor="#54b4ef" title="我的收藏" @eventClick="navTo('/pages/ucenter/collect/collect')"></list-cell>
 				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
 				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
-				<list-cell
+				<!-- <list-cell
 					icon="iconfont icon-icon_newgroup"
 					iconColor="#e07472"
 					title="店铺订单"
 					border=""
 					@eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"
-				></list-cell>
+				></list-cell> -->
 			</view>
 		</view>
 		<view class="logout" @tap="exitLogin">退出登录</view>

@@ -50,7 +50,7 @@
             </view>
             <view class="t">
                 <text class="label">运费：</text>
-                <text class="txt">￥{{orderInfo.freight_price}}</text>
+                <text class="txt">￥{{orderInfo.shipping_fee}}</text>
             </view>
         </view>
   </view>

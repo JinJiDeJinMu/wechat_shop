@@ -67,7 +67,7 @@ function request(url, data = {}, method = "GET", contentType = "application/json
 									wx.removeStorageSync("userInfo");
 									wx.removeStorageSync("token");
 									wx.switchTab({
-										url: '/pages/ucenter/index/index'
+										url: '/pages/index/index'
 									});
 								}
 							}
