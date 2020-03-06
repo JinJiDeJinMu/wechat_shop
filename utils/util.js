@@ -64,11 +64,12 @@ function request(url, data = {}, method = "GET", contentType = "application/json
 							content: '请先登录',
 							success: function(res) {
 								if (res.confirm) {
+									console.log('点击授权');
+									wx.redirectTo({
+										url: '/pages/customer/zcuslist/zcuslist?id=-2'
+									});
 									wx.removeStorageSync("userInfo");
 									wx.removeStorageSync("token");
-									wx.switchTab({
-										url: '/pages/index/index'
-									});
 								}
 							}
 						});

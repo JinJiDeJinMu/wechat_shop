@@ -321,7 +321,8 @@ export default {
             });
           });
         }else {
-          util.showErrorToast('下单失败'+res.errmsg);
+          util.showErrorToast('下单失败');
+		  util.showErrorToast(res.errmsg);
         }
       });
     },

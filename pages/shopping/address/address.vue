@@ -12,7 +12,8 @@
             </view>
             <view class="r">
                 <image @tap.native.stop="addressAddOrUpdate" :data-address-id="item.id" class="del" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-edit-7fee7b0d63.png"></image>
-            </view>
+				<image @tap.native.stop="addressdel" :data-address-id="item.id" class="del" src="../../../static/img/close-ico-1.png"></image>
+			</view>
         </view>
     </view>
     <view class="empty-view" v-if="addressList.length <= 0">
@@ -67,6 +68,17 @@ export default {
       });
     },
 
+    addressdel(event) {
+	  console.log(event.currentTarget.dataset.addressId);
+	  var addressId = event.currentTarget.dataset.addressId;
+	  var that = this;
+	  util.request(api.AddressDelete,{id:addressId},'POST').then(function (res) {
+	    if (res.errno === 0) {
+	      util.showSuccessToast('地址删除成功');
+		  that.getAddressList();
+	    }
+	  });
+	},
     selectAddress(event) {
       var addressId = event.currentTarget.dataset.addressId; //选择该收货地址
 
