@@ -59,7 +59,7 @@
 			</view>
 			<!-- 浏览历史 -->
 			<view class="history-section icon">
-				<view class="sec-header">
+				<!-- <view class="sec-header">
 					<text class="yticon icon-lishijilu"></text>
 					<text>浏览历史</text>
 				</view>
@@ -69,7 +69,7 @@
 						src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553105186633&di=c121a29beece4e14269948d990f9e720&imgtype=0&src=http%3A%2F%2Fimg004.hc360.cn%2Fm8%2FM04%2FDE%2FDE%2FwKhQplZ-QteEBvsbAAAAADUkobU751.jpg"
 						mode="aspectFill"
 					></image>
-				</scroll-view>
+				</scroll-view> -->
 				<list-cell
 					icon="iconfont icon-icon_alipay_line"
 					iconColor="#e07472"
@@ -78,7 +78,7 @@
 					@eventClick="navTo('/pages/ucenter/recharge/recharge')"
 				></list-cell>
 				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/ucenter/address/address')"></list-cell>
-				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享"></list-cell>
+				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享" @eventClick="onShareAppMessage"></list-cell>
 				<list-cell
 					icon="iconfont icon-icon_medal"
 					iconColor="#ee883b"
@@ -153,13 +153,7 @@ export default {
 	onShow: function() {},
 	onHide: function() {},
 	onUnload: function() {},
-	onShareAppMessage: function() {
-		this.noLogin();
-		return {
-			title: '邀请好友',
-			path: 'pages/product/product?id=-1&userId=' + wx.getStorageSync('uId')
-		};
-	},
+	
 	methods: {
 		getMyScore: function() {
 			let that = this;
@@ -174,6 +168,13 @@ export default {
 					}
 				}
 			});
+		},
+		onShareAppMessage() {
+			this.noLogin();
+			return {
+				title: '邀请好友',
+				path: 'pages/product/product?id=-1&userId=' + wx.getStorageSync('uId')
+			};
 		},
 		navTo(url) {
 			console.log(url);

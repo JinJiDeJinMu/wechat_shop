@@ -87,7 +87,7 @@ export default {
         });
 		if(that.navList.length!=0){
 			console.log(that.navList);
-			that.getCurrentCategory(that.navList[1].id);
+			that.getCurrentCategory(that.navList[0].id);
 		}
         wx.hideLoading();
       });

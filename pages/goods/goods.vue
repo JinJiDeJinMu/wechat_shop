@@ -506,48 +506,11 @@ export default {
         url: 'pages/index/index'
       });
     }
-
-    let that = this; //分享好友头像接口
-    // util.request('http://school.chundengtai.com/api/v2/purchasePeople/list', {
-    // 	goodsId: that.data.idd
-    // }, "GET").then(function(res) {
-    // 	that.setData({
-    // 		fenxiang: res.data.purchasePeopleList
-    // 	})
-    // });
-    //评论接口
-
-    util.request(api.CommentList, {
-      goodId: that.idd
-    }, "GET").then(function (res) {
-      console.log(res);
-      console.log(res.data.list);
-
-      if (res.data) {
-        that.setData({
-          commit: res.data.list
-        }); 
-
-        if (res.data.list[0] != null) {
-          that.setData({
-            content: res.data.list[0].content,
-            count: res.data.list.length,
-			starLevel: res.data.list[0].starLevel,
-            tx: res.data.list[0].userInfo,
-            createTime:res.data.list[0].createTime,
-            userInfo: res.data.list[0].userInfo
-          });
-        }
-      } else {
-        that.setData({
-          content: '该商品暂无评论！'
-        });
-      }
-    });
-    that.setData({
-      nowtime: new Date().getTime() + 20000
-    });
-
+	/* var that = this;
+    that.getGoodsComment(); */
+    
+    let that = this;
+	
     if (options.id) {
       that.setData({
         id: options.id
@@ -590,6 +553,7 @@ export default {
     });
 	Poster.create(false);
 	that.getGoodsInfo();
+	that.getGoodsComment();
   },
   onShow: function () {
     this.cartGoodsCountFun();
@@ -1129,10 +1093,9 @@ export default {
             });
           }
 
-         // WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that, 5)
           setTimeout(() => {
             that.article_goodsDetail = res.data.info.goods_desc;
-          }, 200);
+          }, 500);
           that.getGoodsRelated();
         }
       });
@@ -1149,6 +1112,35 @@ export default {
         }
       });
     },
+	getGoodsComment: function () {
+		util.request(api.CommentList, {
+		  goodId: that.idd
+		}, "GET").then(function (res) {
+		  console.log(res);
+		  console.log(res.data.list);
+		
+		  if (res.data) {
+		    that.setData({
+		      commit: res.data.list
+		    }); 
+		
+		    if (res.data.list[0] != null) {
+		      that.setData({
+		        content: res.data.list[0].content,
+		        count: res.data.list.length,
+				starLevel: res.data.list[0].starLevel,
+		        tx: res.data.list[0].userInfo,
+		        createTime:res.data.list[0].createTime,
+		        userInfo: res.data.list[0].userInfo
+		      });
+		    }
+		  } else {
+		    that.setData({
+		      content: '该商品暂无评论！'
+		    });
+		  }
+		});
+	},
     clickSkuValue: function (event) {
       let that = this;
       let specNameId = event.currentTarget.dataset.nameId;

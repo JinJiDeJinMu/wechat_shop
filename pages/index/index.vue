@@ -73,6 +73,7 @@
 	      <view class="title">{{model.name}}
 		  <text class="text1">{{model.browse}}喜欢</text>
 		  </view>
+		   <view class="title" v-if="model.goods_brief.length >0">{{model.goods_brief}}</view>
 	      <view class="price">
 	        <text class="text1">￥{{model.retail_price}}</text>
 			
