@@ -1,3 +1,4 @@
+<!--
 <template>
 <view>
 <scroll-view class="container" :style="'height: ' + winHeight + 'rpx'" scroll-y="true">
@@ -56,26 +57,7 @@
 	<poster id="poster" hide-loading="false" preload="false" :config="posterConfig" @success="onPosterSuccess" @fail="onPosterFail">
 	</poster>
     <view class="mmain">
- <!--   <view class="kefu">
-        <view class="kefu1">
-          <view class="kefus">
-            <view class="haoyou">
-              <view class="yuan" wx:for="{{fenxiang}}" wx:key="index">
-                <image mode="aspectFit" src="{{item.avatar}}"></image>
-              </view>
-            </view>
-            <button class="qiang" open-type="share">邀请好友一起抢</button>
-          </view>
-          <view class="kefux">
-            <view class="kefu11"></view>
-            <view class="kefu12">
-              <view class="kefu122">客服</view>
-              <view class="kefu123">哦is如果陪我玩破刃</view>
-            </view>
-            <view class="jia" bindtap="kefu">添加</view>
-          </view>
-        </view>
-      </view> -->
+ 
       <navigator :url="'./comment/comment?id=' + idd" class="input">
         <view class="comment">
           <view class="comtit">
@@ -101,7 +83,7 @@
         </view>
       </navigator>
 	  
-      <!-- <view class="msg" v-if="businessmsg.shopName">
+      <view class="msg" v-if="businessmsg.shopName">
         <view class="newst">商家信息
           <view class="xian"></view>
         </view>
@@ -114,7 +96,7 @@
           <view class="bntt">{{businessmsg.shopAddress||''}}</view>
           <view class="bnt" @tap="daohangRoad" v-if="businessmsg.shopAddress">导航</view>
         </view>
-      </view> -->
+      </view>
     </view>
 	
     <view class="groupBox" v-if="type==1&newBuyLis.length>0">
@@ -278,7 +260,7 @@
     </view>
   </view>
   
-  <!-- 优惠卷
+   
   <view class="coupon" v-if="openCoupon" @tap="colseCoupon">
     <scroll-view class="couponBox" scroll-y="true">
       <view class="tit">领取优惠卷</view>
@@ -297,7 +279,7 @@
     </scroll-view>
   </view>
   
-  <!-- 更多团购 -->
+  
   <view class="groupTeam" v-if="openGroup" @tap="colseGroup">
     <view class="groupInfo">
       <view class="tit">正在拼团</view>
@@ -320,7 +302,7 @@
       </scroll-view>
     </view>
   </view>
-  <!-- 参团的人 -->
+  
   <view class="partIn" v-if="openPart" @tap="colsePart">
     <view class="partInfo">
       <label>参与{{newGroup.groupBuyingDetailedList[0].userName}}的拼单</label>
@@ -365,20 +347,223 @@
 </view>
 </template>
 
+-->
+
+<template>
+	<view class="">
+		<view class="item-detail-box pr">
+			<!-- <image src="/static/images/home-ico.png" style="width:52rpx;height:52rpx;right:100rpx;top:24rpx;" class="pa t0 r0 z9"></image> -->
+			<button style="right:34rpx;top:24rpx;padding:0;line-height:0;" open-type="share" size="mini" class="pa t0 r0 z9">
+				<image src="/static/images/share-ico.png" style="width:52rpx;height:52rpx;" ></image>
+			</button>
+
+			<view class="">
+				<swiper indicator-dots="true"
+						autoplay="true"
+						circular="true"
+						interval="3000"
+						duration="1000" class="item-swiper-box" indicator-active-color="#22b15f" indicator-color='#cccccc' style="height:750rpx;">
+					<swiper-item v-for="(item, index) in gallery" :key="index">
+						<image class="img bg-f5 pc-100" style="height:100%" mode="aspectFill" :src="item.img_url"></image>
+					</swiper-item>
+				</swiper>
+			</view>
+			<view class='price p-l-10'>
+				<view class="">
+					<text class="text">￥</text>
+					<text class="em">{{goods.retail_price}}</text>
+				</view>
+				<button class='share' style="margin:0;padding:0;" open-type="share">
+					<image src="/static/images/share.png"></image>
+					<view>分享</view>
+				</button>
+			</view>
+			<view class="title p-l-10 p-r-10">{{goods.name}}</view>
+			<view class="split-line"></view>
+			<view class='p-l-10 p-r-10 p-t-15 p-b-15 flex-between b-b-1 fs-13'>
+				<view class="flex-align-start">
+					<view class='f-shallow' style='margin-right:20rpx;'>运费：</view>
+					<view class=''>{{goods.extra_price > 0 ? goods.extra_price +'元': '免运费'}}</view>
+				</view>
+				<view>
+					<text class="f-shallow fs-12">剩余: </text>
+					<text>{{goods.goods_number}}件</text>
+				</view>
+			</view>
+			<view class='p-l-10 p-r-10 p-t-15 p-b-15 flex-between b-b-1 fs-13'  v-if="goods.deliveryPlace.length>0">
+			<view class="flex-align-start">
+				<view class='f-shallow' style='margin-right:20rpx;'>发货地：</view>{{goods.deliveryPlace}}
+				<!-- <view class='f-shallow' style='margin-right:20rpx;' @tap="generateHaiBao">生成海报</view> -->
+			</view>
+		
+	
+			</view>
+			
+			<view class='p-l-10 p-r-10 p-t-15 p-b-15 flex-between fs-13' @tap="openCategary">
+				<view class="flex-align-start">
+					<view class='f-shallow' style='margin-right:20rpx;' >规格：</view>
+					<view class=''>
+						选择规格、数量
+					</view>
+				</view>
+				<image src="/static/images/right-2.png" style="width:38rpx;height:38rpx;margin:0;"></image>
+			</view>
+
+			<view class="split-line"></view>
+			<view class="container">
+				<view class="row item-comment-box">
+					<view class="col-xs-12 title-box">
+					<text class="line"></text>
+					<text class="name">用户评价 <text class="i">({{count}})</text></text>
+					<navigator :url="'../goods/comment/comment?id=' + goods.id + '&typeId=0'" style="float:right;" class="flex-align-start">
+						<text class="f-shallow fs-12">更多评价</text>
+						<image src="/static/images/right-2.png" style="width:38rpx;height:38rpx;margin:0;"></image>
+					</navigator>
+					</view>
+
+					<view class="col-xs-12 content-box" >
+						<view class="item" v-if="comment.length>0">
+							<view class="avatar"><image :src="tx.avatar" class="bg-f5" mode="aspectFill"/></view>
+							<view class="user">
+							<text class="name">{{tx.nickname}}</text>				
+							<i-cell-group>
+							  <i-cell>
+								<i-rate :value="starLevel"></i-rate>
+							  </i-cell>
+							</i-cell-group>										
+							<text class="time">{{createTime}}</text>
+							</view>
+							<view class="text text-ellipsis">
+								{{content}}
+							</view>
+						
+							<view class="imgs" v-if="comment_picture_list.length>0">
+								<view  v-for="(item, index) in comment_picture_list" :key="index" mode="aspectFill" >
+									<image :src="item.picUrl" style="width:80rpx;height:80rpx;" class="bg-f5"></image>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			
+			<view class="split-line"></view>
+			<view class="container">
+				<view class='row'>
+					<view class='col-xs-12 tc p-t-15 p-b-15 lh-14'>商品详情</view>
+				</view>
+				<view class="row item-content-box">
+					<view class="col-xs-12 p-l-0 p-r-0">
+						<view class='lh-0'>
+							<view class="detail" v-if="article_goodsDetail">
+							<u-parse :content="article_goodsDetail" @preview="preview" @navigate="navigate" ></u-parse>
+							</view>
+						</view>
+					</view>
+				</view>	
+			</view>
+			
+		</view>
+
+		<view class="pf b0 l0 r0">
+			<view class="cart-footer">
+				<view class='col-xs-4 tc left-btn'>
+					<view class='item'>
+						<!-- <navigator url="/pages/index/index">
+						<image src="/static/images/i_1.png" class="img" @tap="openIndexPage"></image>
+						<view class="text">首页</view>
+						</navigator> -->						
+						<view class="df_1 l_h15"> 
+						          <image class="icon_kf" src="/static/images/user-7.png"></image>  
+								  <button  open-type="contact" size="23" class='pos'>客服</button>
+						       <view class="dbtext">客服</view>	
+						</view>
+							
+					</view>
+					<view class='item'>
+						<image src="/static/images/i_2.png" class="img" @tap="openCartPage"></image>
+						<view class="text">购物车</view>
+						<!-- <view class='num'></view> -->
+					</view>
+				</view>
+				<view class='col-xs-8'>
+					<view class='right-btn1' @click="onShowCart" >加入购物车</view>
+					<view class='right-btn2' @click="onShowCart" >立即购买</view>
+				</view>
+			</view>
+		</view>
+		<view style="height:100rpx;"></view>
+
+		<!-- 弹窗 弹出规格 -->
+		<view class="bg-black-o6 pf t0 l0 r0 b0 z9" v-if="isshowcart" @click="onHideCart"></view>
+		<view class='container lr15 cart-pop-box z9' v-if="isshowcart">
+			<image src="/static/images/close-ico-1.png" class="close-btn" @click="onHideCart"></image>
+			<view class='row'>
+				<view class="col-xs-12 item-cart-box">
+					<view class='layout sub70 clearfix b-b-1 p-b-15'>
+						<view class='col-main'>
+							<view class='wrap'>
+								<view class='title'>{{goods.name}}</view>
+								 <view class="title" v-if="productList.length>0">已选择：{{checkedSpecText}}</view>
+								<view class='price flex-between'>
+									<view>
+										<text>￥</text>
+										<text class="em">{{goods.retail_price}}</text>
+									</view>
+									
+									<view class='sale'>库存: {{goods.goods_number}}件</view>
+								</view>
+							</view>
+						</view>
+						<view class='col-sub'>
+							<image :src='goods.list_pic_url||item.primary_pic_url' mode="aspectFill" class="img bg-f5"></image>
+						</view>
+					</view>
+				</view>
+				<view class="col-xs-12 m-b-10">
+					<view class="p-t-10 p-b-8">规格</view>
+					<view class="spec-con">
+					  <view class="spec-item" v-for="(item, index) in specificationList" :key="index">
+					    <view class="btn btn-cmain m-r-10 m-b-10">{{item.name}}</view>
+					    <view class="values">
+					     <view :class="'value ' + (vitem.checked ? 'selected' : '') + ' ' + (vitem.state ? 'attr_value_disabled' : '')" @tap="clickSkuValue" v-for="(vitem, index2) in item.valueList" :key="index2" :data-value-id="vitem.id" :data-picurl="vitem.pic_url" :data-state="true" :data-name-id="vitem.specification_id">{{vitem.value}}</view>
+						</view>
+					  </view>
+				</view>
+				
+				<view class="col-xs-12 m-b-15 flex-between">
+					<text class='fl'>购买数量：</text>
+					<view class="input-num-box fr">
+						<text class="minus" @tap="cutNumber">-</text>
+					 <input :value="number" class="number" disabled="true" type="number" />
+						<text class="plus ac" @tap="addNumber">+</text>
+					</view>
+				</view>
+				<button class='col-xs-12 btn btn-main btn-lg radius-0' @click="addToCart" data-ntype="2" v-if="type==0&&is_secKill!=5">加入购物车</button>
+				<button class='col-xs-12 btn btn-main btn-lg radius-1' @click="buyGoods" data-ntype="2" v-if="type==0 || type==2" :disabled="isY" >{{type==2?'立即秒杀':'立即购买'}}</button>
+			</view>
+		</view>
+		</view>
+		
+		<!-- 弹窗 弹出规格 -->
+	</view>
+</template>
+
 <script>
 
 var util = require("../../utils/util.js");
 var api = require("../../config/api.js");
 var user = require("../../services/user.js");
 var moment = require("../../utils/moment.min.js");
-import Poster from '../../wxcomponents/wxa-plugin-canvas/poster/poster';
 import uParse from '../../wxcomponents/u-parse/u-parse.vue';
+import Poster from '../../wxcomponents/wxa-plugin-canvas/poster/poster';
 export default {
 	 components: {
 	    uParse
 	  },
   data() {
     return {
+	  isshowcart:false,
       is_secKill: 0,
       winHeight: "",
       id: 0,
@@ -387,7 +572,6 @@ export default {
       gallery: [],
       attribute: [],
       issueList: [],
-      comment: [],
 	  starLevel:'',
       brand: {},
 	  article_goodsDetail:'',
@@ -432,7 +616,8 @@ export default {
       end_time: '',
       kefucall: '',
       commentTime: '',
-      commit: [],
+      comment: [],
+	  comment_picture_list:[],
       address: {
         id: 0,
         province_id: 0,
@@ -506,9 +691,7 @@ export default {
         url: 'pages/index/index'
       });
     }
-	/* var that = this;
-    that.getGoodsComment(); */
-    
+	
     let that = this;
 	
     if (options.id) {
@@ -522,14 +705,14 @@ export default {
         type: options.type
       });
     }
-
+    that.getGoodsInfo();
     if (options.userId) {
       wx.setStorageSync('userId', options.userId);
       let referrerString = options.userId + '_goodsid' + options.id;
       wx.removeStorageSync('referrerId');
       wx.setStorageSync('referrerId', referrerString);
     }
-
+	
     if (options.q) {
       const q = decodeURIComponent(options.q);
       that.setData({
@@ -551,9 +734,9 @@ export default {
         });
       }
     });
-	Poster.create(false);
-	that.getGoodsInfo();
-	that.getGoodsComment();
+	//Poster.create(false);
+	
+
   },
   onShow: function () {
     this.cartGoodsCountFun();
@@ -957,6 +1140,12 @@ export default {
         openGroup: false
       });
     },
+	onShowCart: function() {
+				this.isshowcart = true;
+		},
+	onHideCart: function(){
+				this.isshowcart = false;
+		},
     cimPartFun: function () {
       if (this.openAttr == false) {
         //打开规格选择窗口
@@ -1096,7 +1285,8 @@ export default {
           setTimeout(() => {
             that.article_goodsDetail = res.data.info.goods_desc;
           }, 500);
-          that.getGoodsRelated();
+         /* that.getGoodsRelated(); */
+		  that.getGoodsComment();
         }
       });
     },
@@ -1113,20 +1303,21 @@ export default {
       });
     },
 	getGoodsComment: function () {
+		let that = this;
 		util.request(api.CommentList, {
 		  goodId: that.idd
 		}, "GET").then(function (res) {
 		  console.log(res);
-		  console.log(res.data.list);
-		
-		  if (res.data) {
+		 
+		  if (res.data.list) {
 		    that.setData({
-		      commit: res.data.list
+		      comment: res.data.list
 		    }); 
 		
 		    if (res.data.list[0] != null) {
 		      that.setData({
 		        content: res.data.list[0].content,
+				comment_picture_list:res.data.list[0].commentPictureList,
 		        count: res.data.list.length,
 				starLevel: res.data.list[0].starLevel,
 		        tx: res.data.list[0].userInfo,
@@ -1139,6 +1330,14 @@ export default {
 		      content: '该商品暂无评论！'
 		    });
 		  }
+		});
+	},
+	//打开规格
+	openCategary: function(){
+		console.log(this.isshowcart);
+		var that = this;
+		that.setData({
+		  isshowcart: true
 		});
 	},
     clickSkuValue: function (event) {
@@ -1439,7 +1638,12 @@ export default {
         url: '/pages/cart/cart'
       });
     },
-
+    openIndexPage: function () {
+      wx.switchTab({
+        url: '/pages/index/index'
+      });
+    },
+    
     /**
      * 直接购买
      */
@@ -1589,7 +1793,7 @@ export default {
           } else {
 			 that.unSelectValue(); 
             wx.showToast({
-              image: '/static/images/icon_error.png',
+              //image: '/static/images/icon_error.png',
               title: _res.errmsg,
               mask: true
             });
@@ -1796,6 +2000,6 @@ export default {
 };
 </script>
 <style>
-@import "./goods.css";
 @import url("../../wxcomponents/u-parse/u-parse.css");
+@import "../../static/css/main.css";
 </style>

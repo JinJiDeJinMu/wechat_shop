@@ -1,21 +1,32 @@
 <template>
-<view class="container">
-  <view class="ts-mes"><text class="ca">长按可取消收藏!</text></view>
-  <view class="collect-list">
-    <view class="item" @tap="openGoods" @touchstart="touchStart" @touchend="touchEnd" v-for="(item, index) in collectList" :key="index" :data-index="index">
-      <image class="img" :src="item.list_pic_url"></image>
-      <view class="info">
-        <view class="name">{{item.name || ''}}</view>
-        <view class="subtitle">{{item.goods_brief || ''}}</view>
-        <view class="price">￥{{item.retail_price || '0.00'}}</view>
-      </view>
-    </view>
-  </view>
-  <view class="empty-view" v-if="collectList.length <= 0">
-      <image class="icon" src="../../../static/images/allorder.png"></image>
-      <text class="text">无收藏信息</text>
-    </view>
-</view>
+	<view>
+		<view class="container lr15">
+			<view class="row p-t-10 p-b-10 bg-white m-b-10" v-for="(item, index) in collectList" :key="index" :data-index="index">
+				<view class="col-xs-12 item-cart-box style2">
+				<view class='layout sub85 clearfix'>
+					<view class='col-main'>
+						<view class='wrap' >
+							<view class='title'>{{item.name || ''}}</view>
+							<view class="spec">{{item.goods_brief || ''}}</view>
+							<view class='price m-t-10'>
+								<text>￥</text>
+								<text class="em fs-15">{{item.retail_price || '0.00'}}</text>
+							</view>
+							<image src="/static/images/del.png" class="pa b0 r0 m-r-20 m-b-5" style="width:30rpx;height:30rpx;" @tap.native.stop="openGoods" :data-con="item"></image>
+						</view>
+					</view>
+					<view class='col-sub'>
+						<image mode="aspectFill" :src='item.list_pic_url||item.primary_pic_url' class="img bg-f5" :url="'/pages/goods/goods?id=' + item.good_id"></image>
+					</view>
+				</view>
+				</view>
+			</view>
+			<view class="empty-view" style="margin-top: 30%" v-if="collectList.length <= 0">
+					<image mode="aspectFit" class="icon" src="/static/images/allorder.png"></image>
+					<text class="text">无收藏商品数据</text>
+			</view>	
+		</view>
+	</view>
 </template>
 
 <script>
@@ -57,39 +68,25 @@ export default {
       });
     },
 
-    openGoods(event) {
+    openGoods(e) {
       let that = this;
-      let goodsId = this.collectList[event.currentTarget.dataset.index].value_id; //触摸时间距离页面打开的毫秒数  
-
+	  console.log(e.currentTarget.dataset.con);
+      //let goodsId = that.collectList[event.currentTarget.dataset.index].good_id; //触摸时间距离页面打开的毫秒数  
+       let goodsId = e.currentTarget.dataset.con.good_id;
       var touchTime = that.touch_end - that.touch_start; //如果按下时间大于350为长按  
-
-      if (touchTime > 350) {
-        wx.showModal({
-          title: '',
-          content: '确定取消收藏吗？',
-          success: function (res) {
-            if (res.confirm) {
-              util.request(api.CollectAddOrDelete, {
-                typeId: that.typeId,
-                valueId: goodsId
-              }, 'POST').then(function (res) {
-                if (res.errno === 0) {
-                  wx.showToast({
-                    title: '取消成功',
-                    icon: 'success',
-                    duration: 2000
-                  });
-                  that.getCollectList();
-                }
-              });
-            }
-          }
-        });
-      } else {
-        wx.navigateTo({
-          url: '/pages/goods/goods?id=' + goodsId
-        });
-      }
+	  util.request(api.CollectAddOrDelete, {
+	    typeId: that.typeId,
+	    valueId: goodsId
+	  }, 'POST').then(function (res) {
+	    if (res.errno === 0) {
+	      wx.showToast({
+	        title: '取消成功',
+	        icon: 'success',
+	        duration: 2000
+	      });
+	      that.getCollectList();
+	    }
+	  });
     },
 
     //按下事件开始  
@@ -132,5 +129,5 @@ export default {
 };
 </script>
 <style>
-@import "./collect.css";
+@import "../../../static/css/main.css";
 </style>

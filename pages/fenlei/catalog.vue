@@ -1,40 +1,51 @@
 <template>
-<view class="container">
-	<view class="search">
-		<navigator url="/pages/search/search" class="input">
-			<image class="icon"></image>
-			<text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
-		</navigator>
-	</view>
-	<view class="catalog">
-		<scroll-view class="nav" scroll-y="true">
-			<view :class="'item ' + ( currentCategory.id == item.id ? 'active' : '')" v-for="(item, index) in navList" :key="index" :data-id="item.id" :data-index="index" @tap="switchCate">{{item.name}}</view>
-		</scroll-view>
-		<scroll-view class="cate" scroll-y="true">
-			<view class="bd">
-				<view class="cont-item">
-						<block v-for="(v, index) in goodsList" :key="index">
-							<navigator :url="'/pages/goods/goods?id='+v.id" >
-							<view class="show-item" :data-prodid="v.id">
-								<view class="more-prod-pic">
-									<image :src="v.listPicUrl||v.primaryPicUrl" class="more-pic" mode="widthFix" style="width: 240rpx;height: 300rpx;"></image>
-								</view>
-								<view class="prod-text-right">
-									<view class="prod-text more">{{v.name}}</view>
-									<view class="cate-prod-info">{{v.goodsBrief}}</view>
-									<view class="prod-price more">
-										<text class="symbol">￥</text>
-										<text class="big-num">{{v.retailPrice}}</text>
-									</view>
-								</view>
+	<view class="page-box">
+		<view class="pd10 b-b-1">
+			<navigator url="/pages/search/search" class="index-search-link bg-f7">
+				<view class="text-box">
+					搜索的商品，共{{goodsCount}}款好物
+				</view>
+				<image src="/static/images/search.png" class="search-ico"></image>
+			</navigator>
+		</view>
+		<view class="page-content">
+			<scroll-view scroll-y="true" style="background:#fafafa;width:170rpx;">
+				<view class="cate-menu-box">					
+					<view  v-for="(item, index) in navList" :key="index" >
+						<text :class="'a' + ( currentId == item.id ? 'c' : '')" :data-id="item.id" :data-index="index" @tap="switchCate">{{item.name}}</text>
+					</view>				
+				</view>
+			</scroll-view>
+			<scroll-view scroll-y="true" class="bg-f7" style="width:580rpx;" >
+				<view class="pd10">
+					<!-- <image src="" class="banner" mode="aspectFill"></image> -->
+					<view class="cate-list-box">
+						<navigator url="" class="item-box" v-for="(item, index) in categoryList" :key="index">
+							<view class="title">{{item.name}}</view>
+							<view class="content">
+								<navigator :url="'../entry/entry?id=' + model.id" class="item" v-for="(model, idx) in item.subCategoryList" :key="idx">
+									<view><image :src="model.banner_url"></image></view>
+									<view>{{model.name}}</view>
+								</navigator>
 							</view>
 						</navigator>
-						</block>
+						<!-- <view v-if="currentId !=0" class="item-box" v-for="(item, index) in categoryList" :key="index">
+							<view class="title">{{item.name}}</view>
+							<view class="content">
+								<navigator url="/pages/list/list" class="item" v-for="(model, idx) in item.subCategoryList" :key="idx">
+									<view><image :src="model.banner.url"></image></view>
+									<view>{{model.name}}</view>
+								</navigator>
+							</view>
+						</view> -->
+					</view>
 				</view>
-			</view>
-		</scroll-view>
+			</scroll-view>
+		</view>
 	</view>
-</view>
+
+
+
 </template>
 
 <script>
@@ -52,13 +63,15 @@ export default {
       goodsCount: 0,
       scrollHeight: 0,
       curNav: "",
-      curIndex: ""
+      curIndex: "",
+	  currentId:0
     };
   },
   components: {},
   props: {},
   onLoad: function (options) {
     this.getCatalog();
+	this.getcount();
   },
   onReady: function () {// 页面渲染完成
   },
@@ -81,30 +94,42 @@ export default {
         title: '加载中...'
       });
       util.request(api.CatalogList).then(function (res) {
-        that.setData({
-          navList: res.data.categoryList,
-          currentCategory: res.data.currentCategory
-        });
-		if(that.navList.length!=0){
-			console.log(that.navList);
-			that.getCurrentCategory(that.navList[0].id);
-		}
-        wx.hideLoading();
-      });
-      util.request(api.GoodsCount).then(function (res) {
-        that.setData({
-          goodsCount: res.data.goodsCount
-        });
-      });
+		 that.setData({
+		   categoryList: []
+		 });
+		if(res.data){
+			if(res.data.goods.length >=2){
+				for(var i =1;i <res.data.goods.length;i++){
+					that.categoryList.push(res.data.goods[i])
+				}
+			}else{
+					that.setData({				
+					  categoryList: res.data.goods
+					});
+			}
+			that.setData({
+			  navList: res.data.goods,
+			});
+			console.log('----'+that.navList[1].id);
+			wx.hideLoading();
+		}	
+      });   
     },
+	getcount: function() {
+		var that = this;
+		util.request(api.GoodsCount).then(function (res) {
+		  that.setData({
+		    goodsCount: res.data.goodsCount
+		  });
+		});
+	},
     getCurrentCategory: function (id) {
       let that = this;
       util.request(api.CatalogCurrent, {
         id: id
       }).then(function (res) {
         that.setData({
-          currentCategory: res.data.currentCategory,
-          goodsList: res.data.goodsList
+          categoryList: res.data.currentCategory 
         });
       });
     },
@@ -126,10 +151,18 @@ export default {
     switchCate: function (event) {
       var that = this;
       var currentTarget = event.currentTarget;
-      if (this.currentCategory.id == event.currentTarget.dataset.id) {
-        return false;
-      }
-      this.getCurrentCategory(event.currentTarget.dataset.id);
+	  var index = event.currentTarget.dataset.index;
+	  var id = event.currentTarget.dataset.id;
+	  console.log(event.currentTarget.dataset.id)
+      console.log(event.currentTarget.dataset.index);
+	  if(index == 0){	  
+		  that.getCatalog();
+	  }else{ 
+		 that.getCurrentCategory(id);
+	  }
+	  that.setData({
+		  currentId: event.currentTarget.dataset.id
+	  })
     },
     setData: function (obj, callback) {
       let that = this;
@@ -156,5 +189,5 @@ export default {
 };
 </script>
 <style>
-@import "./catalog.css";
+@import "../../static/css/main.css";
 </style>

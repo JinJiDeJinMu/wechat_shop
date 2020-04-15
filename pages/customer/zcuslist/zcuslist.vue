@@ -127,7 +127,7 @@ export default {
 				});
 			} else if (that.id == -2) {
 				wx.switchTab({
-					url: '../../ucenter/index/index'
+					url: '../../index/index'
 				});
 			} else {
 				wx.navigateTo({

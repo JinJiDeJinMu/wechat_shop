@@ -1,36 +1,55 @@
 <template>
-	<view class="add-address">
-		<view class="add-form">
-				<van-picker :columns="columns" default-index="1" @change="onChange" />
+	<view>
+		<view class="container">
+			<!-- <view class="row bg-white tc">
+				<view class="col-xs-12 fs-15 f-shallow m-t-20 m-b-10">
+				当前余额
+				</view>
+				<view class="col-xs-12 f-main m-b-15">
+					¥ <text class="fs-36">0.00</text>
+				</view>
+			</view> -->
+			<view class="row global-form-box bg-white p-t-5 p-b-5  fs-15">
+				<view class="col-xs-2 name">
+					金额
+				</view>
+				<view class="col-xs-9">
+					<!-- <input type="number" class="input-text pc-100" placeholder="请输入充值金额" style="background:#f8f8f8;" v-model.number="money" />	 -->
+				<picker @change="bindPickerChange" :range="array" class="input-text pc-100">	
+						<label class="input-text pc-100" style="">{{array[index]}}</label>		
+					</picker>
+				
+				</view> 
+			</view>
+			<!-- <view class="row global-form-box bg-white p-t-5 p-b-5  fs-15 m-t-10">
+				<view class="col-xs-2 name">
+					备注
+				</view>
+				<view class="col-xs-9">
+					<input type="text" class="input-text pc-100" placeholder="请输入备注" />
+				</view>
+			</view> -->
+			
 		</view>
-		<view class="btns">
-			<button class="cannel" @tap="resetInfo">重选</button>
-			<van-submit-bar
-			  :price="subshowPrice"
-			  tip="请选择充值金额"
-			  button-text="充值"
-			  @submit="saveCashApply"
-			/>
+		<view class="lr15 pf b0 l0 r0">
+			<view class="row m-b-20">
+				<view class="col-xs-12 m-b-10">
+					<button class="btn btn-main fs-18 pc-100" style="padding:10px 20px;" @click="saveCashApply">去充值</button>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
-
 <script>
-import Toast from '../../../wxcomponents/vant-weapp/toast/toast';	
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 const pay = require("../../../services/pay.js");
 export default {
 	data() {
 		return {
-			columns: [50, 100, 200, 500, 1000,2000,5000],
-			subshowPrice:10000,
-			items: {
-				name: '',
-				score: 100,
-				amount: ''
-			},
-			unsetMoney: 0
+			index:0,
+			array: [0,50, 100, 200, 500, 1000,2000,5000],
+			money: 0
 		};
 	},
 
@@ -74,16 +93,31 @@ export default {
 				items: items
 			});
 		},
+       bindPickerChange: function(e) {		
+        this.index = e.target.value	
+		var result = this.array[this.index]
+        this.setData({
+			money :result
+		})	
+
+},
 
 		saveCashApply() {
+			console.log('money='+this.money);
+			if(this.money <=0 ){
+				wx.showToast({
+				  title: '请重新选择充值金额',
+				})
+				return false;
+			}
 			let that = this;
-			console.log("money="+that.items.score);
-			console.log("socre="+that.subshowPrice);
+			console.log("money="+that.money);
+			console.log("socre="+that.money);
 			util.request(
 				api.Socre,
 				{
-					money: that.items.score,
-					score: that.items.score
+					money: that.money,
+					score: that.money
 				},
 				'GET'
 			).then(function(res) {
@@ -128,5 +162,5 @@ export default {
 };
 </script>
 <style>
-@import './recharge.css';
+@import "../../../static/css/main.css";
 </style>

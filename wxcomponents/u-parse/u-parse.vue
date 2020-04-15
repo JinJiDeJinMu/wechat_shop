@@ -63,6 +63,7 @@ export default {
           padding: 0,
           lazyLoad: false,
           domain: '',
+		 
         };
       },
     },

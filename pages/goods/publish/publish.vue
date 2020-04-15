@@ -10,17 +10,17 @@
       </i-rate>
     </i-cell>
   </view>
-  <image src="../../../static/images/u10_line.png" class="u10-img"></image>
+  <!-- <image src="../../../static/images/u10_line.png" class="u10-img"></image> -->
   <view class="con">
     <textarea maxlength="150" placeholder="宝贝满足你的期待吗？说说它的优点和美中不足的地方吧" class="con-discuss" @input="discussFun">
     </textarea>
-    <view class="add">
+   <!-- <view class="add">
         <view class="question-images">
           <block v-for="(item, index) in images" :key="index">
             <view class="q-image-wrap">
-              <!-- 图片缩略图  -->
+             
               <image class="q-image" :src="item" mode="aspectFill" :data-idx="index" @tap="handleImagePreview"></image>
-              <!-- 移除图片的按钮  -->
+            
                  <view class="q-image-remover" :data-idx="index" @tap="removeImage">删除</view> 
             </view>
           </block>
@@ -28,7 +28,7 @@
       <view>
         <image src="../../../static/images/u15.png" class="add-img" @tap="addimg"></image>
       </view>
-    </view>
+    </view> -->
     <button class="submit" @tap="submit">提交</button>
   </view>
 </view>
@@ -184,7 +184,7 @@ export default {
 			      });
 			      if (res.message == "OK") {
 			        wx.navigateTo({
-			          url: '/pages/ucenter/order/order?id=403'
+			          url: '/pages/ucenter/order/order?id=0'
 			        });
 			      }
 			    }

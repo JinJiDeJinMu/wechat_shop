@@ -8,11 +8,11 @@
       <view class="infoWarp">
         <view class="companyname">
           <text class="key">物流公司：</text>
-          <text class="value">{{companyName}}</text>
+          <text class="value"></text>
         </view>
         <view class="expno">
           <text class="key">运单编号：</text>
-          <text class="value">{{dvyFlowId}}</text>
+          <text class="value"></text>
         </view>
       </view>
     </view>

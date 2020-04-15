@@ -20,7 +20,7 @@
     </view>
 
     <view class="btns">
-        <button class="cannel" @tap="cancelAddress">取消</button>
+      <!--  <button class="cannel" @tap="cancelAddress">取消</button> -->
         <button class="save" :disabled="isDisabled" @tap="saveAddress">保存</button>
     </view>
     <view class="region-select" v-if="openSelectRegion">

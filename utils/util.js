@@ -151,8 +151,8 @@ function redirect(url) {
 
 function showErrorToast(msg) {
 	wx.showToast({
-		title: msg,
-		image: '/static/images/icon_error.png'
+		title: msg
+		/* image: '/static/images/icon_error.png' */
 	});
 }
 

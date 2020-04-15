@@ -53,7 +53,7 @@
 		props: {
 			placeholder: {
 				type: String,
-				default: "请输入搜索内容"
+				default: "请输入搜索商品内容"
 			},
 			radius: {
 				type: [Number, String],
@@ -73,7 +73,7 @@
 			},
 			bgColor: {
 				type: String,
-				default: "#F8F8F8"
+				default: "#ffffff"
 			},
 			maxlength: {
 				type: [Number, String],

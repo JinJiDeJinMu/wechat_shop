@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <view class="container">
     <view class="address-box">
         <view class="address-item" @tap="selectAddress" v-if="checkedAddress.id > 0">
@@ -11,7 +11,7 @@
                 <text class="address">{{checkedAddress.full_region+checkedAddress.detailInfo}}</text>
             </view>
             <view class="r">
-                <image src="../../../static/images/address_right.png"></image>
+                <image src="../../../static/images/address.png"></image>
             </view>
         </view>
         <view class="address-item address-empty" @tap="addAddress" v-if="!checkedAddress.id">
@@ -66,6 +66,100 @@
         <button class="r" :disabled="isY" @tap="submitOrder">去付款</button>
     </view>
 </view>
+</template> -->
+
+<template>
+	<view class="container">
+		<!-- 有地址 -->
+		<navigator class="row bg-white" v-if="checkedAddress.id > 0">
+			<view class='col-xs-12 flex-between p-t-20 p-b-15 p-l-10 p-r-10'>
+				<image src="/static/images/address-line.png" class="pc-100 pa t0 l0" mode="widthFix"></image>
+				<view class='flex-align-start'>
+					<image class=' m-r-8 v-a-m' src="/static/images/address.png" style="width:50rpx;" mode="widthFix"></image>
+					<view class='' style="width:596rpx;" @tap="selectAddress" >
+						<text class='fs-14'>{{checkedAddress.userName}} {{checkedAddress.telNumber}}</text>
+						<view class='fs-12 m-t-7 text-ellipsis'>{{checkedAddress.full_region+checkedAddress.detailInfo}}</view>
+					</view>
+				</view>
+				<image src='/static/images/right-2.png' style='width:48rpx;height:48rpx;'></image>
+			</view>
+		</navigator>
+		<!-- 有地址 -->
+		
+		<navigator class="row bg-white" v-if="!checkedAddress.id">
+			<view class='col-xs-12 flex-between p-t-20 p-b-15 p-l-10 p-r-10' @tap="addAddress">
+				<image src="/static/images/address-line.png" class="pc-100 pa t0 l0" mode="widthFix"></image>
+				<view class='flex-align-start'>
+					<image class=' m-r-8 v-a-m' src="/static/images/address.png" style="width:50rpx;" mode="widthFix"></image>
+					<view class='' style="width:596rpx;">
+						<text class='fs-14'>请填写收货地址</text>
+					</view>
+				</view>
+				<image src='/static/images/right-2.png' style='width:48rpx;height:48rpx;' ></image>
+			</view>
+		</navigator>
+		
+
+		<view class="row bg-white m-t-10" v-for="(item, index) in checkedGoodsList" :key="index">
+			<view class="col-xs-12 pdtb10 b-b-1" v-for="(model,index) in item.cartVoList" :key="index">			
+				<view class="layout sub60" >
+					<view class="col-main">
+						<view class="block wrap f-grey" >
+							<view class="m-t-3 fs-13 text-ellipsis"> {{model.goods_name || ''}}</view>
+							<view class="m-t-7 f-shallow fs-12">规格: {{model.goods_specifition_name_value}}</view>
+							<view class="m-t-7 flex-between fs-12">
+								<view class="fl block pc-80 fs-12">¥{{model.retail_price}}</view>
+								<view class="fr block pc-20 fs-12 tr">×{{model.number}}</view>
+							</view>
+						</view>
+					</view>
+					<view class="col-sub lh-0">
+						<view>
+							<image class="pc-100 bg-f5" :src="model.list_pic_url||model.primary_pic_url" mode="aspectFill" style="height:120rpx;"></image>
+						</view>
+					</view>
+				</view>		
+			</view>
+			<view class="col-xs-12 tr f-grey pdtb15">
+				<text class='fs-13' style='color: #666666'>共{{num}}件商品 小计:</text>
+				<text class='fs-15 f-red'>¥{{goodsTotalPrice}}</text>
+			</view>
+		</view>
+		<view  class='row bg-white m-t-10 pdtb15 fs-14 b-b-1 color-333333' >
+			<view class='col-xs-6'>优惠券：暂无可用</view>
+			<view class='col-xs-6 flex-align-end'>
+				<view>暂无可用</view>
+				<image src='/static/images/right-2.png' style='width:28rpx;height:28rpx;' @tap="selectCoupon"></image>
+			</view>
+		</view>
+		<view class='row bg-white pdtb15 fs-14 b-b-1'>
+			<view class='col-xs-6'>优惠金额：</view>
+			<view class='col-xs-6 tr'>- ¥0.00</view>
+		</view>
+		<view class='row bg-white pdtb15 fs-14 b-b-1'>
+			<view class='col-xs-6'>运  费：</view>
+			<view class='col-xs-6 tr'>¥{{freightPrice}}</view>
+		</view>
+		<view class='row bg-white pdtb15 fs-14 b-b-1'>
+			<view class='col-xs-6'>应付金额：</view>
+			<view class='col-xs-6 tr'>¥{{orderTotalPrice}}</view>
+		</view>
+
+		<view class="checkout-footer" style="bottom:0;">
+			<view class="content">
+				<view class="col-xs-9 box box1" style="width:70%">
+					<view class="tr pc-100">
+						共{{num}}件商品，实付金额: <text class="f-red f-b fs-16">¥{{actualPrice}}</text>
+					</view>
+				</view>
+				<view class="col-xs-3 box box2" style="width:30%">
+					<view class="btn btn-main" :disabled="isY" @tap="submitOrder">去支付</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+
 </template>
 
 <script>
@@ -101,7 +195,8 @@ export default {
       type: null,
       groupBuyingId: '',
       skuName: '',
-      activityType: 1
+      activityType: 1,
+	  num:0
     };
   },
 
@@ -168,6 +263,7 @@ export default {
       var url = api.CartCheckout;
       let buyType = this.isBuy ? 'detailBuy' : 'cart';
       var sumPrice = 0;
+	  var number = 0;
       util.request(url, {
         addressId: that.addressId,
         couponId: that.couponId,
@@ -178,6 +274,7 @@ export default {
           for (var i = 0; i < res.data.checkedGoodsList.length; i++) {
             var param = res.data.checkedGoodsList[i];
 
+            
             for (var j = 0; j < that.couponIdArr.length; j++) {
               if (param.merchantId == that.couponIdArr[j].merchantId) {
                 param.couponName = that.couponIdArr[j].name;
@@ -186,6 +283,14 @@ export default {
               }
             }
           }
+		  
+		  for (var i = 0; i < res.data.checkedGoodsList.length; i++) {
+		    var param = res.data.checkedGoodsList[i];
+		  
+		    for (var j = 0; j < param.cartVoList.length; j++) {
+			  number += param.cartVoList[j].number
+		    }
+		  }
 
           that.setData({
             skuName: res.data.skuName,
@@ -195,7 +300,8 @@ export default {
             //couponPrice: res.data.couponPrice,
             freightPrice: res.data.freightPrice,
             goodsTotalPrice: res.data.goodsTotalPrice,
-            orderTotalPrice: res.data.orderTotalPrice
+            orderTotalPrice: res.data.orderTotalPrice,
+			num: number
           }); //设置默认收获地址
 
           if (that.checkedAddress) {
@@ -226,13 +332,17 @@ export default {
 
     selectAddress() {
       wx.navigateTo({
-        url: '/pages/shopping/address/address'
+        url: '/pages/ucenter/address/address'
       });
     },
-
+    selectCoupon() {
+      wx.navigateTo({
+        url: '/pages/shopping/selCoupon/selCoupon'
+      });
+    },
     addAddress() {
       wx.navigateTo({
-        url: '/pages/shopping/addressAdd/addressAdd'
+        url: '/pages/ucenter/addressAdd/addressAdd'
       });
     },
 
@@ -352,5 +462,5 @@ export default {
 };
 </script>
 <style>
-@import "./checkout.css";
+@import "../../../static/css/main.css";
 </style>

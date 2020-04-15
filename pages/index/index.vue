@@ -1,122 +1,162 @@
 <template>
 	<view>
-	<!-- <selectmap :prop-array="selectList" @myget="getDate"></selectmap> -->
-	<view class='index-search-box'>
-	    <view class="input-box">
-		<navigator url="/pages/search/search" class="input search-bar">
-	      <image src="/static/img/search.png"></image>
-	      <input :placeholder="'商品搜索，共'+goodsCount+'款好物'" placeholder-class="f-shallow"></input>
-		  </navigator>
-	    </view>
+		<view class="container pr">
+			<view class="row">
+				<view class="col-xs-12 m-t-10">
+					<navigator url="/pages/search/search" class="index-search-link">
+						<view class="text-box">
+							搜索的商品，共{{goodsCount}}款好物
+						</view>
+						<image src="/static/images/search.png" class="search-ico"></image>
+					</navigator>
+				</view>
+				<view class="col-xs-12 m-t-10">
+					<view class="index-swiper-box" >
+						<swiper autoplay="true" circular="true" @change="onSwiperChange">
+							<swiper-item v-for="(item, index) in list1" :key="index">
+								 <image :src="item.image_url" background-size="cover" @tap.native.stop="bindimg" :data-con="item" ></image>
+							</swiper-item>
+						</swiper>
+						<view class="nav-tag">
+							<view class="item" v-bind:class="swiperIndex == index?'ac':''" v-for="(item, index) in list1.length" :key="index" ></view>
+						</view>
+					</view>
+				</view>
+				<view class="col-xs-12 m-t-15">
+					<view class="index-cate-box">
+						<view class="item" v-for="(item, index) in fenlei" :key="index">			
+							<navigator :url="'../entry/entry?attrid=' + item.id">							 
+							  <image :src="item.bannerUrl" class="img bg-f5"></image>
+							  <view>{{item.name}}</view>
+							</navigator>
+						</view>
+					</view>
+				</view>
+				<view class="col-xs-12 bg-f7 p-t-15 p-b-5">
+					<navigator :url="'../goods/goods?id=' + item.id" v-for="(item, index) in list2" :key="index" class="lh-0 m-b-10">
+						<image :src="item.image_url" class="pc-100" mode="widthFix" @tap.native.stop="bindimg" :data-con="item"></image>
+						<!-- <image src="/static/images/1.png" class="pc-100" mode="widthFix"></image> -->
+					</navigator>
+				</view>
+				
+				<!-- 分类-->
+				<view class="col-xs-12 banner-item-box">
+					<view v-for="(model, index) in categoryGoodsList" :key="index">
+					<view v-if="model.showStyle==1&&model.goodsList.length>0">
+					<view class="col-xs-12 no-pd">
+						<view class="list-title-box flex-between">
+							<view class="fs-15 f-black name">{{model.name}}</view>
+							<navigator url="/pages/fenlei/catalog" class="flex-between" open-type="switchTab">
+								<text class="fs-12 f-shallow m-r-5">查看全部</text>
+								<image src="/static/images/right-green.png" style="width:27rpx;height:27rpx;"></image>
+							</navigator>
+						</view>
+					</view>
+					<navigator :url="'../goods/goods?id=' + item.id" class="item" v-for="(item, index) in model.goodsList" :key="index">
+						<view class="img">
+							<image class="bg-f5" mode="aspectFill" :src="item.list_pic_url||item.primary_pic_url"></image>
+						</view>
+						<view class="title">{{item.name}}</view>
+						<view class="desc">{{item.goods_brief}}</view>
+						<view class="flex-between">
+							<view class="flex-align-start">
+								<view class="price">
+									<text>¥</text>{{item.retail_price}}
+								</view>
+								<view class="tag">特卖活动</view>
+							</view>
+							<image src="/static/images/buy-btn.png" class="buy-ico"></image>
+						</view>
+					</navigator>
+				</view>
+			</view>
+		</view>
+					
+				<!--新品-->
+				 <view class="col-xs-12 no-pd">
+					<view class="list-title-box flex-between">
+						<view class="fs-15 f-black name">新品</view>
+						<navigator url="../entry/entry?newId=1" class="flex-between">
+							<text class="fs-12 f-shallow m-r-5">查看全部</text>
+							<image src="/static/images/right-green.png" style="width:27rpx;height:27rpx;"></image>
+						</navigator>
+					</view>
+				</view>
+				
+				<view class="col-xs-12 banner-item-box">
+					
+					<navigator :url="'../goods/goods?id=' + item.id" class="item" v-for="(item, index) in rexiao" :key="index">
+						<view class="img">
+							<image class="bg-f5" mode="aspectFill" :src="item.list_pic_url||item.primary_pic_url"></image>
+						</view>
+						<view class="title">{{item.name}}</view>
+						<view class="desc">{{item.goods_brief}}</view>
+						<view class="flex-between">
+							<view class="flex-align-start">
+								<view class="price">
+									<text>¥</text>{{item.retail_price}}
+								</view>
+								<!-- <view class="tag">热销</view> -->
+							</view>
+							<image src="/static/images/buy-btn.png" class="buy-ico"></image>
+						</view>
+					</navigator>
+					
+				<navigator :url="'../goods/goods?id=' + item.id" class="item" v-for="(item, index) in zuixin" :key="index">
+					<view class="img">
+						<image class="bg-f5" mode="aspectFill" :src="item.list_pic_url||item.primary_pic_url"></image>
+					</view>
+					<view class="title">{{item.name}}</view>
+					<view class="desc">{{item.goods_brief}}</view>
+					<view class="flex-between">
+						<view class="flex-align-start">
+							<view class="price">
+								<text>¥</text>{{item.retail_price}}
+							</view>
+							<view class="tag">新品上线</view>
+						</view>
+						<image src="/static/images/buy-btn.png" class="buy-ico"></image>
+					</view>
+				</navigator>
+				</view>
+				
+				
+				<!-- <view class="col-xs-12 no-pd" v-if="relatedGoods.length>0">
+					<view class="list-title-box flex-between">
+						<view class="fs-15 f-black name">为你推荐</view>
+					
+					</view>
+				</view> -->
+				
+				<!-- <view class="col-xs-12 banner-item-box" v-if="relatedGoods.length>0">
+				<navigator :url="'../goods/goods?id=' + item.id" class="item" v-for="(item, index) in relatedGoods" :key="index">
+					<view class="img">
+						<image class="bg-f5" mode="aspectFill" :src="item.list_pic_url||item.primary_pic_url"></image>
+					</view>
+					<view class="title">{{item.name}}</view>
+					<view class="desc">{{item.goods_brief}}</view>
+					<view class="flex-between">
+						<view class="flex-align-start">
+							<view class="price">
+								<text>¥</text>{{item.retail_price}}
+							</view>
+							<view class="tag">为你推荐</view>
+						</view>
+						<image src="/static/images/buy-btn.png" class="buy-ico"></image>
+					</view>
+				</navigator>
+				</view> -->
+				
+			</view>
+		</view>
 	</view>
-	<view class='container m-t-10 bg-white'>
-	    <view class="row">
-	        <view class="col-xs-12">
-	<swiper class="index-swiper-box" indicator-active-color="#f81314" indicator-color='#abbcc1' circular="true" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-		          <block v-for="(item, index) in banner" :key="index">
-				  <swiper-item>
-				    <view class="haimg">
-				      <image :src="item.image_url" background-size="cover" @tap.native.stop="bindimg" :data-con="item"></image>
-				    </view>
-				  </swiper-item>
-				  </block>  
-				</swiper>
-	        </view>
-	    </view>
-	   <view class="row">
-	      <view class="col-xs-12 p-l-5 p-r-5">
-	        <view class="index-cate-box">
-			  <view class="item" v-for="(item, index) in fenlei" :key="index">
-			    <navigator :url="'../category/category?id=' + item.id">
-			      <image class="img" mode="aspectFit" :src="item.bannerUrl"></image>
-			      <view>{{item.name}}</view>
-			    </navigator>
-			  </view>
-	        </view>
-	      </view>
-	    </view>
-	    <view class="row">
-	      <view class="col-xs-12">
-	        <view class="index-msg-box">
-	          <image src="/static/img/laba.png"></image>
-	          <swiper class="list" vertical="true" autoplay="true" circular="true">
-	            <swiper-item v-for="(item, index) in [1,2,3]" :key="index"> {{gonggao.conent}} </swiper-item>
-	          </swiper>
-	        </view>
-	      </view>
-	    </view>
-	</view>
-
-	<view v-for="(item, index) in categoryGoodsList" :key="index">
-	<view v-if="item.showStyle==1&&item.goodsList.length>0">
-	<view class='container m-t-10 bg-white'>
-	  <view class="row">
-	    <view class="col-xs-12">
-	      <view class="index-title-box">
-	        <view class="left">
-	          <image src="/static/img/title-line.png"></image>
-	          <text>{{item.name}}</text>
-	        </view>
-	        <navigator class="right" url="/pages/search/search">
-	          <text>更多</text>
-	          <image src="/static/img/angle-right.png"></image>		
-	        </navigator>
-	      </view>
-	    </view>
-	  </view>
-	<view class="row">
-	<view v-for="(model, index2) in item.goodsList" :key="index2">
-	  <navigator :url="'../goods/goods?id=' + model.id" class="item-list-box col-xs-4">
-	      <view class="square-image">
-	          <image :src="model.list_pic_url||model.primary_pic_url"></image>
-	      </view>
-	      <view class="title">{{model.name}}
-		  <text class="text1">{{model.browse}}喜欢</text>
-		  </view>
-		   <view class="title" v-if="model.goods_brief.length >0">{{model.goods_brief}}</view>
-	      <view class="price">
-	        <text class="text1">￥{{model.retail_price}}</text>
-			
-	      </view>
-	  </navigator>
-	</view>
-	</view>
-	</view>
-	</view>
-	</view>
-
-<view class="container index-item-box oh">
-    <view class="row m-t-20 m-b-20">
-        <view class="col-xs-12 tc">
-          <text class="f-grey m-r-20">//</text> 
-          <text class="f-black">新品</text> 
-          <text class="f-grey m-l-20" @tap="moremore">//</text> 
-        </view>
-    </view>
-    <view class="row">
-	  <view v-for="(item, index) in zuixin" :key="index">
-      <navigator :url="'../goods/goods?id=' + item.id" class="col-xs-6" >
-        <view class="item-list-box style2 bg-white">
-          <view class="square-image">
-              <image src mode="widthFix" :src="item.list_pic_url||item.primary_pic_url"></image>
-          </view>
-          <view class="title">{{item.name}}</view>
-          <view class="price">
-            <text class="i text1">¥</text><text class="text1">{{item.retail_price}} </text>
-          </view>
-        </view>
-      </navigator>
-	  </view>
-    </view>
-</view>
-
-</view>
 </template>
 <script>
 	const util = require("../../utils/util.js");
 	const api = require("../../config/api.js");
 	const user = require("../../services/user.js");
-	var QQMapWX = require("../../wxcomponents/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js");
+	//定位
+	/* var QQMapWX = require("../../wxcomponents/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js"); */
 	var qqmapsdk; 
 	const app = getApp().globalData;
 	import indexTypeData from "../../wxcomponents/index-type-data/index-type-data";
@@ -126,11 +166,15 @@
 	    return {
 	      categoryGoodsList: [],
 	      banner: [],
+		  list1:[],
+		  list2:[],
 	      goodsCount: 0,
 	      fenlei: [],
 	      zuixin: [],
+		  rexiao:[],
 	      ppicc: 0.0,
 	      gonggao: [],
+		  relatedGoods:[],
 	      url: '',
 	      selectArray: [],
 	      selectList: [],
@@ -171,6 +215,7 @@
 		wx.stopPullDownRefresh();
 	  },
 	  onLoad: function (options) {
+		  console.log(options);
 	    let self = this;
 	    if (options.scene) {
 	      wx.setStorageSync('referrerId', options.scene);
@@ -184,9 +229,10 @@
 	      wx.setStorageSync('userId', util.getQueryString(q, 'userId'));
 	    }
 	    self.getIndexData();
-	    qqmapsdk = new QQMapWX({
+		//定位功能
+	   /* qqmapsdk = new QQMapWX({
 	      key: api.TcentConfigMapKey
-	    });
+	    }); */
 	    /* wx.getLocation({
 	      type: 'gcj02',
 	      success(res) {
@@ -222,6 +268,10 @@
 		console.log("加载结束");
 	  },
 	  methods: {
+		  onSwiperChange(e){
+		  	this.swiperIndex = e.detail.current;
+			
+		  },
 	    baidu() {
 	      wx.setStorageSync('key', this.url);
 	      wx.navigateTo({
@@ -241,8 +291,9 @@
 	      var categoryGoodsList = that.categoryGoodsList;
 	      var data = new Object();
 	      util.request(api.IndexUrlAll, {
-	        school: wx.getStorageSync('filterCity')
+	        /* school: wx.getStorageSync('filterCity') */
 	      }).then(function (res) {
+			if(res.code ==200){
 	        that.setData({
 	          categoryGoodsList: res.data.productList
 	        });
@@ -252,44 +303,37 @@
 	        that.setData({
 	          banner: res.data.banner
 	        });
+			that.list1=[];			
+			that.list2=[];
+			for(let i =0;i<that.banner.length;i++){
+				let positionid= that.banner[i].ad_position_id;
+				if(positionid == 1){
+					that.list1.push(that.banner[i])
+				}else if(positionid ==2){
+					that.list2.push(that.banner[i]);
+				}
+			};	
+			 that.getUrlgonggao();
+			 that.getzuixin();
+			 that.getGoodsRelated();
+			 }
 	      });
-	      util.request(api.IndexUrlgonggao).then(function (res) {
-	        that.setData({
-	          gonggao: res.data.purchasePeopleList[0]
-	        });
-	        that.setData({
-	          url: res.data.purchasePeopleList[0].url
-	        });
-	      });
-	      util.request(api.IndexUrlzuixin, {
-	        school: wx.getStorageSync('filterCity')
-	      }).then(function (res) {
-	        that.setData({
-	          zuixin: res.data
-	        });
-	      });
+	     
 	      util.request(api.GoodsCount).then(function (res) {
 	        that.setData({
 	          goodsCount: res.data.goodsCount
 	        });
 	      });
+		
 	    },
 	    //轮播图跳转
 	    bindimg(e) {
-			 var type = e.currentTarget.dataset.con.type;
-			 if (type == 0) {
-				/* wx.navigateTo({//活动
-				  url: '/pages/entry/entry'
-				}); */
-			  } else if (type == 1) {//爆品展示
-				wx.navigateTo({
-				  url: '/pages/campuspartner/campuspartner?id='+e.currentTarget.dataset.con.id
-				});
-			  } else if (type == 2) {//图文介绍
-				wx.navigateTo({
-				  url: '/pages/enjoy/enjoy?id='+e.currentTarget.dataset.con.id
-				});
-			  }
+			 var banner = e.currentTarget.dataset.con;
+			  if(banner.link){
+				 wx.navigateTo({
+				   url: e.currentTarget.dataset.con.link
+				 }); 
+			  } 
 		 
 	    },
 	    //根据关键词搜索匹配位置
@@ -323,6 +367,40 @@
 	        }
 	      });
 	    },
+		//为你推荐
+		getGoodsRelated: function () {
+		  let that = this;
+		  util.request(api.Indextuijian).then(function (res) {
+		    if (res.code=== 200) {
+		      that.setData({
+		        relatedGoods: res.data
+		      });
+		    }
+		  });
+		},
+		getzuixin: function() {
+			 let that = this;
+			util.request(api.IndexUrlzuixin, {
+			 }).then(function (res) {
+						  if(res.data.code=200){
+							  that.setData({
+							    zuixin: res.data.newGoods,
+							    rexiao: res.data.hotGoods
+							  });
+						  }
+			 });
+		},
+		getUrlgonggao: function() {
+			 let that = this;
+			util.request(api.IndexUrlgonggao).then(function (res) {
+			  that.setData({
+			    gonggao: res.data.purchasePeopleList[0]
+			  });
+			  that.setData({
+			    url: res.data.purchasePeopleList[0].url
+			  });
+			});
+		},
 	    //大学定位
 	    getDate(e) {
 	      wx.removeStorageSync('filterCity');
@@ -365,5 +443,5 @@
 	};
 </script>
 <style>
-@import "./index.css";
+@import "../../static/css/main.css";
 </style>

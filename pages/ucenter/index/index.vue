@@ -1,109 +1,127 @@
 <template>
-	<view class="container" v-if="isshow">
-		<view class="user-section">
-			<image class="bg" src="/static/img/index-bg.png"></image>
-			<view class="user-info-box">
-				<view class="portrait-box">
-					<image v-if="userInfo && userInfo.avatarUrl" class="portrait" :src="userInfo.avatarUrl || '/static/missing-face.png'" background-size="cover"></image>
+	<view>
+		<image class="user-header-bg" src="/static/images/user-header-bg.png" mode='widthFix'></image>
+		<view class="container oh p-b-10 user-header-box">
+			<view class="row user-brief">
+				<navigator class="block col-xs-3 tr">
+					<image :src="userInfo.avatarUrl" class="avatar"></image>
+				</navigator>
+				<view class="col-xs-9 p-l-0">
+					<view class="username">{{ userInfo.userName ? userInfo.userName : userInfo.nickName }}</view>
 				</view>
-				<view class="info-box">
-					<text class="username">{{ userInfo.userName ? userInfo.userName : userInfo.nickName }}</text>
+			</view>
+			<view class="row user-count">
+				<navigator url="/pages/ucenter/recharge/recharge" class="block col-xs-4" v-show="flag">
+					<view class="num">{{score}}</view>
+					<view class="txt">帐户余额</view>
+				</navigator>
+				<navigator :url="'/pages/ucenter/score/score?number=' + number" class="block col-xs-4">
+					<view class="num">{{number}}</view>
+					<view class="txt">积分金币</view>
+				</navigator>
+				<navigator url="/pages/ucenter/coupon/coupon" class="block col-xs-4">
+					<view class="num">0</view>
+					<view class="txt">优惠券</view>
+				</navigator>
+			</view>
+		</view>
+
+		<view class="container">
+			<view class="row">
+				<view class="col-xs-12">
+				<view class="user-icon-menu-box" style="border-radius:20rpx;">
+					<view class="flex-between title">
+						<text class="fs-14">我的订单</text>
+						<navigator url="/pages/ucenter/order/order?id=-1" class="flex-between">
+							<view class="fs-13 m-r-5" style="color:#626262;">全部订单</view> 
+							<image src="../../../static/images/right-2.png" style="width:20rpx;height:20rpx" />
+						</navigator>
+					</view>
+					<navigator url="/pages/ucenter/order/order?id=0" class="item block pc-20 fl">
+						<view class="img"><image src="../../../static/images/order-1.png" /></view>
+						<view class="txt">待付款</view>
+					</navigator>
+					<navigator url="/pages/ucenter/order/order?id=208" class="item block pc-20 fl">
+						<view class="img"><image src="../../../static/images/order-2.png" /></view>
+						<view class="txt">待发货</view>
+						<!-- <text class="num none">3</text> -->
+					</navigator>
+					<navigator url="/pages/ucenter/order/order?id=207" class="item block pc-20 fl">
+						<view class="img"><image src="../../../static/images/order-3.png" /></view>
+						<view class="txt">待收货</view>
+					</navigator>
+					<navigator url="/pages/ucenter/order/order?id=402" class="item block pc-20 fl">
+						<view class="img"><image src="../../../static/images/order-4.png" /></view>
+						<view class="txt">待评价</view>
+					</navigator>
+					<navigator url="/pages/ucenter/order/order?id=501" class="item block pc-20 fl">
+						<view class="img"><image src="../../../static/images/order-5.png" /></view>
+						<view class="txt">售后</view>
+					</navigator>
+				</view>
 				</view>
 			</view>
 		</view>
-		<view
-			class="cover-container"
-			:style="[
-				{
-					transform: coverTransform,
-					transition: coverTransition
-				}
-			]"
-			@touchstart="coverTouchstart"
-			@touchmove="coverTouchmove"
-			@touchend="coverTouchend"
-		>
-			<image class="arc" src="/static/arc.png"></image>
-			<view class="tj-sction">
-				<view class="tj-item">
-					<text class="num">{{score}}</text>
-					<text>余额</text>
+		<view class="container m-t-10">
+			<view class="row">
+				<view class="col-xs-12">
+				<view class="user-icon-menu-box" style="border-radius:20rpx;">
+					<view class="flex-between title">
+						<text class="fs-14">我的服务</text>
+					</view>
+					<!-- <view url="/pages/uQrcode/uQrcode" class="item" open-type="share">
+						<view class="img"><image src="../../../static/images/user-1.png" /></view>
+						<button open-type="share" class="txt" style="background-color: transparent;border: none;outline: none;">邀请好友</button>
+					</view> -->
+					<view class="item">     
+							  <button  open-type="share" size="23" class='pos_'>邀请好友</button>
+							  <image class="icon_kf_" src="/static/images/user-1.png"></image>  
+					       <view class="dbtext_">邀请好友</view>	
+					</view>
+					<navigator url="/pages/ucenter/collect/collect" class="item">
+						<view class="img"><image src="../../../static/images/user-2.png" /></view>
+						<view class="txt">我的收藏</view>
+						<!--<text class="num">3</text>-->
+					</navigator>
+					<navigator url="/pages/ucenter/footprint/footprint" class="item">
+						<view class="img"><image src="../../../static/images/user-3.png" /></view>
+						<view class="txt">我的足迹</view>
+					</navigator>
+					<navigator url="/pages/ucenter/address/address" class="item">
+						<view class="img"><image src="../../../static/images/user-4.png" /></view>
+						<view class="txt">我的地址</view>
+					</navigator>
+					
+					<navigator url="/pages/ucenter/feedback/feedback" class="item">
+						<view class="img"><image src="../../../static/images/user-6.png" /></view>
+						<view class="txt">意见反馈</view>
+					</navigator>
+					<!-- <navigator url="" class="item">
+						<view class="img"><image src="../../../static/images/user-7.png" /></view>
+						<button class="txt" open-type="contact" style="background-color: transparent;border: none;outline: none;">联系客服</button>
+					</navigator> -->
+					<view class="item">
+							  <button  open-type="contact" size="23" class='pos_'>联系客服</button>
+							  <image class="icon_kf_" src="/static/images/user-7.png"></image>  
+					       <view class="dbtext_">联系客服</view>	
+					</view>
 				</view>
-				<!-- 	<view class="tj-item">
-					<text class="num">0</text>
-					<text>优惠券</text>
 				</view>
-				<view class="tj-item">
-					<text class="num">20</text>
-					<text>积分</text>
-				</view> -->
-			</view>
-			<!-- 订单 -->
-			<view class="order-section">
-				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=-1')" hover-class="common-hover" :hover-stay-time="50">
-					<text class="yticon iconfont icon-icon_study"></text>
-					<text style="font-size:28rpx;">全部订单</text>
-				</view>
-				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=0')" hover-class="common-hover" :hover-stay-time="50">
-					<text class="yticon iconfont icon-icon_im_keyboard"></text>
-					<text style="font-size:28rpx;">待付款</text>
-				</view>
-				<view class="order-item" @click="navTo('/pages/ucenter/order/order?id=207')" hover-class="common-hover" :hover-stay-time="50">
-					<text class="yticon iconfont icon-icon_affiliations_li"></text>
-					<text style="font-size:28rpx;">待收货</text>
-				</view>
-				<view class="order-item" @click="navTo('/pages/ucenter/return/return?id=501')" hover-class="common-hover" :hover-stay-time="50">
-					<text class="yticon iconfont icon-icon_HRM"></text>
-					<text style="font-size:28rpx;">退款/售后</text>
-				</view>
-			</view>
-			<!-- 浏览历史 -->
-			<view class="history-section icon">
-				<!-- <view class="sec-header">
-					<text class="yticon icon-lishijilu"></text>
-					<text>浏览历史</text>
-				</view>
-				<scroll-view scroll-x class="h-list">
-					<image
-						@click="navTo('/pages/product/product')"
-						src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553105186633&di=c121a29beece4e14269948d990f9e720&imgtype=0&src=http%3A%2F%2Fimg004.hc360.cn%2Fm8%2FM04%2FDE%2FDE%2FwKhQplZ-QteEBvsbAAAAADUkobU751.jpg"
-						mode="aspectFill"
-					></image>
-				</scroll-view> -->
-				<list-cell
-					icon="iconfont icon-icon_alipay_line"
-					iconColor="#e07472"
-					title="充值"
-					tips="充值兑换积分"
-					@eventClick="navTo('/pages/ucenter/recharge/recharge')"
-				></list-cell>
-				<list-cell icon="iconfont icon-icon_GPS" iconColor="#5fcda2" title="地址管理" @eventClick="navTo('/pages/ucenter/address/address')"></list-cell>
-				<list-cell icon="iconfont icon-yaoqinghaoyou" iconColor="#9789f7" tips="邀请好友一起赚钱" title="分享" @eventClick="onShareAppMessage"></list-cell>
-				<list-cell
-					icon="iconfont icon-icon_medal"
-					iconColor="#ee883b"
-					title="分销中心"
-					tips="晒单抢红包"
-					@eventClick="navTo('/pages/hexiao/yiorder/yiorder?id=-1')"
-					v-if="isDistribut == 1"
-				></list-cell>
-				<list-cell icon="iconfont icon-icon_star" iconColor="#54b4ef" title="我的收藏" @eventClick="navTo('/pages/ucenter/collect/collect')"></list-cell>
-				<list-cell icon="iconfont icon-icon_synergy" iconColor="#54b4ef" title="我的足迹" @eventClick="navTo('/pages/ucenter/footprint/footprint')"></list-cell>
-				<list-cell icon="iconfont icon-saoma" iconColor="#e07472" title="核销扫码" @eventClick="navTo('/pages/ucenter/scan/scan')"></list-cell>
-				<!-- <list-cell
-					icon="iconfont icon-icon_newgroup"
-					iconColor="#e07472"
-					title="店铺订单"
-					border=""
-					@eventClick="navTo('/pages/ucenter/shoporder/shoporder?id=-1')"
-				></list-cell> -->
 			</view>
 		</view>
-		<view class="logout" @tap="exitLogin">退出登录</view>
+
+   
+		<!-- <view class="m-b-15 p-l-15 p-r-15 m-t-10">
+			<navigator url="/pages/uSetting/uSetting" class="flex-between bg-white pd15" style="border-radius:20rpx;">
+				<text class="fs-15" style="line-height:48rpx;">其它设置</text>
+				<image src="/static/images/right-2.png" style="width:38rpx;height:38rpx" />
+			</navigator>
+		</view> -->
+
 	</view>
 </template>
+
 <script>
-import listCell from '@/wxcomponents/mix-list-cell';
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
 var user = require('../../../services/user.js');
@@ -125,10 +143,12 @@ export default {
 			},
 			isshow: false,
 			isDistribut: 0,
-			score:0
+			score:0.00,
+			number:0,
+			flag:false
 		};
 	},
-	components: { listCell },
+	components: {},
 	props: {},
 	onLoad: function(options) {
 		let userInfo = wx.getStorageSync('userInfo');
@@ -158,13 +178,15 @@ export default {
 		getMyScore: function() {
 			let that = this;
 			util.request(api.MyScore).then(function(res) {
+				that.setData({flag: res.data.flag});
 				if (res.code === 200) {
-					if(res.data !=null){
-						if(res.data.score >0){
+					if(res.data.cdtUserScore !=null){				
 							that.setData({
-								score: res.data.score
+								score: res.data.cdtUserScore.score,
+								number: res.data.cdtUserScore.number							
 							});
-						}	
+						
+						
 					}
 				}
 			});
@@ -366,199 +388,6 @@ export default {
 	}
 };
 </script>
-<style lang="scss">
-%flex-center {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-%section {
-	display: flex;
-	justify-content: space-around;
-	align-content: center;
-	background: #fff;
-	border-radius: 10upx;
-}
-.user-section {
-	height: 520upx;
-	padding: 100upx 30upx 0;
-	position: relative;
-	.bg {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		filter: blur(1px);
-		opacity: 0.7;
-	}
-}
-.user-info-box {
-	height: 180upx;
-	display: flex;
-	align-items: center;
-	position: relative;
-	z-index: 1;
-	.portrait {
-		width: 130upx;
-		height: 130upx;
-		border: 5upx solid #fff;
-		border-radius: 50%;
-	}
-	.username {
-		font-size: $font-lg + 6upx;
-		color: $font-color-dark;
-		margin-left: 20upx;
-	}
-}
-.vip-card-box {
-	display: flex;
-	flex-direction: column;
-	color: #f7d680;
-	height: 240upx;
-	background: linear-gradient(left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8));
-	border-radius: 16upx 16upx 0 0;
-	overflow: hidden;
-	position: relative;
-	padding: 20upx 24upx;
-	.card-bg {
-		position: absolute;
-		top: 20upx;
-		right: 0;
-		width: 380upx;
-		height: 260upx;
-	}
-	.b-btn {
-		position: absolute;
-		right: 20upx;
-		top: 16upx;
-		width: 132upx;
-		height: 40upx;
-		text-align: center;
-		line-height: 40upx;
-		font-size: 22upx;
-		color: #36343c;
-		border-radius: 20px;
-		background: linear-gradient(left, #f9e6af, #ffd465);
-		z-index: 1;
-	}
-	.tit {
-		font-size: $font-base + 2upx;
-		color: #f7d680;
-		margin-bottom: 28upx;
-		.yticon {
-			color: #f6e5a3;
-			margin-right: 16upx;
-		}
-	}
-	.e-b {
-		font-size: $font-sm;
-		color: #d8cba9;
-		margin-top: 10upx;
-	}
-}
-.cover-container {
-	background: $page-color-base;
-	margin-top: -150upx;
-	padding: 0 30upx;
-	position: relative;
-	background: #f5f5f5;
-	padding-bottom: 20upx;
-	.arc {
-		position: absolute;
-		left: 0;
-		top: -34upx;
-		width: 100%;
-		height: 36upx;
-	}
-}
-.tj-sction {
-	@extend %section;
-	.tj-item {
-		@extend %flex-center;
-		flex-direction: column;
-		height: 140upx;
-		font-size: $font-sm;
-		color: #75787d;
-	}
-	.num {
-		font-size: $font-lg;
-		color: $font-color-dark;
-		margin-bottom: 8upx;
-	}
-}
-.order-section {
-	@extend %section;
-	padding: 28upx 0;
-	margin-top: 20upx;
-	.order-item {
-		@extend %flex-center;
-		width: 120upx;
-		height: 120upx;
-		border-radius: 10upx;
-		font-size: $font-sm;
-		color: $font-color-dark;
-	}
-	.yticon {
-		font-size: 48upx;
-		margin-bottom: 18upx;
-		color: #fa436a;
-	}
-	.icon-shouhoutuikuan {
-		font-size: 44upx;
-	}
-}
-.history-section {
-	padding: 30upx 0 0;
-	margin-top: 20upx;
-	background: #fff;
-	border-radius: 10upx;
-	.sec-header {
-		display: flex;
-		align-items: center;
-		font-size: $font-base;
-		color: $font-color-dark;
-		line-height: 40upx;
-		margin-left: 30upx;
-		.yticon {
-			font-size: 44upx;
-			color: #5eba8f;
-			margin-right: 16upx;
-			line-height: 40upx;
-		}
-	}
-	.h-list {
-		white-space: nowrap;
-		padding: 30upx 30upx 0;
-		image {
-			display: inline-block;
-			width: 160upx;
-			height: 160upx;
-			margin-right: 20upx;
-			border-radius: 10upx;
-		}
-	}
-}
-.logout {
-	margin-top: 20rpx;
-	height: 101rpx;
-	width: 100%;
-	line-height: 101rpx;
-	text-align: center;
-	color: #fff;
-	font-size: 30rpx;
-	background: #b4282d;
-}
-.service {
-	position: static;
-	background-color: transparent;
-	/* color: transparent; */
-	margin: 0;
-	padding: 0;
-	border: none;
-	text-align: left;
-	line-height: normal;
-	display: inline;
-}
+<style >
+@import "../../../static/css/main.css";
 </style>

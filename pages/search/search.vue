@@ -1,30 +1,37 @@
 <template>
 	<view>
-		<!-- <van-search :value="value" placeholder="请输入搜索关键词" use-action-slot @search="onSearch" @change="onChange"><view slot="action" @tap="sousuo">搜索</view></van-search> -->
-	<!-- <input type="text" name="" id="" placeholder="请输入搜索关键词" v-model="keyword"/> 
-	  	<button @click="sousuo">搜索</button> -->
-	  <uni-search-bar maxlength="30" @confirm="search"  @input="input"></uni-search-bar>
-	
-		<view class="container">
-			<view class="zuixin">
-				<view class="goods1" v-for="(item, key) in key" :key="key">
-					<navigator :url="'../goods/goods?id=' + item.id">
-						<image :src="item.list_pic_url" class="goods11"></image>
-						<view class="goods12">{{ item.name }}</view>
-						<view class="goods13">
-							<view class="goods131">￥{{ item.retail_price }}</view>
-							<view class="goods132" v-if="model.market_price">￥{{ item.market_price }}</view>
+		  <uni-search-bar maxlength="30" @confirm="search"  @input="input" @cancel="cancel"></uni-search-bar>
+		<view calss="container">
+			<!-- <view class="row sort-nav-box bg-white">
+						<view class="col-xs-3 item" v-for="(item, index) in filter_list" :key="index" @click="filter(item.field,filter_sort=='desc'?'asc':'desc')" v-if="key.length>0">
+							<view class="txt" v-bind:class="filter_field==item.field?'ac':''">{{item.title}}</view>
+							<image :src="'../../static/images/sort-'+filter_sort+'.png'" style="height:20rpx;width:20rpx;" v-if="filter_field==item.field && filter_sort" class="m-l-5"></image>
 						</view>
-					</navigator>
-				</view>
-				<view class="empty-view" style="margin-top: 30%" v-if="key.length <= 0">
-					<image mode="aspectFit" class="icon" src="../../static/images/allorder.png"></image>
-					<text class="text">无商品数据</text>
-				</view>
-			</view>
+			        </view>
+					 -->
+					 <view class='container bg-white'>
+					 			<view class='row p-t-20 p-b-20'>
+					 				<view class='col-xs-9 p-l-10'>
+					 					<view class='flex-align-start'>
+					 						<view class='rec1 rec'></view>
+					 						<view class='fs-15 f-black'>我搜索过的</view>
+					 					</view>
+					 				</view>
+					 				<!-- <view class='col-xs-3 p-r-10 tr p-r-20'>
+					 					<image src="/static/images/del.png" style='height:30rpx;width:30rpx;'></image>
+					 				</view> -->
+					 			</view>
+					 			<view class='row'>
+					 				<view class='col-xs-12 p-l-10 p-r-10'>
+					 					<view class='srcbtn' v-for="(item, index) in history" :key="index" @tap.native.stop="bindimg" :data-con="item">{{item}}</view>
+					 					<view class='noHistoryItem' v-if="searchRecord.length==0">你还没有搜索记录</view>
+					 				</view>
+					 			</view>
+					 		</view>
 		</view>
 	</view>
 </template>
+
 
 <script>
 var util = require('../../utils/util.js');
@@ -36,9 +43,12 @@ import uniIcons from '../../wxcomponents/dist/uni-icons/uni-icons.vue';
 export default {
 	data() {
 		return {
+			
 			key: [],
 			word: '',
-			value:''
+			value:'',
+			history:[]
+			
 		};
 	},
 
@@ -51,7 +61,9 @@ export default {
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function(options) {},
+	onLoad: function(options) {
+		this.getSearchHistory();
+	},
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
@@ -92,8 +104,7 @@ export default {
 			if(e.value !=null){
 				this.setData({
 					word: e.value
-				});
-				this.getDate();
+				});				
 			}				
 		},
 		search(e){
@@ -101,41 +112,41 @@ export default {
 					this.setData({
 						word: e.value
 					});
-					this.getDate();
+					this.toGoodList();
 				}
 		},
-		/* onSearch() {
-			var word = this.data.value;
-			console.log(word);
-			this.setData({
-				word: word
-			});
-			this.getDate();
-		},
-
-		onChange(e) {
-			var value = e.detail;
-			console.log(value);
-			this.setData({
-				value: value
-			});
-		}, */
-
-		getDate() {
+        cancel(){
 			var that = this;
-			console.log("word===="+that.word);
-			util.request(api.SearchGoods,{keyword:that.word},'GET')
-			.then(function(res) {
-				if(res.code === 200){
-					if(res.data){
-						that.setData({
-							key: res.data.data
-						});
-					}	
-				}
-			})
+			that.setData({
+				key: []
+			});
 		},
-
+	
+	  toGoodList(){
+		  var that = this;
+		  wx.navigateTo({
+		    url: '/pages/entry/entry?keyword='+that.word
+		  });
+	  },
+	  getSearchHistory(){
+		  let that = this;
+		  util.request(api.SearchHistory).then(function (res) {
+		    if (res.errno === 0) {		
+		  		if(res.data){
+					that.setData({
+						history:res.data
+					})
+				}
+		    }
+		  });
+	  },
+	  bindimg(e) {
+		let that = this;
+	  	that.setData({
+			word: e.currentTarget.dataset.con
+		})
+	   that.toGoodList();
+	  },
 		setData: function(obj, callback) {
 			let that = this;
 			let keys = [];
@@ -162,5 +173,5 @@ export default {
 };
 </script>
 <style>
-@import './search.css';
+@import "../../static/css/main.css";
 </style>

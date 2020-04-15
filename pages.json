@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "新首页"
+				"navigationBarTitleText": "未名严选"
 			},
 			  "permission": {
 			    "scope.userLocation": {
@@ -27,8 +27,8 @@
 			"style": {
 				"navigationBarTitleText": "商品详情",
 				"usingComponents": {
-					"count-down-list": "../../wxcomponents/count-down-list/count-down-list",
-					"poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
+			   "i-rate": "../../wxcomponents/dist/rate/index",
+			   "poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
 				}
 			}
 		},
@@ -64,6 +64,20 @@
 			}
 		},
 		{
+			"path": "pages/ucenter/feedback/feedback",
+			"style": {
+				"navigationBarTitleText": "意见反馈",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/ucenter/score/score",
+			"style": {
+				"navigationBarTitleText": "积分记录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/ucenter/shoporder/shoporder",
 			"style": {
 				"navigationBarTitleText": "店铺订单查看"
@@ -77,20 +91,13 @@
 			}
 		},
 		{
-			"path": "pages/catalog/catalog",
+			"path": "pages/fenlei/catalog",
 			"style": {
 				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
 		},
-		{
-			"path": "pages/newGoods/newGoods",
-			"style": {}
-		},
-		{
-			"path": "pages/hotGoods/hotGoods",
-			"style": {}
-		},
+		
 		{
 			"path": "pages/ucenter/msg/msgorder",
 			"style": {
@@ -146,9 +153,9 @@
 			}
 		},
 		{
-			"path": "pages/ucenter/feedback/feedback",
+			"path": "pages/ucenter/coupon/coupon",
 			"style": {
-				"navigationBarTitleText": "意见反馈",
+				"navigationBarTitleText": "优惠券",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -204,21 +211,21 @@
 				"navigationBarBackgroundColor": "#fafafa"
 			}
 		},
-		{
+		/* {
 			"path": "pages/comment/comment",
 			"style": {
 				"usingComponents": {
 					"i-rate": "../../../wxcomponents/dist/rate/index"
 				}
 			}
-		},
-		{
+		}, */
+		/* {
 			"path": "pages/category/category",
 			"style": {
 				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
-		},
+		}, */
 		{
 			"path": "pages/cart/cart",
 			"style": {
@@ -230,25 +237,11 @@
 			"path": "pages/shopping/checkout/checkout",
 			"style": {}
 		},
-		{
-			"path": "pages/shopping/address/address",
-			"style": {}
-		},
-		{
-			"path": "pages/shopping/addressAdd/addressAdd",
-			"style": {}
-		},
-
+	
 		{
 			"path": "pages/hexiao/hexiao",
 			"style": {
 				"navigationBarTitleText": "群管订单"
-			}
-		},
-		{
-			"path": "pages/shopMap/shopMap",
-			"style": {
-				"navigationBarTitleText": "地图"
 			}
 		},
 		{
@@ -299,16 +292,11 @@
 		},
 		{
 			"path": "pages/entry/entry",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
 		},
-		{
-			"path": "pages/campuspartner/campuspartner",
-			"style": {}
-		},
-		{
-			"path": "pages/enjoy/enjoy",
-			"style": {}
-		},
+		
 		{
 			"path": "pages/express/express",
 			"style": {}
@@ -342,19 +330,8 @@
 			"style": {
 				"navigationBarTitleText": "分销收入明细"
 			}
-		},
-		{
-			"path": "pages/sort/sort",
-			"style": {}
-		},
-		{
-			"path": "pages/fenlei/catalog",
-			"style": {}
-		},
-		{
-			"path": "pages/content/content",
-			"style": {}
 		}
+		
 	],
 	"permission": {
 		"scope.userLocation": {
@@ -364,19 +341,19 @@
 	"tabBar": {
 		"backgroundColor": "#fafafa",
 		"borderStyle": "white",
-		"selectedColor": "#b4282d",
+		"selectedColor": "#22b15f",
 		"color": "#666",
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"iconPath": "./static/images/ic_menu_choice_nor.png",
-				"selectedIconPath": "./static/images/ic_menu_choice_pressed.png",
+				"iconPath": "./static/images/navbar-1.png",
+				"selectedIconPath": "./static/images/navbar-1-ac.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/fenlei/catalog",
-				"iconPath": "./static/images/ic_menu_sort_nor.png",
-				"selectedIconPath": "./static/images/ic_menu_sort_pressed.png",
+				"iconPath": "./static/images/navbar-2.png",
+				"selectedIconPath": "./static/images/navbar-2-ac.png",
 				"text": "分类"
 			},
 			// {
@@ -387,14 +364,14 @@
 			// },
 			{
 				"pagePath": "pages/cart/cart",
-				"iconPath": "./static/images/ic_menu_shoping_nor.png",
-				"selectedIconPath": "./static/images/ic_menu_shoping_pressed.png",
+				"iconPath": "./static/images/navbar-3.png",
+				"selectedIconPath": "./static/images/navbar-3-ac.png",
 				"text": "购物车"
 			},
 			{
 				"pagePath": "pages/ucenter/index/index",
-				"iconPath": "./static/images/ic_menu_me_nor.png",
-				"selectedIconPath": "./static/images/ic_menu_me_pressed.png",
+				"iconPath": "./static/images/navbar-4.png",
+				"selectedIconPath": "./static/images/navbar-4-ac.png",
 				"text": "我的"
 			}
 		]
@@ -407,7 +384,7 @@
 	"globalStyle": {
 		"backgroundTextStyle": "dark",
 		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "燕缘商城",
+		"navigationBarTitleText": "未名严选",
 		"navigationBarTextStyle": "black",
 		"enablePullDownRefresh": true
 	},

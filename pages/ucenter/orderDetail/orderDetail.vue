@@ -1,69 +1,177 @@
-<template>
-<view class="container order-container">
-    <view class="order-info">
-        <view class="item-a">下单时间：{{orderInfo.add_time}}</view>
-        <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
-        <view class="item-a" v-if="orderInfo.shipping_name">物流公司：{{orderInfo.shipping_name}}</view>
-        <view class="item-b" v-if="orderInfo.shipping_no">物流编号：{{orderInfo.shipping_no}}</view>
-        <view class="item-c">
-            <view class="l">实付：<text class="cost">￥{{orderInfo.actual_price}}</text></view>
-        </view>
-    </view>
 
-    <view class="order-goods">
-        <view class="h">
-            <view class="label">商品信息</view>
-            <view class="status">{{orderInfo.order_status_text}}</view>
-        </view>
-        <view class="goods">
-            <view class="item" v-for="(item, index) in orderGoods" :key="index">
-                <view class="img">
-					<navigator :url="'../../goods/goods?id=' + item.goods_id">
-                    <image mode="aspectFit" :src="item.list_pic_url"></image>
-					</navigator>
-                </view>
-                <view class="info">
-                    <view class="t">
-						<navigator :url="'../../goods/goods?id=' + item.id">
-                        <text class="name">{{item.goods_name}}</text>
-                        <text class="number">x{{item.number}}</text>
-						</navigator>
-                    </view>
-                    <view class="attr">{{item.goods_specifition_name_value||''}}</view>
-                    <view class="price">￥{{item.retail_price}}</view>
-                </view>
-            </view>
-        </view>
-</view>
-    <view class="order-bottom">
-        <view class="address">
-            <view class="t">
-                <text class="name">{{orderInfo.consignee}}</text>
-                <text class="mobile">{{orderInfo.mobile}}</text>
-            </view>
-            <view class="b">{{orderInfo.full_region + orderInfo.address}}</view>
-        </view>
-        <view class="total">
-            <view class="t">
-                <text class="label">商品合计：</text>
-                <text class="txt">￥{{orderInfo.goods_price}}</text>
-            </view>
-            <view class="t">
-                <text class="label">运费：</text>
-                <text class="txt">￥{{orderInfo.shipping_fee}}</text>
-            </view>
-        </view>
-  </view>
-     <view class="zhong" v-if="orderInfo.goods_type == 6 &&(orderInfo.order_status == 201||orderInfo.order_status == 206)">
-      <view class="ts">到店自提核销凭证</view>
-      <view class="img-box">
-      <image @tap="previewImg" style="width: 450rpx;height: 450rpx;background:#f1f1f1;" :src="imagePath"></image>
-  </view>
-   </view> 
- <view class="canvas-box">
-  <canvas :hidden="canvasHidden" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas"></canvas>
-</view>
-</view>
+<template>
+	<view>
+		<view class="container orderinfo-page">
+			<view class="row bg-white p-t-10 p-b-10 pr b-b-1">
+				<view class="col-xs-1 tc"></view>
+				<view class="col-xs-11">
+					<view class="flex-between">
+						<view class="fl">收货人：{{orderInfo.consignee}}</view>
+						<view class="fr">{{orderInfo.mobile}}</view>
+					</view>
+					<view class="m-t-5">收货地址：{{orderInfo.province}}{{orderInfo.city}}{{orderInfo.district}}{{orderInfo.address}}</view>
+				</view>
+				<image src="../../../static/images/address.png" class="m-t-10" style="position:absolute;top:50%;margin-top:-20rpx;width:40rpx;height:40rpx;left:28rpx;"/>
+			</view>
+			<view class="row bg-white p-t-15 p-b-15 pr b-b-1">
+				<view class="col-xs-1"></view>
+				<view class="col-xs-11 flex-between">
+					<view class="fl">配送方式</view>
+					<view class="fr f-grey">{{orderInfo.shipping_name}}</view>
+				</view>
+				<image src="/static/images/car.png" class="m-t-10" style="position:absolute;top:50%;margin-top:-25rpx;width:50rpx;height:50rpx;left:20rpx;"/>
+			</view>
+		</view>
+
+		<view class="container lr15 order-list-box">
+		<view class="row bg-white m-t-10">
+			<view class="col-xs-12 p-t-5 p-b-5 b-b-1" v-for="(item, index) in orderGoods" :key="index">
+			<view class="layout sub50">
+				<view class="col-main">
+					<view class="block wrap f-grey">
+						<view class="flex-between fs-12">
+							<text class="fl block pc-80 text-ellipsis">{{item.goods_name}}</text>
+							<text class="fr block pc-20 tr" style='color:#333;'>¥{{item.retail_price}}</text>
+						</view>
+						<view class="m-t-10 flex-between fs-12">
+							<view class="fl block pc-80 flex-align-start">
+								<view>规格: {{item.goods_specifition_name_value||''}}</view>
+							</view>
+							<text class="fr block pc-20 tr">×{{item.number}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="col-sub">
+					<view>
+						<image :src="item.list_pic_url" mode="aspectFill" style="width: 100rpx; height: 100rpx;" class="bg-f5" />
+					</view>
+				</view>
+			</view>
+			</view>
+			<view class="col-xs-12 fs-12 m-t-10 flex-between">
+				<view class="fl">运费</view>
+				<view class="fr">¥{{orderInfo.shipping_fee}}</view>
+			</view>
+			<!-- <view class="col-xs-12 fs-12 m-t-10 flex-between">
+				<view class="fl ">积分抵扣</view>
+				<view class="fr">- ¥10.00</view>
+			</view>
+			<view class="col-xs-12 fs-12 m-t-10 flex-between">
+				<view class="fl">优惠券抵扣</view>
+				<view class="fr">- ¥10.00</view>
+			</view> -->
+			<view class="col-xs-12 fs-12 m-t-10 flex-between">
+				<view class="fl">商品合计：</view>
+				<view class="fr">¥{{orderInfo.goods_price}}</view>
+			</view>
+			<view class="col-xs-12 fs-12 m-t-10 m-b-10 flex-between">
+				<view class="fl">实付款(含运费)：</view>
+				<view class="fr f-red">¥<text class="fs-15 f-b">{{orderInfo.actual_price}}</text></view>
+			</view>
+		</view>
+		</view>
+		
+		<view class="container orderinfo-page">
+		<view class="row fs-12 p-t-5 p-b-5 bg-white m-t-10">
+			<view class="col-xs-12 p-t-3 p-b-3 flex-between">
+				<view class="m-t-1">订单编号：</view>
+				<view class="f-grey flex-align-end">
+					<text class="m-r-5">{{orderInfo.order_sn}}</text>
+					<view class="btn btn-xs btn-default f-main" @click="fuzhi">复制</view>
+				</view>
+			</view>
+			<view class="col-xs-12 p-t-3 p-b-3 flex-between">
+				<view class="">下单时间：</view>
+				<view class="f-grey">{{orderInfo.add_time}}</view>
+			</view>
+			<!-- <view class="col-xs-12 p-t-3 p-b-3 flex-between">
+				<view class="">支付方式：</view>
+				<view class="f-grey">支付宝支付</view>
+			</view> -->
+			<view class="col-xs-12 p-t-3 p-b-3 flex-between" >
+				<view class="">支付时间：</view>
+				<view class="f-grey" v-if="orderInfo.pay_time">{{orderInfo.pay_time}}</view>
+			</view>
+			
+			<view class="col-xs-12 p-t-3 p-b-3 flex-between" >
+				<view class="">付款时间：</view>
+				<view class="f-grey" v-if="orderInfo.confirm_time">{{orderInfo.confirm_time}}</view>
+			</view>
+			<!-- <view class="col-xs-12 p-t-3 p-b-3 flex-between" >
+				<view class="">发货时间：</view>
+				<view class="f-grey">2018-8-8 12:00:00</view>
+			</view>
+			<view class="col-xs-12 p-t-3 p-b-3 flex-between">
+				<view class="">成交时间：</view>
+				<view class="f-grey">2018-8-8 12:00:00</view>
+			</view> -->
+		
+
+		<!-- <view class="container order-footer">
+			<view class="row">
+				<view class="col-xs-12 flex-between">
+				<view class="fl f-red">
+					<block >剩余支付时间: 29:05:59</block>
+					<block >等待商家发货</block>
+				</view>
+				<view class="flex-align-start">
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="payOrder" v-if="orderInfo.handleOption.pay">去付款</button>
+					<button class="btn btn-default btn-sm" :data-order-index="index" @tap.native.stop="cancelOrder" v-if="orderInfo.handleOption.cancel">取消订单</button>
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="confirmOrder" v-if="item.handleOption.confirm">确认收货</button>
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="buyOrder" v-if="item.handleOption.buy">再次购买</button>
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="commentOrder" v-if="item.handleOption.comment">评价</button>
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="lookcomment" v-if="item.handleOption.lookcomment">查看评价</button>
+					<button class="btn btn-main btn-sm" :data-order-index="index" @tap.native.stop="logistics" v-if="item.handleOption.logistics">查看物流</button>
+				</view>
+				</view>
+			</view>
+		</view> -->
+
+		<!-- <view class="bg-black-o6 pf z9 t0 l0 r0 b0" v-if="isshowcancel" @click="onHideCancel"></view>
+		<view class="container pf b0 l0 r0 bg-white z99 slide-up-box" v-if="isshowcancel">
+			<view class="row">
+				<view class="col-xs-12 title">
+					<text class="name">取消原因</text>
+					<image src="/static/images/close-ico-2.png" class="close" @click="onHideCancel"></image>
+				</view>
+				<view class="col-xs-12 content">
+					<view class="m-b-10">
+						<text class="f-main fs-15">请选择取消订单的原因（必选）：</text>
+					</view>
+					<block v-for="(item, index) in reason_list" :key="index">
+					<view class="clearfix item">
+						<image :src="'/static/images/cart-check'+(index==2?'-ac':'')+'.png'" class="check"></image>
+						<view class="fl">{{item}}</view>
+					</view>
+					</block>
+				</view>
+				
+				<view class="col-xs-12">
+					<view class="m-b-10 b-1 pd5">
+						<textarea name="reason_info" class="pc-100" placeholder="请填写备注"></textarea>
+					</view>
+				</view>
+				<view class="block radius-0 fs-16 col-xs-12 btn btn-main">
+				确认提交
+				</view>
+			</view>
+		</view> -->
+		<!-- 弹窗 -->
+		<!-- <view class="bg-black-o6 pf b0 l0 r0 t0 z9" v-if="isshowconfirm"></view>
+		<view class='modal-pop-box' v-if="isshowconfirm">
+			<image bindtap='doHideTake' class='close' src='/static/images/pop-close-2.png' @click="onHideConfrim"></image>
+			<view class='content'>
+				<view class="title">是否确认收到货</view>
+			</view>
+			<view class="footer-box two">
+				<view class="box box1 pc-50" style="background:#f1f1f1;border:none;">未收到货</view>
+				<view class="box box2 pc-50">已收到货</view>
+			</view>
+		</view> -->
+		<!-- 弹窗 -->
+	</view>
+	</view>
+	</view>
 </template>
 
 <script>
@@ -71,7 +179,7 @@ var util = require("../../../utils/util.js");
 var md5 = require("../../../utils/md5.js");
 var api = require("../../../config/api.js");
 import QR from "../../../utils/qrcode";
-function countdown(that) {
+/* function countdown(that) {
   var second = that.data.second;
 
   console.log(second);
@@ -85,7 +193,7 @@ function countdown(that) {
     });
     countdown(that);
   }, 4000);
-}
+} */
 
 export default {
   data() {
@@ -100,7 +208,20 @@ export default {
       orderId: 0,
       orderInfo: {},
       orderGoods: [],
-      handleOption: {}
+      handleOption: {},
+	  status:0,
+		reason_list:[
+			'订单不能按预计时间送达',
+			'操作有误（商品、地址等选错）',
+			'重复下单/误下单',
+			'其它渠道价格更低',
+			'该商品京东降价了',
+			'不想买了',
+			'商品无货',
+			'其他原因'
+		],
+		isshowcancel:false,
+		isshowconfirm:false
     };
   },
 
@@ -123,6 +244,18 @@ export default {
   onUnload: function () {// 页面关闭
   },
   methods: {
+	  onShowCancel(){
+	  				this.isshowcancel = true;
+	  			},
+	  			onHideCancel(){
+	  				this.isshowcancel = false;
+	  			},
+	  			onShowConfrim(){
+	  				this.isshowconfirm = true;
+	  			},
+	  			onHideConfrim(){
+	  				this.isshowconfirm = false;
+	  			},
     checkHexiaoStatus: function (orderNo, orderId, userId, mId) {
       var that = this;
       var times = 0;
@@ -279,6 +412,23 @@ export default {
       }, 1000);
     },
 
+  //订单号复制
+   fuzhi(){
+	   var that = this; 
+	   wx.setClipboardData({
+	         data: '1111111',
+	         success(res) {
+	           wx.showToast({
+	             title: '复制成功',
+	           })
+	           wx.getClipboardData({
+	             success(res) {
+	               console.log(that.orderInfo.order_sn) 
+	             }
+	           })
+	         }
+	    })
+   },
     cancelOrder() {
       console.log('开始取消订单');
       let that = this;
@@ -511,5 +661,5 @@ export default {
 };
 </script>
 <style>
-@import "./orderDetail.css";
+@import "../../../static/css/main.css";
 </style>

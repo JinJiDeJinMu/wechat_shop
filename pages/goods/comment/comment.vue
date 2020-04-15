@@ -1,38 +1,39 @@
 <template>
-<!--pages/goods/comment/comment.wxml-->
-<view class="header">
-  <view class="empty-view" style="margin-top: 10%;height: 5%;" v-if="pinglun.length <= 0">
-    <image mode="aspectFit" class="icon" src="../../../static/images/allorder.png"></image>
-    <text class="text">该商品暂无评论数据</text>
-  </view>
-  <view v-for="(item, index) in pinglun" :key="index" class="con-top" @tap="detail" :data-name="item">
-    <view class="header-con">
-      <view class="header-left">
-        <image :src="item.userInfo.avatar" class="header-img"></image>
-        <text class="con">{{item.userInfo.nickname}}</text>
-        <i-cell-group>
-          <i-cell>
-            <i-rate :value="item.starLevel"></i-rate>
-          </i-cell>
-        </i-cell-group>
-      </view>
-      <text class="time">{{item.createTime}}</text>
-    </view>
-    <!-- 评价内容 -->
-    <view class="appraise">{{item.content}}</view>
-    <!-- 图片 -->
-    <view class="tupain" v-for="(model, index2) in item.commentPictureList" :key="index2">
-      <image :src="model.picUrl"></image>
-    </view>
-  </view>
-
-</view>
+<view class="container">
+					<view class="row item-comment-box">					
+						<view class="col-xs-12 content-box" v-if="pinglun.length>0">
+							<view class="item" v-for="(item, index) in pinglun" :key="index">
+								<view class="avatar"><image :src="item.userInfo.avatar" class="bg-f5" mode="aspectFill"/></view>
+								<view class="user">
+								<text class="name">{{item.userInfo.nickname}}   
+								</text>
+								<i-cell-group>
+								  <i-cell>
+									<i-rate :value="item.starLevel"></i-rate>
+								  </i-cell>
+								</i-cell-group>
+								<text class="time">{{item.createTime}}</text>
+								</view>
+								<view class="text text-ellipsis">
+									{{item.content}}
+								</view>
+		
+								<view class="imgs" v-if="item.commentPictureList>0">
+									<view  v-for="(model, index) in item.commentPictureList" :key="index" mode="aspectFill" >
+										<image :src="model.picUrl" style="width:80rpx;height:80rpx;" class="bg-f5"></image>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
 </template>
 
 <script>
 var util = require("../../../utils/util.js");
 var api = require("../../../config/api.js");
 var user = require("../../../services/user.js");
+
 
 export default {
   data() {
@@ -47,7 +48,7 @@ export default {
   },
 
   components: {
-    //iRate
+  
   },
   props: {},
 
@@ -55,6 +56,7 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+	  console.log(options.id);
     this.setData({
       idd: options.id
     });
@@ -141,5 +143,5 @@ export default {
 };
 </script>
 <style>
-@import "./comment.css";
+@import "../../../static/css/main.css";
 </style>

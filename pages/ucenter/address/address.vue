@@ -13,16 +13,16 @@
                 </view> 
             </view>
             <view class="r">
-                <image @tap.native.stop="deleteAddress" :data-address-id="item.id" class="del" src="../../../static/images/del-address.png"></image>
+                <image @tap.native.stop="deleteAddress" :data-address-id="item.id" class="del" src="../../../static/images/del.png"></image>
             </view>
         </view>
     </view>
     <view>
-    <view class="address-list ">
+    <!-- <view class="address-list ">
     <view class="text-item">当前定位地址为:{{address}}</view>
     <view class="text-item">当前定位经度为:{{latitude}}</view>
     <view class="text-item">当前定位纬度为:{{longitude}}</view>
-    </view>
+    </view> -->
 
     </view>
     <view class="empty-view" v-if="addressList.length <= 0">
@@ -30,13 +30,58 @@
       <text class="text">收货地址在哪里</text>
     </view>
     <view class="add-address" @tap="addressAddOrUpdate" data-address-id="0">添加</view>
+	
+	<!-- <view class="row m-b-20">
+		<view class="col-xs-12 m-b-10">
+			<navigator url="/pages/uAddressEdit/uAddressEdit" class="btn btn-main fs-18 pc-100" style="padding:20rpx 40rpx;" @tap="addressAddOrUpdate" data-address-id="0">新增地址</navigator>
+		</view>
+	</view> -->
+
 </view>
 </template>
+<!-- <template>
+	<view>
+		<view class="container ">
+			<view class="row">
+				<view class="col-xs-12 bg-white p-t-15 m-b-10" v-for="(item, index) in addressList" :key="index">
+					<view class="">
+						<text>{{item.userName}}</text>
+						<text>{{item.telNumber}}</text>
+					</view>
+					<view class="f-shallow m-t-10"><text class="f-red" v-if="item.is_default">[默认地址]</text> {{item.full_region+item.detailInfo}}</view>
+					<view class="flex-between m-t-10 pdtb10 b-t-1 f-shallow">
+						<view class="flex-between">
+							<image :src="'/static/images/cart-check'+(item.is_default?'-ac':'')+'.png'" style="width:40rpx;height:40rpx;"></image>
+							<view class="m-l-5 fs-13">设为默认地址</view>
+						</view>
+						<view class="flex-between ">
+							<navigator url="/pages/uAddressEdit/uAddressEdit" class="flex-between">
+								<image src="../../../static/images/edit.png" style="width:26rpx;height:26rpx;" />
+								<view class="m-l-5">编辑</view>
+							</navigator> 
+							<view class="flex-between m-l-20">
+								<image src="../../../static/images/del.png" style="width:26rpx;height:26rpx;"  />
+								<view class="m-l-5">删除</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
 
+		<view class="container lr15 pf b0 l0 r0">
+		<view class="row m-b-20">
+			<view class="col-xs-12 m-b-10">
+				<navigator url="/pages/uAddressEdit/uAddressEdit" class="btn btn-main fs-18 pc-100" style="padding:20rpx 40rpx;">新增地址</navigator>
+			</view>
+		</view>
+		</view>
+	</view>
+</template> -->
 <script>
 var util = require("../../../utils/util.js");
 var api = require("../../../config/api.js");
-var QQMapWX = require("../../../wxcomponents/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js");
+/* var QQMapWX = require("../../../wxcomponents/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.min.js"); */
 
 export default {
   data() {
@@ -59,7 +104,7 @@ export default {
   onShow: function () {
     // 页面显示
     this.getAddressList();
-    this.getLocation();
+   
   },
   onHide: function () {// 页面隐藏
   },
@@ -195,4 +240,5 @@ export default {
 </script>
 <style>
 @import "./address.css";
+@import "../../../static/css/main.css";
 </style>

@@ -1,52 +1,88 @@
 <template>
-<view class="container">
-  <view class="no-cart" v-if="cartGoods.length <= 0">
-    <view class="c">
-      <view class="title-box">
-        购物车空空如也～
-      </view>
-      <view class="to-index-btn" @tap="toIndexPage">
-        去逛逛
-      </view>
-    </view>
-  </view>
-  <view class="cart-view" v-if="cartGoods.length > 0">
-    <view class="list">
-      <view class="group-item">
-        <view class="goods">
-          <view :class="'item ' + (isEditCart ? 'edit' : '')" v-for="(item, index) in cartGoods" :key="index">
-            <view :class="'checkbox ' + (item.checked ? 'checked' : '')" @tap="checkedItem" :data-item-index="index"></view>
-            <view class="cart-goods">
-              <image mode="aspectFit" class="img" :src="item.list_pic_url"></image>
-              <view class="info">
-                <view class="t">
-                  <view class="name">{{item.goods_name}}</view>
-                  <view class="num">x{{item.number}}</view>
-                </view>
-                <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value||''}}</view>
-                <view class="b">
-                  <text class="price">￥{{item.retail_price}}</text>
-                  <view class="selnum">
-                    <view class="cut" @tap="cutNumber" :data-item-index="index">-</view>
-                    <input :value="item.number" class="number" disabled="true" type="number"></input>
-                    <view class="add" @tap="addNumber" :data-item-index="index">+</view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="cart-bottom">
-      <view :class="'checkbox ' + (checkedAllStatus ? 'checked' : '')" @tap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-      <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
-      <view class="delete" @tap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
-      <view class="checkout" @tap="deleteCart" v-if="isEditCart">删除所选</view>
-      <view class="checkout" @tap="checkoutOrder" v-if="!isEditCart">下单</view>
-    </view>
-  </view>
-</view>
+	<view >
+		<view class="flex-between p-t-15 p-b-15 p-l-10 p-r-10">
+			<view class="flex-align-start">
+				<image src="/static/images/c_1.png" style="width:26rpx;height:26rpx;"></image>
+				<view class="fs-12 f-grey m-l-5">未名严选，让您的购物体验简单省心</view>
+			</view>
+			<view @click="onEdit">{{!isedit?'编辑':'完成'}}</view>
+		</view>
+		<view class="bg-f5 container cart-list-box oh">
+			<view v-for="(item, index) in cartGoods" :key="index" class="row content bg-white m-b-10 p-t-10 p-b-10">
+				<view class="col-xs-1 flex-align-center">
+					<image :src="'/static/images/cart-check'+(item.checked==1?'-ac':'')+'.png'" class="fr" @tap="checkedItem" :data-item-index="index" style="width:40rpx;height:40rpx;"></image>
+				</view>
+				<view class="col-xs-11 item-cart-box style2 p-l-0 p-r-10">
+					<view class='layout sub85 clearfix'>
+						<view class='col-main'>
+							<view class='wrap'>
+								<view class='title'>{{item.goods_name}}</view>
+								<view class="spec">{{item.goods_specifition_name_value}}</view>
+								<view class='flex-between'>
+									<view class="price m-t-3">
+										<text class="fs-12">￥</text>
+										<text class="em">{{item.retail_price}}</text>
+									</view>
+									<view class="input-num-box min">
+										<text class="minus" @tap="cutNumber" :data-item-index="index">-</text>
+										<input class="number" disabled="true" name="nums" :value="item.number" type="number"/>
+										<text class="plus ac" @tap="addNumber" :data-item-index="index">+</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class='col-sub'>
+							<image :src='item.list_pic_url' lazy-load="true" class="img bg-f5" mode="aspectFill"></image>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view style='height: 120rpx;'></view>
+		<view class="checkout-footer">
+			<view class="content">
+				<view class="col-xs-3 box box1" style="justify-content:left;width:30%" @tap="checkedAll">
+					<image :src="'/static/images/cart-check'+(checkedAllStatus?'-ac':'')+'.png'" style="width:40rpx;height:40rpx;"/>
+					<view  class="fl fs-15 m-l-10" >
+						全选({{cartTotal.checkedGoodsCount}})
+					</view>
+				</view>
+				<view class="col-xs-6 box box1" style="width:40%" v-if="!isedit">
+					<view class="tr pc-100">
+						<view class="fs-15">合计：<text class="f-red">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</text></text></view>
+						<view class="fs-12 f-shallow m-t-5">不含运费</view>
+					</view>
+				</view>
+				<view class="col-xs-3 box1" v-if="isedit" style="width:10%"></view>
+				<view class="col-xs-3 box box2" v-if="!isedit" style="width:30%">
+					<view class="btn btn-main" @click="checkoutOrder">去结算(<text>{{cartTotal.checkedGoodsCount}}</text>)</view>
+				</view>
+				<view class="col-xs-3 box box2" v-if="isedit" style="width:30%">
+					<view class="btn btn-default">加入收藏夹</view>
+				</view>
+				<view class="col-xs-3 box box2" v-if="isedit" style="width:30%">
+					<view class="btn btn-cmain" @click="doShowCancel">删除</view>
+				</view>
+
+			</view>
+		</view>
+
+		<!-- 弹窗 -->
+		<view class="bg-black-o6 pf b0 l0 r0 t0 z9" v-if="isshowcancel" @click='doHideCancel'></view>
+		<view class='modal-pop-box' v-if="isshowcancel">
+			<image @click='doHideCancel' class='close' src='/static/images/pop-close-2.png'></image>
+			<view class='content'>
+				<view class="title">是否确定取消预订</view>
+			</view>
+			<view class="footer-box two">
+				<view class="box box1 pc-50" @click='doHideCancel'>取消</view>
+				<view class="box box2 pc-50" @click='deleteCart'>确认</view>
+			</view>
+		</view>
+		<!-- 弹窗 -->
+
+	</view>
 </template>
 
 <script>
@@ -65,7 +101,9 @@ export default {
       },
       isEditCart: false,
       checkedAllStatus: true,
-      editCartList: []
+      editCartList: [],
+	  isedit: false,
+	  isshowcancel:false,
     };
   },
 
@@ -78,6 +116,20 @@ export default {
   },
 
   methods: {
+        onEdit(){
+			this.isedit = !this.isedit;
+			},
+		doShowCancel(){
+				this.isshowcancel = true;
+			},
+		doHideCancel(){
+				this.isshowcancel = false;
+			},
+		onCheckOut(){
+				uni.navigateTo({
+					url:'/pages/checkout/checkout'
+				})
+			},
     getCartList: function () {
       let that = this;
       util.request(api.CartList).then(function (res) {
@@ -233,6 +285,7 @@ export default {
     cutNumber: function (event) {
       let itemIndex = event.target.dataset.itemIndex;
       let cartItem = this.cartGoods[itemIndex];
+	  console.log('___+++='+cartItem);
       let number = cartItem.number - 1 > 1 ? cartItem.number - 1 : 1;
       cartItem.number = number;
       this.setData({
@@ -243,6 +296,7 @@ export default {
     addNumber: function (event) {
       let itemIndex = event.target.dataset.itemIndex;
       let cartItem = this.cartGoods[itemIndex];
+	  console.log('___+++='+cartItem);
       let number = cartItem.number + 1;
       cartItem.number = number;
       this.setData({
@@ -324,7 +378,8 @@ export default {
           });
           that.setData({
             cartGoods: cartList,
-            cartTotal: res.data.cartTotal
+            cartTotal: res.data.cartTotal,
+			isshowcancel: false
           });
         }
 
@@ -359,5 +414,6 @@ export default {
 };
 </script>
 <style>
-@import "./cart.css";
+@import "../../static/css/main.css";
+page{background:#f5f5f5;}
 </style>

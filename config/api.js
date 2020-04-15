@@ -21,6 +21,7 @@ module.exports = {
 	BannerContent: WxApiRootUrl + 'v2/index/getBanner.json',
 	//新增接口
 	IndexUrlzuixin: WxApiRootUrl + 'v2/index/indexNewGoods.json',
+	Indextuijian: WxApiRootUrl + 'v2/index/indexRelatedGoods.json',
 	//新增接口
 	IndexUrlgonggao: NewApiRootUrl + 'newsBulletin/list',
 	//公告
@@ -29,6 +30,7 @@ module.exports = {
 	IndexUrlCategory: NewApiRootUrl + 'index/category',
 	//首页数据接口IndexUrlChannel
 	IndexUrlBanner: NewApiRootUrl + 'index/banner',
+	
 	//首页数据接口IndexUrlChannel
 	IndexUrlChannel: NewApiRootUrl + 'index/channel',
 	//首页数据接口IndexUrlChannel
@@ -37,6 +39,7 @@ module.exports = {
 	CatalogList: WxApiRootUrl + 'v2/catalog/index.json',
 	//分类目录全部分类数据接口
 	CatalogCurrent: WxApiRootUrl + 'v2/catalog/current.json',
+	
 	//分类目录当前分类数据接口
 	AuthLoginByWeixin: NewApiRootUrl + 'auth/login_by_weixin',
 	//微信登录
@@ -44,6 +47,7 @@ module.exports = {
 	GoodsCount: NewApiRootUrl + 'goods/count',
 	//统计商品总数
 	GoodsList: NewApiRootUrl + 'goods/list',
+	NewGoodsList: NewApiRootUrl + 'goods/NewGoods',
 	//获得商品列表
 	GoodsCategory: NewApiRootUrl + 'goods/hot',
 	//获得分类数据
@@ -100,14 +104,7 @@ module.exports = {
 	getUserDistributionInfo: WxApiRootUrl + 'v2/distribution/getUserDistributionInfo.json',
 	getUserEarnings: WxApiRootUrl + 'v2/distribution/getUserEarnings.json',
 	distriapply: WxApiRootUrl + 'v2/distridetailapply/distriapply.do',
-	// ShopOrderList: NewApiRootUrl + 'order/merchantlist',
-	//OrderSubmit: NewApiRootUrl + 'order/submit', // 提交订单
-	//OrderList: NewApiRootUrl + 'order/list', //订单列表
-	// OrderDetail: NewApiRootUrl + 'order/detail', //订单详情
-	// OrderCancel: NewApiRootUrl + 'order/cancelOrder', //取消订单
-	// OrderConfirm: NewApiRootUrl + 'order/confirmOrder', //确认收货
-	// OrderQuery: NewApiRootUrl + 'pay/query',
-	// OrderSuccess: NewApiRootUrl + 'order/updateSuccess',
+
 	PayPrepayId: NewApiRootUrl + 'pay/prepay',
 	PayScorePrepayId: WxApiRootUrl + 'v2/wxpay/payscore',
 	PayScoreQuery: WxApiRootUrl + 'v2/wxpay/queryscore',
@@ -144,6 +141,7 @@ module.exports = {
 	SearchGoods: NewApiRootUrl + 'search/search',
 	//搜索帮助
 	SearchClearHistory: NewApiRootUrl + 'search/clearhistory',
+	SearchHistory: NewApiRootUrl + 'search/gethistory',
 	//搜索帮助
 	AddressList: NewApiRootUrl + 'address/addressUserlist',
 	//收货地址列表
@@ -170,9 +168,11 @@ module.exports = {
 	//账号登录
 	Register: NewApiRootUrl + 'auth/register',
 	//注册
-	CouponList: NewApiRootUrl + 'coupon/list',
+	CouponList: WxApiRootUrl + 'v2/coupon/userCouponList.json',
 	// 优惠券列表
 	GoodsCouponList: NewApiRootUrl + 'coupon/listByGoods',
+	//用户可以选择优惠券
+	UserCheckCoupon: WxApiRootUrl + 'v2/coupon/ucoupon.json',
 	// 商品优惠券列表   
 	CustomerSave: NewApiRootUrl + 'customer/save.do',
 	//新增客户
@@ -243,6 +243,8 @@ module.exports = {
 	//积分购买
 	Socre: WxApiRootUrl + "v2/score/buyscore.do",
 	//用户积分等级
-	MyScore: WxApiRootUrl + "v2/score/myScore.json"
+	MyScore: WxApiRootUrl + "v2/score/myScore.json",
+	
+	UScore: WxApiRootUrl + "v2/score/uScore.json"
 
 };
