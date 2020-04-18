@@ -74,7 +74,7 @@
 						<button open-type="share" class="txt" style="background-color: transparent;border: none;outline: none;">邀请好友</button>
 					</view> -->
 					<view class="item">     
-							  <button  open-type="share" size="23" class='pos_'>邀请好友</button>
+							  <button  open-type="share"  class='pos_'>邀请好友</button>
 							  <image class="icon_kf_" src="/static/images/user-1.png"></image>  
 					       <view class="dbtext_">邀请好友</view>	
 					</view>
@@ -101,7 +101,7 @@
 						<button class="txt" open-type="contact" style="background-color: transparent;border: none;outline: none;">联系客服</button>
 					</navigator> -->
 					<view class="item">
-							  <button  open-type="contact" size="23" class='pos_'>联系客服</button>
+							  <button  open-type="contact" class='pos_'>联系客服</button>
 							  <image class="icon_kf_" src="/static/images/user-7.png"></image>  
 					       <view class="dbtext_">联系客服</view>	
 					</view>
@@ -173,6 +173,11 @@ export default {
 	onShow: function() {},
 	onHide: function() {},
 	onUnload: function() {},
+	onPullDownRefresh() {
+	  var self = this;
+	  self.getMyScore();
+	  wx.stopPullDownRefresh();
+	},
 	
 	methods: {
 		getMyScore: function() {

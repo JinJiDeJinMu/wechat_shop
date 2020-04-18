@@ -71,7 +71,7 @@
 <template>
 	<view class="container">
 		<!-- 有地址 -->
-		<navigator class="row bg-white" v-if="checkedAddress.id > 0">
+		<navigator class="row bg-white" v-if="checkedAddress.id > 0" url="/pages/ucenter/address/address">
 			<view class='col-xs-12 flex-between p-t-20 p-b-15 p-l-10 p-r-10'>
 				<image src="/static/images/address-line.png" class="pc-100 pa t0 l0" mode="widthFix"></image>
 				<view class='flex-align-start'>
@@ -125,13 +125,13 @@
 				<text class='fs-15 f-red'>¥{{goodsTotalPrice}}</text>
 			</view>
 		</view>
-		<view  class='row bg-white m-t-10 pdtb15 fs-14 b-b-1 color-333333' >
+		<navigator  class='row bg-white m-t-10 pdtb15 fs-14 b-b-1 color-333333' url="/pages/shopping/selCoupon/selCoupon">
 			<view class='col-xs-6'>优惠券：暂无可用</view>
 			<view class='col-xs-6 flex-align-end'>
 				<view>暂无可用</view>
-				<image src='/static/images/right-2.png' style='width:28rpx;height:28rpx;' @tap="selectCoupon"></image>
+				<image src='/static/images/right-2.png' style='width:28rpx;height:28rpx;' ></image>
 			</view>
-		</view>
+		</navigator>
 		<view class='row bg-white pdtb15 fs-14 b-b-1'>
 			<view class='col-xs-6'>优惠金额：</view>
 			<view class='col-xs-6 tr'>- ¥0.00</view>
@@ -335,11 +335,12 @@ export default {
         url: '/pages/ucenter/address/address'
       });
     },
-    selectCoupon() {
+   /* selectCoupon() {
+		console.log("11111");
       wx.navigateTo({
         url: '/pages/shopping/selCoupon/selCoupon'
       });
-    },
+    }, */
     addAddress() {
       wx.navigateTo({
         url: '/pages/ucenter/addressAdd/addressAdd'

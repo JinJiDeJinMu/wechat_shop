@@ -26,12 +26,14 @@
 			"path": "pages/goods/goods",
 			"style": {
 				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": false,
 				"usingComponents": {
 			   "i-rate": "../../wxcomponents/dist/rate/index",
 			   "poster": "../../wxcomponents/wxa-plugin-canvas/poster/index"
 				}
 			}
 		},
+		
 		{
 			"path": "pages/goods/comment/comment",
 			"style": {
@@ -54,6 +56,12 @@
 			"path": "pages/ucenter/addressAdd/addressAdd",
 			"style": {
 				"navigationBarTitleText": "新增地址"
+			}
+		},
+		{
+			"path": "pages/shopping/selCoupon/selCoupon",
+			"style": {
+				"navigationBarTitleText": "优惠券"
 			}
 		},
 		{
@@ -170,7 +178,7 @@
 			"path": "pages/ucenter/index/index",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 		},
 		{

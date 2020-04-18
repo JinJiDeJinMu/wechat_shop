@@ -30,18 +30,18 @@
  	<view>
  		<view class="container m-t-3">
  			<view class="row nav-box bg-white">
- 				<view class="col-xs-4 item" v-bind:class="type==0?'ac':''" @click="onType(0)">
+ 				<view class="col-xs-4 item" >
  					<text>未使用</text>
  				</view>
- 				<view  class="col-xs-4 item" v-bind:class="type==1?'ac':''" @click="onType(1)">
+ 				<!-- <view  class="col-xs-4 item" v-bind:class="type==1?'ac':''" @click="onType(1)">
  					<text>已使用</text>
  				</view>
  				<view  class="col-xs-4 item" v-bind:class="type==2?'ac':''" @click="onType(2)">
  					<text>已失效</text>
- 				</view>
+ 				</view> -->
  			</view>
  		</view>
- 		<view class="container coupon-container" v-bind:class="typeClass[type]">
+ 		<view class="container coupon-container" >
  			<view class="row bg-white m-t-10 radius-4 pr" v-for="(item, index) in CouponList" :key="index">
  				<view class="col-xs-9 p-t-10 p-b-10">
  				<view class="layout sub60">
@@ -97,9 +97,8 @@
  				</view>
  				</view>
  				<view class="col-xs-3 p-l-0 p-r-0 tc right p-t-3">
- 					<view url="/pages/index/index" class="btn btn-main btn-sm m-t-10" v-if="type==0" @click="tobuy">去使用</view>
- 					<view class="btn btn-main btn-sm m-t-10" v-if="type==1">已使用</view>
- 					<view class="btn btn-main btn-sm m-t-10" v-if="type==2">已失效</view>					
+ 					<view url="/pages/index/index" class="btn btn-main btn-sm m-t-10"  @click="tobuy">去使用</view>
+ 									
  				</view>
  				<text class="circle top"></text>
  				<text class="circle bottom"></text>
@@ -119,7 +118,8 @@ export default {
   data() {
     return {
       couponList: [],
-      buyType: ''
+      buyType: '',
+	  type:0
     };
   },
 
@@ -132,6 +132,7 @@ export default {
     var merchantId = options.merid;
     var goodsTotalPrice = options.price;
     this.validCouponList(merchantId, goodsTotalPrice); */
+	this.validCouponList();
   },
   methods: {
     validCouponList: function () {
@@ -190,6 +191,5 @@ export default {
 };
 </script>
 <style>
-@import "./selCoupon.css";
-@import "../../static/css/main.css";
+@import "../../../static/css/main.css";
 </style>

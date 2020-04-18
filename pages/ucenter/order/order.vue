@@ -18,7 +18,7 @@
  				<view class="col-xs-2 pc-20 item" v-bind:class="orderId==0?'ac':''" data-id="0" @tap="switchCate">
  				<text>待付款</text>
  				</view>
- 				<view class="col-xs-2 pc-20 item" v-bind:class="orderId==208?'ac':''" data-id="208" @tap="switchCate">
+ 				<view class="col-xs-2 pc-20 item" v-bind:class="orderId==201?'ac':''" data-id="201" @tap="switchCate">
  				<text>待发货</text>
  				</view>
  				<view class="col-xs-2 pc-20 item" v-bind:class="orderId==207?'ac':''" data-id="207" @tap="switchCate">

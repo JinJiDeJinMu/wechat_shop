@@ -352,10 +352,10 @@
 <template>
 	<view class="">
 		<view class="item-detail-box pr">
-			<!-- <image src="/static/images/home-ico.png" style="width:52rpx;height:52rpx;right:100rpx;top:24rpx;" class="pa t0 r0 z9"></image> -->
-			<button style="right:34rpx;top:24rpx;padding:0;line-height:0;" open-type="share" size="mini" class="pa t0 r0 z9">
+			<!-- <image :src="ollectBackImage" style="width:52rpx;height:52rpx;right:100rpx;top:24rpx;" class="pa t0 r0 z9"></image> -->
+			<!-- <button style="right:34rpx;top:24rpx;padding:0;line-height:0;" open-type="share" size="mini" class="pa t0 r0 z9">
 				<image src="/static/images/share-ico.png" style="width:52rpx;height:52rpx;" ></image>
-			</button>
+			</button> -->
 
 			<view class="">
 				<swiper indicator-dots="true"
@@ -373,7 +373,7 @@
 					<text class="text">￥</text>
 					<text class="em">{{goods.retail_price}}</text>
 				</view>
-				<button class='share' style="margin:0;padding:0;" open-type="share">
+				<button class='share_' style="margin:0;padding:0;" open-type="share">
 					<image src="/static/images/share.png"></image>
 					<view>分享</view>
 				</button>
@@ -468,23 +468,16 @@
 		<view class="pf b0 l0 r0">
 			<view class="cart-footer">
 				<view class='col-xs-4 tc left-btn'>
+					<!-- <view class='item'>									
+						  						      				
+					</view> -->
 					<view class='item'>
-						<!-- <navigator url="/pages/index/index">
-						<image src="/static/images/i_1.png" class="img" @tap="openIndexPage"></image>
-						<view class="text">首页</view>
-						</navigator> -->						
-						<view class="df_1 l_h15"> 
-						          <image class="icon_kf" src="/static/images/user-7.png"></image>  
-								  <button  open-type="contact" size="23" class='pos'>客服</button>
-						       <view class="dbtext">客服</view>	
-						</view>
-							
+						<image class="img" src="/static/images/22.png"></image>
+						<button  open-type="contact" size="23" class='pos'>客服</button>
+						<image src="/static/images/11.png" class="img" @tap="openCartPage" style="float: left;"></image>
+						<image class="img"  mode="aspectFit" :src="collectBackImage" @tap="closeAttrOrCollect" style="margin-left: 7rpx;"></image>
 					</view>
-					<view class='item'>
-						<image src="/static/images/i_2.png" class="img" @tap="openCartPage"></image>
-						<view class="text">购物车</view>
-						<!-- <view class='num'></view> -->
-					</view>
+					
 				</view>
 				<view class='col-xs-8'>
 					<view class='right-btn1' @click="onShowCart" >加入购物车</view>
@@ -1590,8 +1583,9 @@ export default {
     },
     closeAttrOrCollect: function () {
       let that = this;
+	  console.log("------------1");
 
-      if (this.openAttr) {
+   /*   if (this.openAttr) {
         this.setData({
           openAttr: false
         });
@@ -1605,7 +1599,7 @@ export default {
             'collectBackImage': that.noCollectImage
           });
         }
-      } else {
+      } else { */
         //添加或是取消收藏
         util.request(api.CollectAddOrDelete, {
           typeId: 0,
@@ -1614,7 +1608,7 @@ export default {
           let _res = res;
 
           if (_res.errno == 0) {
-            if (_res.data.type == 'add') {
+            if (_res.data.type == 'add') {				
               that.setData({
                 'collectBackImage': that.hasCollectImage
               });
@@ -1625,13 +1619,13 @@ export default {
             }
           } else {
             wx.showToast({
-              image: '/static/images/icon_error.png',
+              /* image: '/static/images/icon_error.png', */
               title: _res.errmsg,
               mask: true
             });
           }
         });
-      }
+     // }
     },
     openCartPage: function () {
       wx.switchTab({

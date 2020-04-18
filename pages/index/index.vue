@@ -121,14 +121,13 @@
 				</view>
 				
 				
-				<!-- <view class="col-xs-12 no-pd" v-if="relatedGoods.length>0">
+				<view class="col-xs-12 no-pd" v-if="relatedGoods.length>0">
 					<view class="list-title-box flex-between">
-						<view class="fs-15 f-black name">为你推荐</view>
-					
+						<view class="fs-15 f-black name">为你推荐</view>	
 					</view>
-				</view> -->
+				</view>
 				
-				<!-- <view class="col-xs-12 banner-item-box" v-if="relatedGoods.length>0">
+				<view class="col-xs-12 banner-item-box" v-if="relatedGoods.length>0">
 				<navigator :url="'../goods/goods?id=' + item.id" class="item" v-for="(item, index) in relatedGoods" :key="index">
 					<view class="img">
 						<image class="bg-f5" mode="aspectFill" :src="item.list_pic_url||item.primary_pic_url"></image>
@@ -145,7 +144,7 @@
 						<image src="/static/images/buy-btn.png" class="buy-ico"></image>
 					</view>
 				</navigator>
-				</view> -->
+				</view>
 				
 			</view>
 		</view>
