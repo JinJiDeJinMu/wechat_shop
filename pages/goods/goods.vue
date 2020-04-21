@@ -475,7 +475,7 @@
 						<image class="img" src="/static/images/22.png"></image>
 						<button  open-type="contact" size="23" class='pos'>客服</button>
 						<image src="/static/images/11.png" class="img" @tap="openCartPage" style="float: left;"></image>
-						<image class="img"  mode="aspectFit" :src="collectBackImage" @tap="closeAttrOrCollect" style="margin-left: 7rpx;"></image>
+						<image class="img"  :src="collectBackImage" @tap="closeAttrOrCollect" style="margin-left: 7rpx;"></image>
 					</view>
 					
 				</view>

@@ -150,6 +150,13 @@
 			}
 		},
 		{
+			"path": "pages/ucenter/order/orderService",
+			"style": {
+				"navigationBarTitleText": "订单售后",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
 			"path": "pages/ucenter/return/return",
 			"style": {}
 		},

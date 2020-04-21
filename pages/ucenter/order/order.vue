@@ -36,7 +36,7 @@
  				</view>
 				<view class="fr f-red fs-15"><block >{{item.order_status_text}}</block></view>
  				</view>
- 				<block >
+ 				<block v-for="(ite, idx) in item.orderGoodsVos" :key="idx">
  				<view class="col-xs-12 m-t-3 p-t-5 p-b-5 bg-fa">
  				<view class="layout sub50">
  					<view class="col-main">
@@ -44,26 +44,26 @@
  						<view class="m-t-5 flex-between fs-12">
  						<text class="fl block pc-80 text-ellipsis"></text>
 						<!-- <text class="pc-6 tl" style='color:#333;'>{{item.goods_name}}</text> -->
- 						<text class="fr block pc-20 tr" style='color:#333;'>¥{{item.goods_price}}</text>
+ 						<text class="fr block pc-20 tr" style='color:#333;'>¥{{ite.retail_price}}</text>
  						</view>
  						<view class="m-t-5 flex-between fs-12">
 							<view class="pc-80 flex-align-start">				
-								<view>{{item.goods_name}}</view>
+								<view>{{ite.goods_name}}</view>
 							</view>
- 						<view class="pc-20 tr">×{{item.goods_num||1}}</view>
+ 						<view class="pc-20 tr">×{{ite.number||1}}</view>
  						</view>
  					</view>
  					</view>
  					<view class="col-sub">
  					<view>
- 						<image :src="item.list_pic_url" mode="aspectFill" style="width:100rpx;height:100rpx;" class="bg-white" />
+ 						<image :src="ite.list_pic_url" mode="aspectFill" style="width:100rpx;height:100rpx;" class="bg-white" />
  					</view>
  					</view>
  				</view>
  				</view>
  				</block>
  				<view class="col-xs-12 tr f-grey b-b-1 p-b-10 p-t-10 fs-12">
- 					共{{item.goods_num||1}}  合计: <text style='color:#333;font-size:26rpx;'>¥{{item.actual_price}}</text>（含运费: 0.00）
+ 					共{{item.goods_num||1}}  合计: <text style='color:#333;font-size:26rpx;'>¥{{item.actual_price}}</text>（含运费: ¥{{item.shipping_fee}}）
  				</view>
  				<view class="col-xs-12 tr p-t-8 p-b-8">
  				<view class="clearfix">

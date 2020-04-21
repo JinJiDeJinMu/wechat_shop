@@ -54,7 +54,7 @@
 						<view class="img"><image src="../../../static/images/order-4.png" /></view>
 						<view class="txt">待评价</view>
 					</navigator>
-					<navigator url="/pages/ucenter/order/order?id=501" class="item block pc-20 fl">
+					<navigator url="/pages/ucenter/order/orderService?id=502" class="item block pc-20 fl">
 						<view class="img"><image src="../../../static/images/order-5.png" /></view>
 						<view class="txt">售后</view>
 					</navigator>

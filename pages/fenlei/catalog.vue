@@ -97,7 +97,7 @@ export default {
 		 that.setData({
 		   categoryList: []
 		 });
-		if(res.data){
+		if(res.data.goods){
 			if(res.data.goods.length >=2){
 				for(var i =1;i <res.data.goods.length;i++){
 					that.categoryList.push(res.data.goods[i])
@@ -110,7 +110,7 @@ export default {
 			that.setData({
 			  navList: res.data.goods,
 			});
-			console.log('----'+that.navList[1].id);
+			//console.log('----'+that.navList[1].id);
 			wx.hideLoading();
 		}	
       });   
