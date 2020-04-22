@@ -698,7 +698,7 @@ export default {
         type: options.type
       });
     }
-    that.getGoodsInfo();
+  
     if (options.userId) {
       wx.setStorageSync('userId', options.userId);
       let referrerString = options.userId + '_goodsid' + options.id;
@@ -728,7 +728,7 @@ export default {
       }
     });
 	//Poster.create(false);
-	
+	 that.getGoodsInfo();
 
   },
   onShow: function () {

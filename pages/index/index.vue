@@ -205,6 +205,7 @@
 	      title: '未名严选',
 	      desc: '春登台',
 	      path: '/pages/index/index'
+		  
 	    };
 	  },
 	
@@ -214,7 +215,7 @@
 		wx.stopPullDownRefresh();
 	  },
 	  onLoad: function (options) {
-		  console.log(options);
+		console.log(options);
 	    let self = this;
 	    if (options.scene) {
 	      wx.setStorageSync('referrerId', options.scene);
