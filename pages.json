@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "未名严选"
+				"navigationBarTitleText": "有机科技"
 			},
 			  "permission": {
 			    "scope.userLocation": {
